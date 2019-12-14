@@ -48,26 +48,17 @@
 
 			</ul>
 			<div class="float-right">
-				<a class="btn btn-primary" href="/projettest/login"
-					role="button">Connexion</a> <a class="btn btn-primary"
-					href="/projettest/inscription" role="button">Inscription</a>
+				<a class="btn btn-primary" href="/projettest/login" role="button">Connexion</a>
+				<a class="btn btn-primary" href="/projettest/inscription" role="button">Inscription</a>
 			</div>
+			
 		</div>
 
 	</nav>
 	<br />
 
 
-	<div class="container">
-
-		<a href="/projettest/load">Charger les données de test</a> </br> <a
-			href="/projettest/livres/display"> Afficher les livres </a><br /> <br />
-	</div>
-
-
-
-
-
+	
 
 
 

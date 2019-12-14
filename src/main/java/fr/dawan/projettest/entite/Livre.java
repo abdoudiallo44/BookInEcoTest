@@ -144,6 +144,22 @@ public class Livre {
 		this.formatLivre = formatLivre;
 		this.disponibilite = disponibilite;
 	}
+	
+	
+
+	public Livre(long idLivre, String auteur, String titre, String description, String photoLivre, double poidsLivre,
+			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite) {
+		super();
+		this.idLivre = idLivre;
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photoLivre = photoLivre;
+		this.poidsLivre = poidsLivre;
+		this.formatLivre = formatLivre;
+		this.dateAjoutLivre = dateAjoutLivre;
+		this.disponibilite = disponibilite;
+	}
 
 	public Livre(long idLivre, String auteur, String titre, String description, String photoLivre, double poidsLivre,
 			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite, Utilisateur proprietaire,

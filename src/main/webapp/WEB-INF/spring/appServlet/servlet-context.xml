@@ -110,6 +110,18 @@
 
 
 
+	<!-- Définition des packages qui contiennent les intercepteurs -->
+	<interceptors>
+		<beans:bean id="logInterceptor"
+			class="fr.dawan.projettest.interceptors.LogInterceptor"></beans:bean>
+			
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	</interceptors>
+
+
 	<!-- définition de l'emplacements des fichiers de messages -->
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

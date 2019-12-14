@@ -1,5 +1,6 @@
 package fr.dawan.projettest.Beans;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
@@ -25,8 +26,9 @@ public class LivreForm {
 	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String formatLivre;
 	
-	private LocalDateTime dateAjoutLivre;
+	private LocalDate dateAjoutLivre;
 	
+	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private boolean disponibilite;
 
 
@@ -101,15 +103,15 @@ public class LivreForm {
 		this.formatLivre = formatLivre;
 	}
 
-	public LocalDateTime getDateAjoutLivre() {
+	public LocalDate getDateAjoutLivre() {
 		return dateAjoutLivre;
 	}
 
-	public void setDateAjoutLivre(LocalDateTime dateAjoutLivre) {
+	public void setDateAjoutLivre(LocalDate dateAjoutLivre) {
 		this.dateAjoutLivre = dateAjoutLivre;
 	}
 
-	public boolean isDisponibilite() {
+	public boolean getDisponibilite() {
 		return disponibilite;
 	}
 
@@ -124,7 +126,7 @@ public class LivreForm {
 	public LivreForm(long idLivre, @NotEmpty(message = "Ce champs ne doit pas être vide") String auteur,
 			@NotEmpty(message = "Ce champs ne doit pas être vide") String titre, String description, String photoLivre,
 			@NotEmpty(message = "Ce champs ne doit pas être vide") double poidsLivre,
-			@NotEmpty(message = "Ce champs ne doit pas être vide") String formatLivre, LocalDateTime dateAjoutLivre,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String formatLivre, LocalDate dateAjoutLivre,
 			boolean disponibilite) {
 		super();
 		this.idLivre = idLivre;

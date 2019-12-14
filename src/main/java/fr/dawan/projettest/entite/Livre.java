@@ -20,21 +20,13 @@ public class Livre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idLivre;
-
 	private String auteur;
-
 	private String titre;
-
 	private String description;
-
 	private String photoLivre;
-
 	private double poidsLivre;
-
 	private String formatLivre;
-
 	private LocalDate dateAjoutLivre;
-
 	private boolean disponibilite;
 
 	@ManyToOne
@@ -43,6 +35,11 @@ public class Livre {
 	@ManyToOne
 	private ThemeLivre idTheme;
 
+	
+	
+	
+	
+	
 	// Getters and Setters
 	public long getIdLivre() {
 		return idLivre;

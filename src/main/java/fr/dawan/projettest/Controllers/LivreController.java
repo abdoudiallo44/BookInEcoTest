@@ -23,8 +23,15 @@ public class LivreController {
 	public String display(Model model) {
 
 		List<Livre> livres = service.readAll();
-		model.addAttribute("listeProduit", livres);
+		model.addAttribute("listeLivre", livres);
 
+		return "livres";
+	}
+	
+	
+	// A finir
+	@GetMapping("/supprimer/{id}")
+	public String supprimer() {
 		return "livres";
 	}
 }

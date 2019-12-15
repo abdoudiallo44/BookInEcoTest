@@ -79,7 +79,9 @@
 				
 				</table>
 			</div>
-			
+			<div>
+				<p style="color:red;">${msg}</p>
+			</div>
 			
 			
 			

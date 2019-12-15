@@ -20,7 +20,7 @@ public class UtilisateurDAO {
 	private EntityManager em;
 
 	// ajout d'un utilisateur
-	public void create(Utilisateur utilisateur) {
+	public  void create(Utilisateur utilisateur) {
 		em.persist(utilisateur);
 	}
 
@@ -45,8 +45,8 @@ public class UtilisateurDAO {
 				.getResultList();
 	}
 
-	// recherche d'un produit par ID
+	// recherche d'un livre par ID
 	public Utilisateur findById(long id) {
-		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("id", id).getSingleResult();
+		return (Utilisateur) em.createQuery("From Utilisateur WHERE idLivre= :id").setParameter("idLivre", id).getSingleResult();
 	}
 }

@@ -35,11 +35,11 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
-
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
+					
+					<form action="/projettest/livres/findByKey" method="post" class="form-inline my-2 my-lg-0" >
+						<input class="form-control mr-sm-2" type="text" name="motCle"
 							placeholder="Rechercher un livre" aria-label="Rechercher">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit"">Rechercher</button>
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
 					</form>
 				</li>
 
@@ -59,18 +59,20 @@
 
 	</nav>
 
-	<div class="container">
-		<form:form action="/projet/produits/ajouterProduit" method="post"
-			modelAttribute="produitForm">
+	<div class="container" >
+		<form:form action="/projettest/livres/ajouterLivre" method="post"
+			modelAttribute="livreForm">
+			
+			
 			<table>
 				<tr>
 					<td>ID:</td>
 					<td><form:input type="text" path="idLivre" 
-							value="${LivreForm.idLivre}" /></td>
+							value="${livreForm.idLivre}" /></td>
 				</tr>
 				<tr>
 					<td>Auteur:</td>
-					<td><form:input type="text" path="description"
+					<td><form:input type="text" path="auteur"
 							value="${LivreForm.auteur}" /></td>
 					<td><p>
 							<form:errors path="auteur" />
@@ -78,7 +80,7 @@
 				</tr>
 				<tr>
 					<td>Titre:</td>
-					<td><form:input type="text" path="description"
+					<td><form:input type="text" path="titre"
 							value="${LivreForm.titre}" /></td>
 					<td><p>
 							<form:errors path="titre" />
@@ -154,17 +156,23 @@
 					<th scope="col">Format</th>
 					<th scope="col">Date d'ajout</th>
 					<th scope="col">Disponibilité</th>
+					<th scope="col">Option</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="p" items="${listeProduit}">
+				<c:forEach var="p" items="${listeLivre }">
 					<tr>
-						<td>${p.id}</td>
+						<td>${p.idLivre}</td>
+						<td>${p.auteur}</td>
+						<td>${p.titre}</td>
 						<td>${p.description}</td>
-						<td>${p.prix}</td>
-						<td>${p.quantite}</td>
-						<td><a href="/projettest/livres/supprimer/${p.id}">Supprimer</a>
-							|<a href="/projettest/livres/modifier/${p.id}"> Modifier</a></td>
+						<td>${p.photoLivre}</td>
+						<td>${p.poidsLivre}</td>
+						<td>${p.formatLivre}</td>
+						<td>${p.dateAjoutLivre}</td>
+						<td>${p.disponibilite}</td>
+						<td><a href="/projettest/livres/supprimer/${p.idLivre}">Supprimer</a>
+							|<a href="/projettest/livres/modifier/${p.idLivre}"> Modifier</a></td>
 					</tr>
 				</c:forEach>
 

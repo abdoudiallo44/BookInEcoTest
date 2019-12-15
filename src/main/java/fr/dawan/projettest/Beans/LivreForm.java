@@ -20,7 +20,6 @@ public class LivreForm {
 	
 	private String photoLivre;
 	
-	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private double poidsLivre;
 	
 	@NotEmpty(message="Ce champs ne doit pas être vide")
@@ -28,7 +27,6 @@ public class LivreForm {
 	
 	private LocalDate dateAjoutLivre;
 	
-	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private boolean disponibilite;
 
 

@@ -44,6 +44,7 @@ public class LivreController {
 	}
 	//
 
+	@PostMapping("/ajouterLivre")
 	public String ajouterLivre(Model model, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
 			BindingResult bindingResult) {
 
@@ -89,8 +90,11 @@ public class LivreController {
 	// cette annotation fait comprendre a spring que dans l'application un
 	// formulaire est lié à une classe et
 	// il se charge de l'initialiser
-	@ModelAttribute("produitForm")
+	@ModelAttribute("livreForm")
 	public LivreForm getProduitForm() {
 		return new LivreForm();
 	}
+	
+	
+	
 }

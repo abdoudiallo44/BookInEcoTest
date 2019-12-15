@@ -37,33 +37,34 @@
 				<li class="nav-item active">
 					<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
+					<form action="/projettest/livres/findByKey" method="post" class="form-inline my-2 my-lg-0" >
+						<input class="form-control mr-sm-2" type="search" name="motCle"
 							placeholder="Rechercher un livre" aria-label="Rechercher">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit"">Rechercher</button>
 					</form>
 				</li>
 
 			</ul>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			
-				<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
+			<div class="float-right">
 
-					(<a href="/projettest/login/deconnexion">Déconnexion</a>)
-				</li>
-				
+				<ul class="navbar-nav mr-auto">
+					<li>${login}</li>
+					<li class="nav-item active">
+						<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
+
+						(<a href="/projettest/login/deconnexion">Déconnexion</a>)
+					</li>
 			</div>
-			
+
 		</div>
 
 	</nav>
+
 	<br />
 
 	
 	<div class="container">
-		 Bonjour ${login}
+		 Bonjour ${login}</br>
 		<a href="/projettest/livres/display"> Affichage et gestion des livres </a><br /> <br />
 	</div>
 </body>

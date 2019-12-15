@@ -47,6 +47,6 @@ public class UtilisateurDAO {
 
 	// recherche d'un livre par ID
 	public Utilisateur findById(long id) {
-		return (Utilisateur) em.createQuery("From Utilisateur WHERE idLivre= :id").setParameter("idLivre", id).getSingleResult();
+		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("idLivre", id).getSingleResult();
 	}
 }

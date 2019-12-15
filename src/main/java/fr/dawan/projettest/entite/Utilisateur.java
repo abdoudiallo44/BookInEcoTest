@@ -3,7 +3,9 @@ package fr.dawan.projettest.entite;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,17 +40,17 @@ public class Utilisateur {
 
 	private RoleUtilisateur role;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ThemeLivre> preferenceLitteraire;
 
 	// Une personne possède plusieurs livres
-	@OneToMany(mappedBy = "proprietaire")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire", fetch = FetchType.LAZY)
 	private List<Livre> listeLivreUtil;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Panier panierUtilisateur;
 
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur", fetch = FetchType.LAZY)
 	private List<AdresseLivraison> adresseLivraison;
 
 	// Getters and Setters

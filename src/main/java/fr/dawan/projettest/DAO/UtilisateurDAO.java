@@ -20,7 +20,7 @@ public class UtilisateurDAO {
 	private EntityManager em;
 
 	// ajout d'un utilisateur
-	public  void create(Utilisateur utilisateur) {
+	public void create(Utilisateur utilisateur) {
 		em.persist(utilisateur);
 	}
 
@@ -47,13 +47,14 @@ public class UtilisateurDAO {
 
 	// recherche d'un livre par ID
 	public Utilisateur findById(long id) {
-		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("idLivre", id).getSingleResult();
+		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("idLivre", id)
+				.getSingleResult();
 	}
-	
+
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
 		List<Utilisateur> listeUtilisateur = readAll();
 		for (Utilisateur utilisateur : listeUtilisateur) {
-			if (utilisateur.getEmail().equals(email) && utilisateur.getMdp().equals(pswd)) {
+			if ( email.equals(utilisateur.getEmail()) && pswd.equals(utilisateur.getMdp()) ) {
 				return (Utilisateur) utilisateur;
 			}
 		}

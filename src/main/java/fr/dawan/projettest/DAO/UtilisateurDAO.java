@@ -49,4 +49,14 @@ public class UtilisateurDAO {
 	public Utilisateur findById(long id) {
 		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("idLivre", id).getSingleResult();
 	}
+	
+	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
+		List<Utilisateur> listeUtilisateur = readAll();
+		for (Utilisateur utilisateur : listeUtilisateur) {
+			if (utilisateur.getEmail().equals(email) && utilisateur.getMdp().equals(pswd)) {
+				return (Utilisateur) utilisateur;
+			}
+		}
+		return null;
+	}
 }

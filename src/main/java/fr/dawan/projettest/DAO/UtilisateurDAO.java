@@ -52,12 +52,12 @@ public class UtilisateurDAO {
 	}
 
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
-		List<Utilisateur> listeUtilisateur = readAll();
-		for (Utilisateur utilisateur : listeUtilisateur) {
-			if ( email.equals(utilisateur.getEmail()) && pswd.equals(utilisateur.getMdp()) ) {
-				return (Utilisateur) utilisateur;
-			}
-		}
-		return null;
+		
+		Utilisateur utilisateur = (Utilisateur) em.createQuery(
+								"From Utilisateur u JOIN FETCH "
+								+ "WHERE u.email= :email "
+								+ "AND u.mdp= :pswd").getSingleResult();
+		
+		return utilisateur;
 	}
 }

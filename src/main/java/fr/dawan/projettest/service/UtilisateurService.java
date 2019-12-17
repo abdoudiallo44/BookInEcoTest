@@ -15,19 +15,20 @@ public class UtilisateurService {
 
 	@Autowired
 	private UtilisateurDAO utilisateurDAO;
-	
+
 	@Transactional
 	public void create(Utilisateur utilisateur) {
 		utilisateurDAO.create(utilisateur);
 	}
-	
-	 @Autowired
-	 public List<Utilisateur> readAll(){
-		 return utilisateurDAO.readAll();
-	 }
-	 
-	 public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
-			return utilisateurDAO.findUserByEmailAndPwd(email, pswd);
-		}
-	 
+
+	@Transactional
+	public List<Utilisateur> readAll() {
+		return utilisateurDAO.readAll();
+	}
+
+	@Transactional
+	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
+		return utilisateurDAO.findUserByEmailAndPwd(email, pswd);
+	}
+
 }

@@ -35,31 +35,31 @@ public class LoginController {
 	public String authentification(Model model, @RequestParam("login") String login, @RequestParam("pass") String pass,
 			HttpSession session) {
 		
-//	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
-//	    
-//	    System.out.println(util);
-//	    
-//		String pseudo = util.getPseudo();
-//		String email = util.getEmail();
-//		String mdp = util.getMdp();
-//		
-//		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-//			session.setAttribute("login", login);
-//			return "welcome";
-//		}else {
-//			model.addAttribute("msg", "Erreur d'authentification!!!");
-//			return "login";
-//		}
+	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
+	    
+	    //System.out.println(util);
+	    
+		String pseudo = util.getPseudo();
+		String email = util.getEmail();
+		String mdp = util.getMdp();
 		
-		
-
-		if (login.equals("admin") && pass.equals("admin")) {
+		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
 			session.setAttribute("login", login);
 			return "welcome";
-		} else {
+		}else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");
 			return "login";
 		}
+		
+		
+
+//		if (login.equals("admin") && pass.equals("admin")) {
+//			session.setAttribute("login", login);
+//			return "welcome";
+//		} else {
+//			model.addAttribute("msg", "Erreur d'authentification!!!");
+//			return "login";
+//		}
 
 	}
 	

@@ -2,7 +2,6 @@ package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +46,7 @@ public class Utilisateur {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire", fetch = FetchType.LAZY)
 	private List<Livre> listeLivreUtil;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Panier panierUtilisateur;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur", fetch = FetchType.LAZY)

@@ -48,14 +48,14 @@ public class LivreController {
 	public String ajouterLivre(Model model, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
 			BindingResult bindingResult) {
 
-		Livre livre = new Livre(livreForm.getIdLivre(), livreForm.getAuteur(), livreForm.getTitre(),
+		Livre livre = new Livre(livreForm.getAuteur(), livreForm.getTitre(),
 				livreForm.getDescription(), livreForm.getPhotoLivre(), livreForm.getPoidsLivre(),
 				livreForm.getFormatLivre(), livreForm.getDateAjoutLivre(), livreForm.getDisponibilite());
 
 		if (bindingResult.hasErrors()) {
 			return "livres";
 		} else {
-			if (livre.getIdLivre() == 0) {
+			if (livre.getId() == 0) {
 				service.create(livre);
 				model.addAttribute("listeLivre", service.readAll());
 			} else {

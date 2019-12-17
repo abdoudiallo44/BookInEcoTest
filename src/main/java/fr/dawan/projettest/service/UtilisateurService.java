@@ -23,7 +23,7 @@ public class UtilisateurService {
 
 	@Transactional
 	public List<Utilisateur> readAll() {
-		return utilisateurDAO.readAll();
+		return utilisateurDAO.findAll(Utilisateur.class);
 	}
 
 	@Transactional

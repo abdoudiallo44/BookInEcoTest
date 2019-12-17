@@ -8,31 +8,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="theme")
-public class ThemeLivre {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idTheme;
-	
+public class ThemeLivre extends DbObject {
 	private String theme;
 
-	public ThemeLivre(long idTheme, String theme) {
+	public ThemeLivre(String theme) {
 		super();
-		this.idTheme = idTheme;
 		this.theme = theme;
 	}
 
 	public ThemeLivre() {
 		super();
-	}
-
-	
-	public long getIdTheme() {
-		return idTheme;
-	}
-
-	public void setIdTheme(long idTheme) {
-		this.idTheme = idTheme;
 	}
 
 	public String getTheme() {
@@ -45,7 +30,8 @@ public class ThemeLivre {
 
 	@Override
 	public String toString() {
-		return "ThemeLivre [idTheme=" + idTheme + ", theme=" + theme + "]";
+		return super.toString() + " ThemeLivre [theme=" + theme + "]";
 	}
+
 
 }

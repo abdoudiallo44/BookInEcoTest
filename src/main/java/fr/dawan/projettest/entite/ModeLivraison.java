@@ -16,24 +16,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "modeLivraison")
-public class ModeLivraison {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idModeLivraison;
+public class ModeLivraison extends DbObject {
 
 	private TypeLivraison typeLivraison;
 
 	@OneToMany(mappedBy = "modeLivraison")
 	private List<Commande> commande;
-
-	public long getIdModeLivraison() {
-		return idModeLivraison;
-	}
-
-	public void setIdModeLivraison(long idModeLivraison) {
-		this.idModeLivraison = idModeLivraison;
-	}
 
 	public TypeLivraison getTypeLivraison() {
 		return typeLivraison;
@@ -51,9 +39,8 @@ public class ModeLivraison {
 		this.commande = commande;
 	}
 
-	public ModeLivraison(long idModeLivraison, TypeLivraison typeLivraison) {
+	public ModeLivraison(TypeLivraison typeLivraison) {
 		super();
-		this.idModeLivraison = idModeLivraison;
 		this.typeLivraison = typeLivraison;
 	}
 
@@ -63,8 +50,9 @@ public class ModeLivraison {
 
 	@Override
 	public String toString() {
-		return "ModeLivraison [idModeLivraison=" + idModeLivraison + ", typeLivraison=" + typeLivraison + ", commande="
-				+ commande + "]";
+		return super.toString() + " ModeLivraison [typeLivraison=" + typeLivraison + ", commande=" + commande + "]";
 	}
+
+	
 
 }

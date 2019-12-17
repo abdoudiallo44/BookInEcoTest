@@ -12,12 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="panier")
-public class Panier {
-
-	// Les attributs
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idPanier;
+public class Panier extends DbObject {
 	
 	@OneToOne
 	private Utilisateur utilisateur;
@@ -25,23 +20,9 @@ public class Panier {
 	@OneToMany(mappedBy = "panier")
 	private List<Commande> commande;
 
-	public long getIdPanier() {
-		return idPanier;
-	}
-
-	public void setIdPanier(long idPanier) {
-		this.idPanier = idPanier;
-	}
-
-	public Panier(long idPanier) {
-		super();
-		this.idPanier = idPanier;
-	}
-
 	public Panier() {
 		super();
 	}
-	
 	
 	
 

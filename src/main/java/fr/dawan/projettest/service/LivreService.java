@@ -1,9 +1,12 @@
 package fr.dawan.projettest.service;
 
 import java.util.List;
+
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import fr.dawan.projettest.DAO.LivreDAO;
 import fr.dawan.projettest.entite.Livre;
 
@@ -30,13 +33,13 @@ public class LivreService {
 	
 	@Transactional
 	public List<Livre> readAll(){
-		return livreDao.readAll();
+		return livreDao.findAll(Livre.class);
 	}
-	
-	@Transactional
-	public void delete(Livre livre) {
-		livreDao.delete(livre);
-	}
+//	
+//	@Transactional
+//	public void delete(Livre livre) {
+//		livreDao.delete(livre);
+//	}
 	
 	@Transactional
 	public void update(Livre livre) {
@@ -50,13 +53,12 @@ public class LivreService {
 	
 	@Transactional
 	public Livre findById(long id) {
-		return livreDao.findById(id);
+		return livreDao.findById(Livre.class, id);
 	}
 	
 	@Transactional
 	public void deleteById(long id) {
-		Livre p = livreDao.findById(id);
-		livreDao.delete(p);
+		livreDao.deleteById(Livre.class, id);
 	}
 	
 }

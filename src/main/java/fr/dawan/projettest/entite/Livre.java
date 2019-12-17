@@ -132,6 +132,14 @@ public class Livre {
 		this.idTheme = idTheme;
 	}
 
+	public Livre(String auteur, String titre, String description, Utilisateur proprietaire) {
+		super();
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.proprietaire = proprietaire;
+	}
+
 	public Livre() {
 		super();
 	}

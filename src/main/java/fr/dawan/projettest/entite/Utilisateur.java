@@ -164,6 +164,12 @@ public class Utilisateur {
 		this.listeLivreUtil = listeLivreUtil;
 	}
 
+	public Utilisateur(String prenom, String nom) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+	}
+
 	public Utilisateur() {
 		super();
 	}

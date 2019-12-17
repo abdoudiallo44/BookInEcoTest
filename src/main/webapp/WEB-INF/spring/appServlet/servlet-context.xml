@@ -57,7 +57,7 @@
 		</beans:property>
 		<beans:property name="jpaProperties">
 			<beans:props>
-				<beans:prop key="hibernate.hbm2ddl.auto">create-drop</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect
 				</beans:prop>
 			</beans:props>
@@ -108,6 +108,18 @@
 			ref="messageSource" />
 	</beans:bean>
 
+
+
+	<!-- Définition des packages qui contiennent les intercepteurs -->
+	<interceptors>
+		<beans:bean id="logInterceptor"
+			class="fr.dawan.projettest.interceptors.LogInterceptor"></beans:bean>
+			
+		<beans:bean id="localeChangeInterceptor"
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	</interceptors>
 
 
 	<!-- définition de l'emplacements des fichiers de messages -->

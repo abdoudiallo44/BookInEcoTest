@@ -12,7 +12,7 @@
 <body>
 	<br />
 	<div align="center" class="container" class="form-group row">
-		<form action="" method="post">
+		<form action="/projettest/inscription/validation" method="post">
 			<div>
 				<h2 class="c-text--heading c-text--left c-text">S'inscrire</h2>
 			</div>

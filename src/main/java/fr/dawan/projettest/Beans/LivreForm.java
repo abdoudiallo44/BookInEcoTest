@@ -1,5 +1,6 @@
 package fr.dawan.projettest.Beans;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
@@ -9,50 +10,28 @@ public class LivreForm {
 	
 	private long idLivre;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
+	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String auteur;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
+	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String titre;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
 	private String description;
 	
 	private String photoLivre;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
 	private double poidsLivre;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
+	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String formatLivre;
 	
-	
-	private LocalDateTime dateAjoutLivre;
-	
+	private LocalDate dateAjoutLivre;
 	
 	private boolean disponibilite;
 
 
-	public LivreForm(long idLivre, String auteur, String titre, String description, String photoLivre,
-			double poidsLivre, String formatLivre, LocalDateTime dateAjoutLivre, boolean disponibilite) {
-		super();
-		this.idLivre = idLivre;
-		this.auteur = auteur;
-		this.titre = titre;
-		this.description = description;
-		this.photoLivre = photoLivre;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
-		this.dateAjoutLivre = dateAjoutLivre;
-		this.disponibilite = disponibilite;
-	}
-
-
-	public LivreForm() {
-		super();
-	}
-
-
+	
+	
 	public long getIdLivre() {
 		return idLivre;
 	}
@@ -122,26 +101,48 @@ public class LivreForm {
 		this.formatLivre = formatLivre;
 	}
 
-
-	public LocalDateTime getDateAjoutLivre() {
+	public LocalDate getDateAjoutLivre() {
 		return dateAjoutLivre;
 	}
 
-
-	public void setDateAjoutLivre(LocalDateTime dateAjoutLivre) {
+	public void setDateAjoutLivre(LocalDate dateAjoutLivre) {
 		this.dateAjoutLivre = dateAjoutLivre;
 	}
 
-
-	public boolean isDisponibilite() {
+	public boolean getDisponibilite() {
 		return disponibilite;
 	}
-
 
 	public void setDisponibilite(boolean disponibilite) {
 		this.disponibilite = disponibilite;
 	}
 
+
+	
+	
+	
+	public LivreForm(long idLivre, @NotEmpty(message = "Ce champs ne doit pas être vide") String auteur,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String titre, String description, String photoLivre,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") double poidsLivre,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String formatLivre, LocalDate dateAjoutLivre,
+			boolean disponibilite) {
+		super();
+		this.idLivre = idLivre;
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photoLivre = photoLivre;
+		this.poidsLivre = poidsLivre;
+		this.formatLivre = formatLivre;
+		this.dateAjoutLivre = dateAjoutLivre;
+		this.disponibilite = disponibilite;
+	}
+
+	public LivreForm() {
+		super();
+	}
+
+	
 
 	@Override
 	public String toString() {
@@ -149,5 +150,6 @@ public class LivreForm {
 				+ description + ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre="
 				+ formatLivre + ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + "]";
 	}
-	
+
+		
 }

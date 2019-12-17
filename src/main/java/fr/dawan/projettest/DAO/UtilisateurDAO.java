@@ -1,13 +1,9 @@
 package fr.dawan.projettest.DAO;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
-
-import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 
 //cette annotation permet de faire savoir à spring que cette classe est un composant de type DAO
@@ -41,12 +37,26 @@ public class UtilisateurDAO {
 
 	// recherhce d'un utilisateur par mot clé
 	public List<Utilisateur> findByKey(String key) {
-		return em.createQuery("From Utilisateur WHERE description LIKE :key").setParameter("key", "%" + key + "%")
+		return em.createQuery("From Utilisateur u WHERE u.description LIKE :key").setParameter("key", "%" + key + "%")
 				.getResultList();
 	}
 
-	// recherche d'un produit par ID
+	// recherche d'un livre par ID
 	public Utilisateur findById(long id) {
-		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("id", id).getSingleResult();
+		return em.find(Utilisateur.class, id);
+	}
+
+	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
+		
+//		return (Utilisateur) em.createQuery(
+//				"FROM Utilisateur u"
+//				+ " WHERE u.email='" + email
+//				+ "' AND u.mdp='" + mdp +"'").getSingleResult();
+		
+		return (Utilisateur) em.createQuery(
+				"FROM Utilisateur u WHERE u.email=:email AND u.mdp=:pass")
+				.setParameter("email", email)
+				.setParameter("pass", mdp)
+				.getSingleResult();
 	}
 }

@@ -41,7 +41,7 @@ public class LivreDAO {
 	// recherhce d'un livre par mot clé
 
 	public List<Livre> findByKey(String key) {
-		return em.createQuery("From Livre WHERE description LIKE :key").setParameter("key", "%" + key + "%")
+		return em.createQuery("From Livre WHERE auteur LIKE :key").setParameter("key", "%" + key + "%")
 				.getResultList();
 	}
 

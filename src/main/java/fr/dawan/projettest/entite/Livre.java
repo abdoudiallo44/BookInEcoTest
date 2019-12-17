@@ -20,21 +20,13 @@ public class Livre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idLivre;
-
 	private String auteur;
-
 	private String titre;
-
 	private String description;
-
 	private String photoLivre;
-
 	private double poidsLivre;
-
 	private String formatLivre;
-
 	private LocalDate dateAjoutLivre;
-
 	private boolean disponibilite;
 
 	@ManyToOne
@@ -43,6 +35,11 @@ public class Livre {
 	@ManyToOne
 	private ThemeLivre idTheme;
 
+	
+	
+	
+	
+	
 	// Getters and Setters
 	public long getIdLivre() {
 		return idLivre;
@@ -145,6 +142,22 @@ public class Livre {
 		this.description = description;
 		this.poidsLivre = poidsLivre;
 		this.formatLivre = formatLivre;
+		this.disponibilite = disponibilite;
+	}
+	
+	
+
+	public Livre(long idLivre, String auteur, String titre, String description, String photoLivre, double poidsLivre,
+			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite) {
+		super();
+		this.idLivre = idLivre;
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photoLivre = photoLivre;
+		this.poidsLivre = poidsLivre;
+		this.formatLivre = formatLivre;
+		this.dateAjoutLivre = dateAjoutLivre;
 		this.disponibilite = disponibilite;
 	}
 

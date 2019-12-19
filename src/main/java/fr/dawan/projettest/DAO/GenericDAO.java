@@ -10,14 +10,18 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import fr.dawan.projettest.entite.DbObject;
 
-public abstract class GenericDAO {
+@Repository
+public abstract class GenericDAO<T extends DbObject> {
 	
 	@PersistenceContext
-	private static EntityManager entityManager;
+	private EntityManager entityManager;
 
-	public static <T extends DbObject> void create(T entity) {
+	public void create(T entity) {
 		if ( entity !=null && entity.getId() == 0) {
 			EntityTransaction transaction = entityManager.getTransaction();
 
@@ -40,7 +44,7 @@ public abstract class GenericDAO {
 		}
 	}
 
-	public static <T extends DbObject> T findById(Class<T> clazz, long id) {
+	public T findById(Class<T> clazz, long id) {
 		T entity = null;
 
 		try {
@@ -55,7 +59,7 @@ public abstract class GenericDAO {
 		return entity;
 	}
 
-	public static <T extends DbObject> void update(T entity) {
+	public void update(T entity) {
 		if (entity.getId() > 0) {
 			EntityTransaction transaction = entityManager.getTransaction();
 
@@ -78,7 +82,7 @@ public abstract class GenericDAO {
 		}
 	}
 
-	public static <T extends DbObject> void delete(Class<T> clazz, long id) {
+	public void delete(Class<T> clazz, long id) {
 		EntityTransaction transaction = entityManager.getTransaction();
 
 		try {
@@ -100,7 +104,7 @@ public abstract class GenericDAO {
 		}
 	}
 
-	public static <T extends DbObject> List<T> findAll(Class<T> clazz) {
+	public List<T> findAll(Class<T> clazz) {
 		List<T> resultat = null;
 
 
@@ -124,7 +128,7 @@ public abstract class GenericDAO {
 	 * @param nbResult : le nombre de résultat que l'on souhaite récupérer
 	 * @return une liste d'entrées paginée
 	 */
-	public static <T extends DbObject> List<T> findAll(Class<T> clazz, int begin, int nbResult) {
+	public List<T> findAll(Class<T> clazz, int begin, int nbResult) {
 		List<T> resultat = null;
 
 		EntityManager em = createEntityManager();
@@ -142,7 +146,7 @@ public abstract class GenericDAO {
 		return resultat;
 	}
 
-	public static <T extends DbObject> void deleteAll(Class<T> clazz) {
+	public void deleteAll(Class<T> clazz) {
 
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();

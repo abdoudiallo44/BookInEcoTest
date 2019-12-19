@@ -15,11 +15,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "livre")
-public class Livre {
+public class Livre extends DbObject{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idLivre;
 
 	private String auteur;
 
@@ -43,14 +40,6 @@ public class Livre {
 	@ManyToOne
 	private ThemeLivre idTheme;
 
-	// Getters and Setters
-	public long getIdLivre() {
-		return idLivre;
-	}
-
-	public void setIdLivre(long idLivre) {
-		this.idLivre = idLivre;
-	}
 
 	public String getAuteur() {
 		return auteur;
@@ -144,10 +133,9 @@ public class Livre {
 		super();
 	}
 
-	public Livre(long idLivre, String auteur, String titre, String description, double poidsLivre, String formatLivre,
+	public Livre(String auteur, String titre, String description, double poidsLivre, String formatLivre,
 			boolean disponibilite) {
 		super();
-		this.idLivre = idLivre;
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
@@ -156,11 +144,10 @@ public class Livre {
 		this.disponibilite = disponibilite;
 	}
 
-	public Livre(long idLivre, String auteur, String titre, String description, String photoLivre, double poidsLivre,
+	public Livre(String auteur, String titre, String description, String photoLivre, double poidsLivre,
 			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite, Utilisateur proprietaire,
 			ThemeLivre idTheme) {
 		super();
-		this.idLivre = idLivre;
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
@@ -175,7 +162,7 @@ public class Livre {
 
 	@Override
 	public String toString() {
-		return "Livre [idLivre=" + idLivre + ", auteur=" + auteur + ", titre=" + titre + ", description=" + description
+		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
 				+ ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre=" + formatLivre
 				+ ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + ", proprietaire="
 				+ proprietaire + ", idTheme=" + idTheme + "]";

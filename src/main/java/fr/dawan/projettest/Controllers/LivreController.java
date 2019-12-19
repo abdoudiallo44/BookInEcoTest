@@ -1,6 +1,6 @@
 package fr.dawan.projettest.Controllers;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.dawan.projettest.entite.Livre;
-import fr.dawan.projettest.service.LivreService;
+import fr.dawan.projettest.service.GenericService;
 
 @Controller
 @RequestMapping("livres")
 public class LivreController {
 	
 	@Autowired
-	private LivreService service;
+	GenericService<Livre> service;
 	
 	@GetMapping("/display")
 	public String display(Model model) {
 
-		List<Livre> livres = service.readAll();
+		List<Livre> livres = service.findAll(Livre.class);
 		model.addAttribute("listeLivre", livres);
 
 		return "livres";
@@ -34,7 +34,8 @@ public class LivreController {
 	public String findByKey(Model model,@RequestParam("motCle") String recherche) {
 
 		
-		List<Livre> livres = service.findByKey(recherche);
+		List<Livre> livres = new ArrayList();
+		livres.addAll(service.findAll(Livre.class));
 		model.addAttribute("listeLivre", livres);
 
 		return "livres";

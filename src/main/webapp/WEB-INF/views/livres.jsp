@@ -41,12 +41,12 @@
 		<tbody>
 			<c:forEach var="l" items="${listeLivre}">
 				<tr>
-					<td>${l.idLivre}</td>
+					<td>${l.id}</td>
 					<td>${l.auteur}</td>
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projet/livres/supprimer/${l.idLivre}">Supprimer</a> |<a href="/projet/livres/modifier/${l.idLivre}"> Modifier</a></td>
+					<td><a href="/projet/livres/supprimer/${l.id}">Supprimer</a> |<a href="/projet/livres/modifier/${l.id}"> Modifier</a></td>
 				</tr>
 			</c:forEach>
 

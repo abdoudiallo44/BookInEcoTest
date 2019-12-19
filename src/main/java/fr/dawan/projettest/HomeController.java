@@ -15,21 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
-import fr.dawan.projettest.service.LivreService;
-import fr.dawan.projettest.service.UtilisateurService;
+import fr.dawan.projettest.service.GenericService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private LivreService livreService;
-	
-	@Autowired
-	private UtilisateurService utilisateurService;
 
+
+	@Autowired
+	GenericService<Livre> service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -52,18 +49,17 @@ public class HomeController {
 	@GetMapping("/load")
 	public String chargementLivre() {
 		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
-		utilisateurService.create(utilisateur1);
 		
 		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
-		livreService.create(livre1);
+		service.create(livre1);
 		Livre livre2 = new Livre("auteur2", "titre2", "description 2", utilisateur1);
-		livreService.create(livre2);
+		service.create(livre2);
 		Livre livre3 = new Livre("auteur3", "titre3", "description 3", utilisateur1);
-		livreService.create(livre3);
+		service.create(livre3);
 		Livre livre4 = new Livre("auteur1", "titre4", "description 4", utilisateur1);
-		livreService.create(livre4);
+		service.create(livre4);
 		Livre livre5 = new Livre("auteur1", "titre5", "description 5",  utilisateur1);
-		livreService.create(livre5);
+		service.create(livre5);
 		
 		return "home";
 	}

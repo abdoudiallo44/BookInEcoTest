@@ -9,26 +9,28 @@ import org.springframework.stereotype.Service;
 
 import fr.dawan.projettest.DAO.UtilisateurDAO;
 import fr.dawan.projettest.entite.Utilisateur;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import fr.dawan.projettest.DAO.UtilisateurDAO;
 
+/*Nouvelle couche service :
+ *protège la couche DAO et donc la BD des attaaques externes 
+ *Fait le lien entre la couche métier et la couche DAO
+ */
+//permet de dire à spring que c'est une couche intérmediaire
+//entre le DAO et les Objets métier
 @Service
+@Transactional
 public class UtilisateurService {
 
+	// Spring crée l'objet DAO et l'injecte dans la classe service
 	@Autowired
-	private UtilisateurDAO utilisateurDAO;
-
-	@Transactional
-	public void create(Utilisateur utilisateur) {
-		utilisateurDAO.create(utilisateur);
-	}
-
-	@Transactional
-	public List<Utilisateur> readAll() {
-		return utilisateurDAO.readAll();
-	}
-
-	@Transactional
+	private UtilisateurDAO utilisateurDao;
+	
+	
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
-		return utilisateurDAO.findUserByEmailAndPwd(email, pswd);
+		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
-
+	
 }

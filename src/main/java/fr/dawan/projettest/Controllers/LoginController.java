@@ -45,8 +45,15 @@ public class LoginController {
 		
 		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
 			session.setAttribute("login", login);
+			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
 			return "welcome";
-		}else {
+		}
+		if (login.equals("admin") && pass.equals("admin")) {
+			session.setAttribute("login", login);
+			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+			return "welcomeAdmin";
+		}
+		else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");
 			return "login";
 		}

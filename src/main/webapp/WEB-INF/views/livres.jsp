@@ -20,6 +20,10 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
 <title>Livres</title>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.min.css"/>">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,13 +34,16 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		<hr />
+		<br /> <br />
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
-					
-					<form action="/projettest/livres/findByKey" method="post" class="form-inline my-2 my-lg-0" >
+
+					<form action="/projettest/livres/findByKey" method="post"
+						class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="text" name="motCle"
 							placeholder="Rechercher un livre" aria-label="Rechercher">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
@@ -47,7 +54,7 @@
 			<div class="float-right">
 
 				<ul class="navbar-nav mr-auto">
-					<li>${login}  </li>
+					<li>${login}</li>
 					<li class="nav-item active">
 						<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
@@ -58,19 +65,19 @@
 		</div>
 
 	</nav>
-	
+
 	</br>
 
-	<div class="container" >
+	<div class="container">
 		<form:form action="/projettest/livres/ajouterLivre" method="post"
 			modelAttribute="livreForm">
-			
-			
+
+
 			<table>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">ID</span></td>
-					<td><form:input class="form-control"  type="text" path="idLivre" 
-							value="${livreForm.idLivre}" /></td>
+					<td><form:input class="form-control" type="text"
+							path="idLivre" value="${livreForm.idLivre}" /></td>
 				</tr>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">Auteur</span></td>
@@ -90,48 +97,52 @@
 				</tr>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">Description</span></td>
-					<td><form:input class="form-control" type="text" path="description"
-							value="${LivreForm.description}" /></td>
+					<td><form:input class="form-control" type="text"
+							path="description" value="${LivreForm.description}" /></td>
 					<td><p>
 							<form:errors path="description" />
 						</p></td>
 				</tr>
 				<tr>
-					<td><span class="input-group-text" id="addon-wrapping">Photo livre</span></td>
-					<td><form:input class="form-control" type="text" path="photoLivre"
-							value="${LivreForm.photoLivre}" /></td>
+					<td><span class="input-group-text" id="addon-wrapping">Photo
+							livre</span></td>
+					<td><form:input class="form-control" type="text"
+							path="photoLivre" value="${LivreForm.photoLivre}" /></td>
 					<td><p>
 							<form:errors path="photoLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td><span class="input-group-text" id="addon-wrapping">Poids du livre</span></td>
-					<td><form:input class="form-control" type="text" path="poidsLivre"
-							value="${LivreForm.poidsLivre}" /></td>
+					<td><span class="input-group-text" id="addon-wrapping">Poids
+							du livre</span></td>
+					<td><form:input class="form-control" type="text"
+							path="poidsLivre" value="${LivreForm.poidsLivre}" /></td>
 					<td><p>
 							<form:errors path="poidsLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td><span class="input-group-text" id="addon-wrapping">Format du livre</span></td>
-					<td><form:input class="form-control" type="text" path="formatLivre"
-							value="${LivreForm.formatLivre}" /></td>
+					<td><span class="input-group-text" id="addon-wrapping">Format
+							du livre</span></td>
+					<td><form:input class="form-control" type="text"
+							path="formatLivre" value="${LivreForm.formatLivre}" /></td>
 					<td><p>
 							<form:errors path="formatLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td><span class="input-group-text" id="addon-wrapping">Date d'ajout</span></td>
-					<td><form:input class="form-control" type="text" path="dateAjoutLivre"
-							value="${LivreForm.dateAjoutLivre}" /></td>
+					<td><span class="input-group-text" id="addon-wrapping">Date
+							d'ajout</span></td>
+					<td><form:input class="form-control" type="text"
+							path="dateAjoutLivre" value="${LivreForm.dateAjoutLivre}" /></td>
 					<td><p>
 							<form:errors path="dateAjoutLivre" />
 						</p></td>
 				</tr>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">Disponibilté</span></td>
-					<td><form:input class="form-control" type="text" path="disponibilite"
-							value="${LivreForm.disponibilite}" /></td>
+					<td><form:input class="form-control" type="text"
+							path="disponibilite" value="${LivreForm.disponibilite}" /></td>
 					<td><p>
 							<form:errors path="disponibilite" />
 						</p></td>

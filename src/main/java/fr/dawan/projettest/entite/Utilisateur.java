@@ -14,12 +14,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "utilisateurs")
-public class Utilisateur {
+@Table(name = "utilisateur")
+public class Utilisateur extends DbObject{
 	// Les attributs
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idUtilisateur;
 
 	private String prenom;
 
@@ -52,10 +49,6 @@ public class Utilisateur {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur", fetch = FetchType.LAZY)
 	private List<AdresseLivraison> adresseLivraison;
 
-	// Getters and Setters
-	public long getIdUtilisateur() {
-		return idUtilisateur;
-	}
 
 	public Panier getPanierUtilisateur() {
 		return panierUtilisateur;
@@ -73,9 +66,6 @@ public class Utilisateur {
 		this.adresseLivraison = adresseLivraison;
 	}
 
-	public void setIdUtilisateur(long idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
 
 	public String getPrenom() {
 		return prenom;
@@ -165,14 +155,19 @@ public class Utilisateur {
 		this.listeLivreUtil = listeLivreUtil;
 	}
 
+	public Utilisateur(String prenom, String nom) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+	}
+
 	public Utilisateur() {
 		super();
 	}
 
-	public Utilisateur(long idUtilisateur, String prenom, String nom, LocalDate dateDenaissance, String email,
+	public Utilisateur( String prenom, String nom, LocalDate dateDenaissance, String email,
 			String pseudo, String mdp) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateDenaissance = dateDenaissance;
@@ -181,10 +176,9 @@ public class Utilisateur {
 		this.mdp = mdp;
 	}
 	
-	public Utilisateur(long idUtilisateur, String prenom, String nom, String email, String pseudo, String mdp,
+	public Utilisateur( String prenom, String nom, String email, String pseudo, String mdp,
 			int nombreDePoint, RoleUtilisateur role) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.email = email;
@@ -194,11 +188,10 @@ public class Utilisateur {
 		this.role = role;
 	}
 
-	public Utilisateur(long idUtilisateur, String prenom, String nom, LocalDate dateDenaissance, String email,
+	public Utilisateur( String prenom, String nom, LocalDate dateDenaissance, String email,
 			String pseudo, String mdp, String photoProfil, int nombreDePoint, RoleUtilisateur role,
 			List<ThemeLivre> preferenceLitteraire, List<Livre> listeLivreUtil) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateDenaissance = dateDenaissance;
@@ -214,7 +207,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", prenom=" + prenom + ", nom=" + nom
+		return "Utilisateur [prenom=" + prenom + ", nom=" + nom
 				+ ", dateDenaissance=" + dateDenaissance + ", email=" + email + ", pseudo=" + pseudo + ", mdp=" + mdp
 				+ ", photoProfil=" + photoProfil + ", nombreDePoint=" + nombreDePoint + ", role=" + role
 				+ ", preferenceLitteraire=" + preferenceLitteraire + ", listeLivreUtil=" + listeLivreUtil

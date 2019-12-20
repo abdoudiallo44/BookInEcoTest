@@ -136,6 +136,4 @@
 		<beans:property name="defaultLocale" value="fr" />
 	</beans:bean>
 
-
-
 </beans:beans>

@@ -48,7 +48,7 @@
 			<div class="float-right">
 
 				<ul class="navbar-nav mr-auto">
-					<li>${login}</li>
+					<li>${utilisateurName}</li>
 					<li class="nav-item active">
 						<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
@@ -64,7 +64,7 @@
 
 	
 	<div class="container">
-		 Bonjour ${login}</br>
+		 Bonjour ${utilisateurName}</br>
 		<a href="/projettest/livres/display"> Affichage et gestion des livres </a><br /> <br />
 	</div>
 </body>

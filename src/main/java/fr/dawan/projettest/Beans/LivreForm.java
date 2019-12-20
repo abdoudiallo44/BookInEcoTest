@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import javax.validation.constraints.NotEmpty;
 
 
-public class LivreForm {
+public class LivreForm  {
 	
 	private long idLivre;
 	

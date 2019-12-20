@@ -4,6 +4,7 @@
 <%@ page session="true"%>
 <html>
 <head>
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -20,8 +21,14 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
 <title>Livres</title>
+=======
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+>>>>>>> refs/heads/test
 </head>
 <body>
+<<<<<<< HEAD
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">BookInEco</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -30,6 +37,51 @@
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+=======
+<h2>Gestion des Livres (<a href="/projet/login/deconnexion">Déconnexion</a>)</h2>
+	<hr />
+	<br />
+	<br />
+	<div class="container">
+	<form action="/projettest/livres/findByKey" method="post">
+		<table>
+			<tr>
+				<td>Mot clé: </td>
+				<td><input type="text" name="motCle" required/></td>
+			</tr>
+		</table><br />
+		<input type="submit" value="Recherche" />
+	
+	</form>
+	</div><br /><br />
+	<div class="container">
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Auteur</th>
+				<th scope="col">Titre</th>
+				<th scope="col">Description</th>
+				<th scope="col">Proprietaire</th>
+				<th scope="col">Option</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="l" items="${listeLivre}">
+				<tr>
+					<td>${l.id}</td>
+					<td>${l.auteur}</td>
+					<td>${l.titre}</td>
+					<td>${l.description}</td>
+					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
+					<td><a href="/projet/livres/supprimer/${l.id}">Supprimer</a> |<a href="/projet/livres/modifier/${l.id}"> Modifier</a></td>
+				</tr>
+			</c:forEach>
+
+		</tbody>
+	</table>
+	</div>
+>>>>>>> refs/heads/test
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">

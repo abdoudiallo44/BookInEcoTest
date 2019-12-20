@@ -9,19 +9,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import fr.dawan.projettest.service.LivreService;
+
+import fr.dawan.projettest.entite.Livre;
+import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.GenericService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
-	@Autowired
-	private LivreService livreService;
 
+
+	@Autowired
+	GenericService<Livre> service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -41,6 +46,24 @@ public class HomeController {
 		return "home";
 	}
 
+	@GetMapping("/load")
+	public String chargementLivre() {
+		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
+		
+		Livre livre1 = new Livre("auteur1", "titre1", "description 1");
+		service.create(livre1,false);
+		Livre livre2 = new Livre("auteur2", "titre2", "description 2");
+		service.create(livre2,false);
+		Livre livre3 = new Livre("auteur3", "titre3", "description 3");
+		service.create(livre3,false);
+		Livre livre4 = new Livre("auteur1", "titre4", "description 4");
+		service.create(livre4,false);
+		Livre livre5 = new Livre("auteur1", "titre5", "description 5");
+		service.create(livre5,true);
+		
+		return "home";
+	}
 	
 	
 }
+

@@ -105,7 +105,7 @@ public class LoginController {
 	}
 
 	
-	@PostMapping("/connexion/authentification")
+	@PostMapping("/login/authentification")
 	public String authentification(Model model, @RequestParam("login") String login, @RequestParam("pass") String pass,
 			HttpSession session) {
 

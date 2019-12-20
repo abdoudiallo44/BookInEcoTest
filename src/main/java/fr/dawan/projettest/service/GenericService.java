@@ -26,4 +26,15 @@ public class GenericService<T extends DbObject> {
 		return genericDAO.findAll(clazz,close);
 	}
 
+	public void deleteById(Class<T> clazz,long id,boolean close) {
+		genericDAO.delete(clazz, id, close);
+	}
+	
+	public void update(T entity,boolean close) {
+		genericDAO.update(entity, close);
+	}
+	public T findById(Class<T> clazz,long id,boolean close) {
+		return genericDAO.findById(clazz, id, close);
+	}
+
 }

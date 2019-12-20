@@ -36,7 +36,7 @@ public class Livre extends DbObject{
 
 	private boolean disponibilite;
 
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@ManyToOne
 	private Utilisateur proprietaire;
 
 	@ManyToOne
@@ -123,11 +123,12 @@ public class Livre extends DbObject{
 		this.idTheme = idTheme;
 	}
 
-	public Livre(String auteur, String titre, String description) {
+	public Livre(String auteur, String titre, String description, Utilisateur utilisateur) {
 		super();
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
+		this.proprietaire = utilisateur;
 	}
 
 	public Livre() {

@@ -23,8 +23,8 @@
 </head>
 <body>
 	</br>
-	
-	
+
+
 	<div align="center" class="container" class="form-group row">
 		<form action="/projettest/login/authentification" method="post">
 			<div>
@@ -35,64 +35,65 @@
 				<table>
 					<tr>
 						<!-- <th><label for="exampleInputEmail1">Adresse mail</label></th> -->
-						<td>
-							<input type="text" class="form-control" id="exampleInputEmail1" name="login" aria-describedby="emailHelp" placeholder="Email ou pseudo" required>
-						</td>
-						
+						<td><input type="text" class="form-control"
+							id="exampleInputEmail1" name="login" aria-describedby="emailHelp"
+							placeholder="Email ou pseudo" required></td>
+
 					</tr>
-				
+
 				</table>
 			</div>
-			
+
 			<div class="form-group">
 				<table>
 					<tr>
 						<!-- <th><label for="exampleInputPassword1">Mot de passe</label></th> -->
-						
-						<td>
-							<input type="password" class="form-control" name="pass" id="exampleInputPassword1" placeholder="Mot de passe" required>
+
+						<td><input type="password" class="form-control" name="pass"
+							id="exampleInputPassword1" placeholder="Mot de passe" required>
 						</td>
-						
+
 					</tr>
 					<tr>
-						<th>  </th>
+						<th></th>
 					</tr>
 					<tr>
-						<th>  </th>
+						<th></th>
 					</tr>
 					<tr>
-						<th>  </th>
+						<th></th>
 					</tr>
 					<tr>
-						<th>  </th>
+						<th></th>
 					</tr>
-					
+
 					<tr>
-						<th>  </th>
+						<th></th>
 					</tr>
-					
-					
+
+
 					<tr align="center">
 						<!-- <th>  </th> -->
-						<td><button type="submit" value="Connexion" class="btn btn-primary">Se connecter</button></td>
+						<td><button type="submit" value="Connexion"
+								class="btn btn-primary">Se connecter</button></td>
 					</tr>
-				
+
 				</table>
 			</div>
 			<div>
-				<p style="color:red;">${msg}</p>
+				<p style="color: red;">${msg}</p>
 			</div>
-			
-			
-			
-			
-			
+
+
+
+
+
 		</form>
 	</div>
-	
-	
-	
-	
+
+
+
+
 
 </body>
 </html>

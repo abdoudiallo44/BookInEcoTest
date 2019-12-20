@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.dawan.projettest.DAO.UtilisateurDAO;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.UtilisateurService;
 
@@ -28,10 +29,14 @@ public class RegisterController {
 	public String register(Model model, @RequestParam("mail") String mail, @RequestParam("login") String login, @RequestParam("pass") String pass,
 			HttpSession session) {
 
-	    Utilisateur util = service.findUserByEmailAndLogin(mail, login);
+	    Utilisateur util = new Utilisateur();
 	    
+	    util.setEmail(mail);
+	    util.setMdp(pass);
+	    util.setPseudo(login);
 	    
 	    service.create(util, true);
+	    
 	    System.out.println(util);
 
 			return "login";

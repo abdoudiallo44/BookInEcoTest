@@ -205,14 +205,4 @@ public class Utilisateur extends DbObject {
 		this.preferenceLitteraire = preferenceLitteraire;
 		this.listeLivreUtil = listeLivreUtil;
 	}
-
-	@Override
-	public String toString() {
-		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
-				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
-				+ nombreDePoint + ", role=" + role + ", preferenceLitteraire=" + preferenceLitteraire
-				+ ", listeLivreUtil=" + listeLivreUtil + ", panierUtilisateur=" + panierUtilisateur
-				+ ", adresseLivraison=" + adresseLivraison + "]";
-	}
-
 }

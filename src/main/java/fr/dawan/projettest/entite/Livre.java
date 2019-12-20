@@ -1,6 +1,8 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +36,7 @@ public class Livre extends DbObject{
 
 	private boolean disponibilite;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Utilisateur proprietaire;
 
 	@ManyToOne
@@ -121,12 +123,11 @@ public class Livre extends DbObject{
 		this.idTheme = idTheme;
 	}
 
-	public Livre(String auteur, String titre, String description, Utilisateur proprietaire) {
+	public Livre(String auteur, String titre, String description) {
 		super();
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.proprietaire = proprietaire;
 	}
 
 	public Livre() {

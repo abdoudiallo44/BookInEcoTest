@@ -24,7 +24,7 @@ public class LivreController {
 	@GetMapping("/display")
 	public String display(Model model) {
 
-		List<Livre> livres = service.findAll(Livre.class);
+		List<Livre> livres = service.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 
 		return "livres";
@@ -35,7 +35,7 @@ public class LivreController {
 
 		
 		List<Livre> livres = new ArrayList();
-		livres.addAll(service.findAll(Livre.class));
+		livres.addAll(service.findAll(Livre.class,true));
 		model.addAttribute("listeLivre", livres);
 
 		return "livres";

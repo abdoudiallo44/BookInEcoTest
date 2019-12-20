@@ -21,27 +21,30 @@ public abstract class GenericDAO<T extends DbObject> {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void create(T entity) {
+	public void create(T entity,boolean close) {
 		if ( entity !=null && entity.getId() == 0) {
-			EntityTransaction transaction = entityManager.getTransaction();
-
-			try {
-				// début de la transaction
-				transaction.begin();
 
 				// On insère la formation dans la BDD
 				entityManager.persist(entity);
 
-				// on commit tout ce qui s'est fait dans la transaction
-				transaction.commit();
-			} catch (Exception ex) {
-				// en cas d'erreur, on effectue un rollback
-				transaction.rollback();
-				ex.printStackTrace();
-			} finally {
-				entityManager.close();
-			}
+				if(close) entityManager.close();
 		}
+	}
+	
+
+	public List<T> findAll(Class<T> clazz,boolean close) {
+		List<T> resultat = null;
+
+
+		// on crée la requête
+		TypedQuery<T> query = entityManager.createQuery("SELECT entity FROM " + clazz.getName() + " entity", clazz);
+
+		// on exécute la requête et on récupère le résultat
+		resultat = query.getResultList();
+
+		if(close) entityManager.close();
+
+		return resultat;
 	}
 
 	public T findById(Class<T> clazz, long id) {
@@ -104,20 +107,6 @@ public abstract class GenericDAO<T extends DbObject> {
 		}
 	}
 
-	public List<T> findAll(Class<T> clazz) {
-		List<T> resultat = null;
-
-
-		// on crée la requête
-		TypedQuery<T> query = entityManager.createQuery("SELECT entity FROM " + clazz.getName() + " entity", clazz);
-
-		// on exécute la requête et on récupère le résultat
-		resultat = query.getResultList();
-
-		entityManager.close();
-
-		return resultat;
-	}
 
 	/**
 	 * Permet de récupérer toutes les entrées pour une table données à partir d'une

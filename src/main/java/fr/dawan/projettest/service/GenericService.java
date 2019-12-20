@@ -12,17 +12,18 @@ import fr.dawan.projettest.entite.DbObject;
 
 
 @Service
+@Transactional
 public class GenericService<T extends DbObject> {
 	
 	@Autowired
 	GenericDAO<T> genericDAO;
 	
-	public void create(T entity) {
-		genericDAO.create(entity);
+	public void create(T entity,boolean close) {
+		genericDAO.create(entity,close);
 	}
 	
-	public List<T> findAll(Class<T> clazz) {
-		return genericDAO.findAll(clazz);
+	public List<T> findAll(Class<T> clazz,boolean close) {
+		return genericDAO.findAll(clazz,close);
 	}
 
 }

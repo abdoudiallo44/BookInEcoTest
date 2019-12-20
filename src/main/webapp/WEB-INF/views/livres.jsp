@@ -15,6 +15,33 @@
 	<br />
 	<br />
 	<div class="container">
+		<form action="/projettest/livres/ajouterLivre" method="post">
+		<table>
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" name="id" readOnly="true" value="${livreForm.id}"/></td>
+			</tr>
+			<tr>
+				<td>Auteur:</td>
+				<td><input type="text" name="auteur" value="${livreForm.auteur}"/></td>
+			</tr>
+			<tr>
+				<td>Titre:</td>
+				<td><input type="text" name="titre" value="${livreForm.titre}"/></td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><input type="text" name="description" value="${livreForm.description}"/></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Valider" /></td>
+				<td></td>
+			</tr>
+		</table>
+		
+		</form>
+	</div>
+	<div class="container">
 	<form action="/projettest/livres/findByKey" method="post">
 		<table>
 			<tr>
@@ -46,7 +73,7 @@
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projet/livres/supprimer/${l.id}">Supprimer</a> |<a href="/projet/livres/modifier/${l.id}"> Modifier</a></td>
+					<td><a href="/projettest/livres/supprimer/${l.id}">Supprimer</a> |<a href="/projettest/livres/modifier/${l.id}"> Modifier</a></td>
 				</tr>
 			</c:forEach>
 

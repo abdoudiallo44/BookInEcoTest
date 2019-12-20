@@ -23,10 +23,9 @@ import fr.dawan.projettest.service.GenericService;
 @Controller
 public class HomeController {
 
-
 	@Autowired
-	GenericService<Livre> service;
-	
+	GenericService<Utilisateur> service;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
@@ -49,20 +48,20 @@ public class HomeController {
 	@GetMapping("/load")
 	public String chargementLivre() {
 		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
-		
-		Livre livre1 = new Livre("auteur1", "titre1", "description 1");
-		service.create(livre1,false);
-		Livre livre2 = new Livre("auteur2", "titre2", "description 2");
-		service.create(livre2,false);
-		Livre livre3 = new Livre("auteur3", "titre3", "description 3");
-		service.create(livre3,false);
-		Livre livre4 = new Livre("auteur1", "titre4", "description 4");
-		service.create(livre4,false);
-		Livre livre5 = new Livre("auteur1", "titre5", "description 5");
-		service.create(livre5,true);
-		
+
+		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
+		Livre livre2 = new Livre("auteur2", "titre2", "description 2",utilisateur1);
+		Livre livre3 = new Livre("auteur3", "titre3", "description 3",utilisateur1);
+		Livre livre4 = new Livre("auteur1", "titre4", "description 4",utilisateur1);
+		Livre livre5 = new Livre("auteur1", "titre5", "description 5",utilisateur1);
+		utilisateur1.addLivre(livre1);
+		utilisateur1.addLivre(livre2);
+		utilisateur1.addLivre(livre3);
+		utilisateur1.addLivre(livre4);
+		utilisateur1.addLivre(livre5);
+		service.create(utilisateur1, true);
+
 		return "home";
 	}
-	
-	
+
 }

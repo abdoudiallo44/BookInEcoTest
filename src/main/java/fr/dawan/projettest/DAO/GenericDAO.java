@@ -148,7 +148,7 @@ public abstract class GenericDAO<T extends DbObject> {
 	}
 
 	public static EntityManager createEntityManager() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("formationjpa");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("bookineco");
 		EntityManager entityManager = factory.createEntityManager();
 		return entityManager;
 	}

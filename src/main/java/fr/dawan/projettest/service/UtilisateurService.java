@@ -14,7 +14,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 //permet de dire à spring que c'est une couche intérmediaire
 //entre le DAO et les Objets métier
 @Service
-public class UtilisateurService {
+public class UtilisateurService extends UtilisateurDAO {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service
 	@Autowired
@@ -24,8 +24,8 @@ public class UtilisateurService {
 	//permet de gérer les flux de connexions (ouverture, fermeture et rollback en cas d'erreurs 
 	//sur la requête)
 	@Transactional
-	public void create(Utilisateur utilisateur) {
-		utilisateurDao.create(utilisateur);
+	public void create(Utilisateur utilisateur, boolean close) {
+		utilisateurDao.create(utilisateur, close);
 	}
 	
 	@Transactional

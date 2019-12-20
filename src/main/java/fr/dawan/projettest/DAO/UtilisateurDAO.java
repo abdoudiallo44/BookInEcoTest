@@ -12,7 +12,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 
 //cette annotation permet de faire savoir à spring que cette classe est un composant de type DAO
 @Repository
-public class UtilisateurDAO {
+public class UtilisateurDAO extends GenericDAO<Utilisateur> {
 
 	// faire comprendre à spring que j'utilise la Persistence de JPA
 	// Objet Entity Manager avec les infos de connexion à la BD
@@ -20,9 +20,9 @@ public class UtilisateurDAO {
 	private EntityManager em;
 
 	// ajout d'un utilisateur
-	public void create(Utilisateur utilisateur) {
-		em.persist(utilisateur);
-	}
+//	public void create(Utilisateur utilisateur) {
+//		em.persist(utilisateur);
+//	}
 
 	// liste des utilisateurs
 	public List<Utilisateur> readAll() {
@@ -55,6 +55,16 @@ public class UtilisateurDAO {
 		List<Utilisateur> listeUtilisateur = readAll();
 		for (Utilisateur utilisateur : listeUtilisateur) {
 			if ( email.equals(utilisateur.getEmail()) && pswd.equals(utilisateur.getMdp()) ) {
+				return (Utilisateur) utilisateur;
+			}
+		}
+		return null;
+	}
+	
+	public Utilisateur findUserByEmailAndLogin(String email, String login) {
+		List<Utilisateur> listeUtilisateur = readAll();
+		for (Utilisateur utilisateur : listeUtilisateur) {
+			if ( email.equals(utilisateur.getEmail()) && login.equals(utilisateur.getPseudo()) ) {
 				return (Utilisateur) utilisateur;
 			}
 		}

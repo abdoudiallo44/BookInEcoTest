@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 @Entity
 @Table(name = "utilisateurs")
 public class Utilisateur extends DbObject{
@@ -24,9 +26,11 @@ public class Utilisateur extends DbObject{
 	private String nom;
 
 	private LocalDate dateDenaissance;
-
+	
+	@UniqueElements
 	private String email;
 
+	@UniqueElements
 	private String pseudo;
 
 	private String mdp;
@@ -206,13 +210,6 @@ public class Utilisateur extends DbObject{
 		this.listeLivreUtil = listeLivreUtil;
 	}
 
-	@Override
-	public String toString() {
-		return "Utilisateur [prenom=" + prenom + ", nom=" + nom
-				+ ", dateDenaissance=" + dateDenaissance + ", email=" + email + ", pseudo=" + pseudo + ", mdp=" + mdp
-				+ ", photoProfil=" + photoProfil + ", nombreDePoint=" + nombreDePoint + ", role=" + role
-				+ ", preferenceLitteraire=" + preferenceLitteraire + ", listeLivreUtil=" + listeLivreUtil
-				+ ", panierUtilisateur=" + panierUtilisateur + ", adresseLivraison=" + adresseLivraison + "]";
-	}
+	
 
 }

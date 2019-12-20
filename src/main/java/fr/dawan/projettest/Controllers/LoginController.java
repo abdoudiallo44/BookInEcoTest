@@ -18,7 +18,7 @@ import fr.dawan.projettest.service.UtilisateurService;
 public class LoginController {
 	
 	@Autowired
-	private UtilisateurDAO service;
+	private UtilisateurService service;
 	
 	@GetMapping("/login")
 	public String login() {

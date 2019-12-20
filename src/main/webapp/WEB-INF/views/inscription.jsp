@@ -22,7 +22,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="mail">
 						</td>
 						
 					</tr>
@@ -35,7 +35,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="text" class="form-control" id="exampleInputPseudo" aria-describedby="pseudolHelp" placeholder="Pseudo">
+							<input type="text" class="form-control" id="exampleInputPseudo" aria-describedby="pseudolHelp" placeholder="Pseudo" name="login">
 						</td>
 						
 					</tr>
@@ -47,7 +47,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" name="pass">
 						</td>
 						
 					</tr>

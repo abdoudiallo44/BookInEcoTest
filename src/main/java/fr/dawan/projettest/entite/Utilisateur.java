@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.sun.istack.Nullable;
+
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur extends DbObject{
@@ -22,6 +24,7 @@ public class Utilisateur extends DbObject{
 
 	private String nom;
 
+	@Nullable
 	private LocalDate dateDenaissance;
 
 	private String email;
@@ -30,23 +33,30 @@ public class Utilisateur extends DbObject{
 
 	private String mdp;
 
+	@Nullable
 	private String photoProfil;
 
+	@Nullable
 	private int nombreDePoint;
 
+	@Nullable
 	private RoleUtilisateur role;
-
+	
+	@Nullable
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ThemeLivre> preferenceLitteraire;
 
+	@Nullable
 	// Une personne possède plusieurs livres
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
 	private List<Livre> listeLivreUtil;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Nullable
+	@OneToOne( fetch = FetchType.EAGER)
 	private Panier panierUtilisateur;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur", fetch = FetchType.LAZY)
+	@Nullable
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY)
 	private List<AdresseLivraison> adresseLivraison;
 
 

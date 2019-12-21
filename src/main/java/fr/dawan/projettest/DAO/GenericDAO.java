@@ -33,18 +33,6 @@ public class GenericDAO<T extends DbObject> {
 		}
 	}
 
-	public T findById(Class<T> clazz, long id, boolean close) {
-		T entity = null;
-
-		// On charge la formation depuis la BDD, selon son ID
-		entity = entityManager.find(clazz, id);
-
-		if (close)
-			entityManager.close();
-
-		return entity;
-
-	}
 
 	public void update(T entity, boolean close) {
 		if (entity.getId() > 0) {
@@ -63,6 +51,21 @@ public class GenericDAO<T extends DbObject> {
 			entityManager.close();
 
 	}
+	
+	public T findById(Class<T> clazz, long id, boolean close) {
+		T entity = null;
+
+		// On charge la formation depuis la BDD, selon son ID
+		entity = entityManager.find(clazz, id);
+
+		if (close)
+			entityManager.close();
+
+		return entity;
+
+	}
+	
+	
 
 	public List<T> findAll(Class<T> clazz, boolean close) {
 		List<T> resultat = null;

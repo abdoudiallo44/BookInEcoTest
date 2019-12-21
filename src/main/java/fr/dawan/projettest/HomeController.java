@@ -1,5 +1,7 @@
 package fr.dawan.projettest;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.GenericService;
+import fr.dawan.projettest.service.LivreService;
+import fr.dawan.projettest.service.UtilisateurService;
 
 /**
  * Handles requests for the application home page.
@@ -19,9 +23,12 @@ import fr.dawan.projettest.service.GenericService;
 public class HomeController {
 
 
-//	@Autowired
-//	GenericService<Livre> service;
-//	
+	@Autowired
+	UtilisateurService service;
+	
+	@Autowired
+	LivreService livreService;
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -31,20 +38,23 @@ public class HomeController {
 
 		return "home";
 	}
+	
+	
 
 	@GetMapping("/load")
 	public String chargementLivre() {
-//		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
-//		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
-//		service.create(livre1);
-//		Livre livre2 = new Livre("auteur2", "titre2", "description 2", utilisateur1);
-//		service.create(livre2);
-//		Livre livre3 = new Livre("auteur3", "titre3", "description 3", utilisateur1);
-//		service.create(livre3);
-//		Livre livre4 = new Livre("auteur1", "titre4", "description 4", utilisateur1);
-//		service.create(livre4);
-//		Livre livre5 = new Livre("auteur1", "titre5", "description 5",  utilisateur1);
-//		service.create(livre5);
+		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO", LocalDate.now(), "a.diallo7@hotmail", "abdou", "abdou44");
+		service.create(utilisateur1, false);
+		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
+		livreService.create(livre1, false);
+		Livre livre2 = new Livre("auteur2", "titre2", "description 2", utilisateur1);
+		livreService.create(livre2, false);
+		Livre livre3 = new Livre("auteur3", "titre3", "description 3", utilisateur1);
+		livreService.create(livre3, false);
+		Livre livre4 = new Livre("auteur1", "titre4", "description 4", utilisateur1);
+		livreService.create(livre4, false);
+		Livre livre5 = new Livre("auteur1", "titre5", "description 5",  utilisateur1);
+		livreService.create(livre5, false);
 		
 		return "home";
 	}

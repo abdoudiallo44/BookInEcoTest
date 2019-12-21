@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
+import fr.dawan.projettest.entite.DbObject;
 
-public class LivreForm  {
-	
-	private long idLivre;
+
+public class LivreForm extends DbObject {
 	
 	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String auteur;
@@ -29,17 +29,6 @@ public class LivreForm  {
 	
 	private boolean disponibilite;
 
-
-	
-	
-	public long getIdLivre() {
-		return idLivre;
-	}
-
-
-	public void setIdLivre(long idLivre) {
-		this.idLivre = idLivre;
-	}
 
 
 	public String getAuteur() {
@@ -127,7 +116,6 @@ public class LivreForm  {
 			@NotEmpty(message = "Ce champs ne doit pas être vide") String formatLivre, LocalDate dateAjoutLivre,
 			boolean disponibilite) {
 		super();
-		this.idLivre = idLivre;
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
@@ -142,14 +130,17 @@ public class LivreForm  {
 		super();
 	}
 
-	
 
 	@Override
 	public String toString() {
-		return "LivreForm [idLivre=" + idLivre + ", auteur=" + auteur + ", titre=" + titre + ", description="
-				+ description + ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre="
-				+ formatLivre + ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + "]";
+		return "LivreForm [auteur=" + auteur + ", titre=" + titre + ", description=" + description + ", photoLivre="
+				+ photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre=" + formatLivre + ", dateAjoutLivre="
+				+ dateAjoutLivre + ", disponibilite=" + disponibilite + ", getId()=" + getId() + "]";
 	}
+
+	
+	
+	
 
 		
 }

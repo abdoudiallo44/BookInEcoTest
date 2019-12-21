@@ -25,7 +25,13 @@ public class LivreService extends GenericService<Livre> {
 	@Autowired
 	private LivreDAO livreDao;
 	
-	
+	public List<Livre> findByKey(Class<Livre> clazz, String titre, boolean fermerEntityManager) {
+		
+		List<Livre> liste = livreDao.findByKey(clazz, titre, fermerEntityManager);
+
+		return liste;
+
+	}
 	
 	
 }

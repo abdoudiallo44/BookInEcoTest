@@ -54,7 +54,9 @@
 
 	</nav>
 	<br />
-
+	<div>
+		<a class="btn btn-primary" href="/projettest/load" role="button">Charger les données</a>
+	</div>
 
 	
 

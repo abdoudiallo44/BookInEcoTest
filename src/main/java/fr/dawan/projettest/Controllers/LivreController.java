@@ -39,8 +39,9 @@ public class LivreController {
 	@RequestMapping(value="/findByKey",method=RequestMethod.POST)
 	public String findByKey(Model model,@RequestParam("motCle") String recherche) {
 
-		List<Livre> livres = new ArrayList();
-		livres.addAll(service.findAll(Livre.class, true));
+		List<Livre> livres = new ArrayList<Livre>();
+		livres.addAll(service.findByKey(Livre.class, recherche, true));
+		//addAll(service.findByKey(Livre.class, true));
 		model.addAttribute("listeLivre", livres);
 
 		return "livres";
@@ -62,7 +63,7 @@ public class LivreController {
 	public String ajouterLivre(Model model, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
 			BindingResult bindingResult) {
 
-		Livre livre = new Livre(livreForm.getIdLivre(), livreForm.getAuteur(), livreForm.getTitre(),
+		Livre livre = new Livre(livreForm.getId(), livreForm.getAuteur(), livreForm.getTitre(),
 				livreForm.getDescription(), livreForm.getPhotoLivre(), livreForm.getPoidsLivre(),
 				livreForm.getFormatLivre(), livreForm.getDateAjoutLivre(), livreForm.getDisponibilite());
 
@@ -83,7 +84,6 @@ public class LivreController {
 
 	@GetMapping("/modifier/{id}")
 	public String modifier(Model model, @PathVariable("id") long id) {
-
 		model.addAttribute("livreForm", service.findById(Livre.class, id, false));
 		model.addAttribute("listeLivre", service.findAll(Livre.class, true));
 

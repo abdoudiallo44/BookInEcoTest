@@ -77,7 +77,7 @@
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">ID</span></td>
 					<td><form:input class="form-control" type="text"
-							path="idLivre" value="${livreForm.idLivre}" /></td>
+							path="id" value="${LivreForm.id}" /></td>
 				</tr>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">Auteur</span></td>
@@ -175,7 +175,7 @@
 			<tbody>
 				<c:forEach var="p" items="${listeLivre }">
 					<tr>
-						<td>${p.idLivre}</td>
+						<td>${p.id}</td>
 						<td>${p.auteur}</td>
 						<td>${p.titre}</td>
 						<td>${p.description}</td>
@@ -184,8 +184,8 @@
 						<td>${p.formatLivre}</td>
 						<td>${p.dateAjoutLivre}</td>
 						<td>${p.disponibilite}</td>
-						<td><a href="/projettest/livres/supprimer/${p.idLivre}">Supprimer</a>
-							|<a href="/projettest/livres/modifier/${p.idLivre}"> Modifier</a></td>
+						<td><a href="/projettest/livres/supprimer/${p.id}">Supprimer</a>
+							|<a href="/projettest/livres/modifier/${p.id}"> Modifier</a></td>
 					</tr>
 				</c:forEach>
 

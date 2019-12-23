@@ -39,7 +39,7 @@ public class LoginController {
 		
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
 	    
-	    System.out.println(util);
+	    //System.out.println(util);
 	    
 		String pseudo = util.getPseudo();
 		String email = util.getEmail();

@@ -1,10 +1,8 @@
 package fr.dawan.projettest.DAO;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 
 import fr.dawan.projettest.entite.Livre;
@@ -19,55 +17,24 @@ public class UtilisateurDAO extends GenericDAO<Utilisateur> {
 	@PersistenceContext
 	private EntityManager em;
 
-	// ajout d'un utilisateur
-//	public void create(Utilisateur utilisateur) {
-//		em.persist(utilisateur);
-//	}
-
-	// liste des utilisateurs
-	public List<Utilisateur> readAll() {
-		return em.createQuery("From Utilisateur").getResultList();
-	}
-
-	// suppression d'un utilisateur
-	public void delete(Utilisateur utilisateur) {
-		em.remove(utilisateur);
-	}
-
-	// mise à jour d'un utilisateur
-	public void update(Utilisateur utilisateur) {
-		em.merge(utilisateur);
-	}
 
 	// recherhce d'un utilisateur par mot clé
 	public List<Utilisateur> findByKey(String key) {
-		return em.createQuery("From Utilisateur WHERE description LIKE :key").setParameter("key", "%" + key + "%")
+		return em.createQuery("From Utilisateur u WHERE u.auteur LIKE :key").setParameter("key", "%" + key + "%")
 				.getResultList();
 	}
 
-	// recherche d'un livre par ID
-	public Utilisateur findById(long id) {
-		return (Utilisateur) em.createQuery("From Utilisateur WHERE id= :id").setParameter("idLivre", id)
+	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
+		
+//		return (Utilisateur) em.createQuery(
+//				"FROM Utilisateur u"
+//				+ " WHERE u.email='" + email
+//				+ "' AND u.mdp='" + mdp +"'").getSingleResult();
+		
+		return (Utilisateur) em.createQuery(
+				"FROM Utilisateur u WHERE u.email=:email AND u.mdp=:pass")
+				.setParameter("email", email)
+				.setParameter("pass", mdp)
 				.getSingleResult();
-	}
-
-	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
-		List<Utilisateur> listeUtilisateur = readAll();
-		for (Utilisateur utilisateur : listeUtilisateur) {
-			if ( email.equals(utilisateur.getEmail()) && pswd.equals(utilisateur.getMdp()) ) {
-				return (Utilisateur) utilisateur;
-			}
-		}
-		return null;
-	}
-	
-	public Utilisateur findUserByEmailAndLogin(String email, String login) {
-		List<Utilisateur> listeUtilisateur = readAll();
-		for (Utilisateur utilisateur : listeUtilisateur) {
-			if ( email.equals(utilisateur.getEmail()) && login.equals(utilisateur.getPseudo()) ) {
-				return (Utilisateur) utilisateur;
-			}
-		}
-		return null;
 	}
 }

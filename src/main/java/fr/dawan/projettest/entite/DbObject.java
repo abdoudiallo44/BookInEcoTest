@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class DbObject {
+public abstract class DbObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,4 +15,11 @@ public class DbObject {
 	public long getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "DbObject [id=" + id + "]";
+	}
+	
+	
 }

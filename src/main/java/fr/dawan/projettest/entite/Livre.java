@@ -1,8 +1,6 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,23 +15,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "livre")
-public class Livre extends DbObject{
-
-
+public class Livre extends DbObject {
 	private String auteur;
-
 	private String titre;
-
 	private String description;
-
 	private String photoLivre;
-
 	private double poidsLivre;
-
 	private String formatLivre;
-
 	private LocalDate dateAjoutLivre;
-
 	private boolean disponibilite;
 
 	@ManyToOne
@@ -42,6 +31,7 @@ public class Livre extends DbObject{
 	@ManyToOne
 	private ThemeLivre idTheme;
 
+	
 
 	public String getAuteur() {
 		return auteur;
@@ -123,14 +113,6 @@ public class Livre extends DbObject{
 		this.idTheme = idTheme;
 	}
 
-	public Livre(String auteur, String titre, String description, Utilisateur utilisateur) {
-		super();
-		this.auteur = auteur;
-		this.titre = titre;
-		this.description = description;
-		this.proprietaire = utilisateur;
-	}
-
 	public Livre() {
 		super();
 	}
@@ -143,6 +125,21 @@ public class Livre extends DbObject{
 		this.description = description;
 		this.poidsLivre = poidsLivre;
 		this.formatLivre = formatLivre;
+		this.disponibilite = disponibilite;
+	}
+	
+	
+
+	public Livre(String auteur, String titre, String description, String photoLivre, double poidsLivre,
+			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite) {
+		super();
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photoLivre = photoLivre;
+		this.poidsLivre = poidsLivre;
+		this.formatLivre = formatLivre;
+		this.dateAjoutLivre = dateAjoutLivre;
 		this.disponibilite = disponibilite;
 	}
 
@@ -164,7 +161,7 @@ public class Livre extends DbObject{
 
 	@Override
 	public String toString() {
-		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
+		return super.toString() + " Livre [auteur=" + auteur + ", titre=" + titre + ", description=" + description
 				+ ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre=" + formatLivre
 				+ ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + ", proprietaire="
 				+ proprietaire + ", idTheme=" + idTheme + "]";

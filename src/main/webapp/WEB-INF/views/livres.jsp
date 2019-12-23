@@ -126,7 +126,7 @@
 			<div class="float-right">
 
 				<ul class="navbar-nav mr-auto">
-					<li>${login}</li>
+					<li>${login}  </li>
 					<li class="nav-item active">
 						<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
@@ -137,6 +137,8 @@
 		</div>
 
 	</nav>
+	
+	</br>
 
 	<div class="container" >
 		<form:form action="/projettest/livres/ajouterLivre" method="post"
@@ -145,76 +147,76 @@
 			
 			<table>
 				<tr>
-					<td>ID:</td>
-					<td><form:input type="text" path="idLivre" 
+					<td><span class="input-group-text" id="addon-wrapping">ID</span></td>
+					<td><form:input class="form-control"  type="text" path="idLivre" 
 							value="${livreForm.idLivre}" /></td>
 				</tr>
 				<tr>
-					<td>Auteur:</td>
-					<td><form:input type="text" path="auteur"
+					<td><span class="input-group-text" id="addon-wrapping">Auteur</span></td>
+					<td><form:input class="form-control" type="text" path="auteur"
 							value="${LivreForm.auteur}" /></td>
 					<td><p>
 							<form:errors path="auteur" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Titre:</td>
-					<td><form:input type="text" path="titre"
+					<td><span class="input-group-text" id="addon-wrapping">Tritre</span></td>
+					<td><form:input class="form-control" type="text" path="titre"
 							value="${LivreForm.titre}" /></td>
 					<td><p>
 							<form:errors path="titre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Description:</td>
-					<td><form:input type="text" path="description"
+					<td><span class="input-group-text" id="addon-wrapping">Description</span></td>
+					<td><form:input class="form-control" type="text" path="description"
 							value="${LivreForm.description}" /></td>
 					<td><p>
 							<form:errors path="description" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Photo livre:</td>
-					<td><form:input type="text" path="photoLivre"
+					<td><span class="input-group-text" id="addon-wrapping">Photo livre</span></td>
+					<td><form:input class="form-control" type="text" path="photoLivre"
 							value="${LivreForm.photoLivre}" /></td>
 					<td><p>
 							<form:errors path="photoLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Poids du livre:</td>
-					<td><form:input type="text" path="poidsLivre"
+					<td><span class="input-group-text" id="addon-wrapping">Poids du livre</span></td>
+					<td><form:input class="form-control" type="text" path="poidsLivre"
 							value="${LivreForm.poidsLivre}" /></td>
 					<td><p>
 							<form:errors path="poidsLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Format du livre:</td>
-					<td><form:input type="text" path="formatLivre"
+					<td><span class="input-group-text" id="addon-wrapping">Format du livre</span></td>
+					<td><form:input class="form-control" type="text" path="formatLivre"
 							value="${LivreForm.formatLivre}" /></td>
 					<td><p>
 							<form:errors path="formatLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Date d'ajout:</td>
-					<td><form:input type="text" path="dateAjoutLivre"
+					<td><span class="input-group-text" id="addon-wrapping">Date d'ajout</span></td>
+					<td><form:input class="form-control" type="text" path="dateAjoutLivre"
 							value="${LivreForm.dateAjoutLivre}" /></td>
 					<td><p>
 							<form:errors path="dateAjoutLivre" />
 						</p></td>
 				</tr>
 				<tr>
-					<td>Disponibilité:</td>
-					<td><form:input type="text" path="disponibilite"
+					<td><span class="input-group-text" id="addon-wrapping">Disponibilté</span></td>
+					<td><form:input class="form-control" type="text" path="disponibilite"
 							value="${LivreForm.disponibilite}" /></td>
 					<td><p>
 							<form:errors path="disponibilite" />
 						</p></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="Valider" /></td>
+					<td><input class="form-control" type="submit" value="Valider" /></td>
 					<td></td>
 				</tr>
 			</table>

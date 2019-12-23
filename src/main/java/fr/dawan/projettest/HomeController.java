@@ -45,7 +45,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@GetMapping("/load")
+	/*@GetMapping("/load")
 	public String chargementLivre() {
 		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
 
@@ -62,6 +62,6 @@ public class HomeController {
 		service.create(utilisateur1, true);
 
 		return "home";
-	}
+	}*/
 
 }

@@ -1,12 +1,11 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -14,11 +13,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "utilisateurs")
-public class Utilisateur {
+public class Utilisateur extends DbObject {
 	// Les attributs
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idUtilisateur;
 
 	private String prenom;
 
@@ -42,19 +38,14 @@ public class Utilisateur {
 	private List<ThemeLivre> preferenceLitteraire;
 
 	// Une personne possède plusieurs livres
-	@OneToMany(mappedBy = "proprietaire")
-	private List<Livre> listeLivreUtil;
+	@OneToMany(mappedBy = "proprietaire",cascade = CascadeType.PERSIST)
+	private List<Livre> listeLivreUtil = new ArrayList();
 
 	@OneToOne
 	private Panier panierUtilisateur;
 
 	@OneToMany(mappedBy = "utilisateur")
 	private List<AdresseLivraison> adresseLivraison;
-
-	// Getters and Setters
-	public long getIdUtilisateur() {
-		return idUtilisateur;
-	}
 
 	public Panier getPanierUtilisateur() {
 		return panierUtilisateur;
@@ -70,10 +61,6 @@ public class Utilisateur {
 
 	public void setAdresseLivraison(List<AdresseLivraison> adresseLivraison) {
 		this.adresseLivraison = adresseLivraison;
-	}
-
-	public void setIdUtilisateur(long idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
 	}
 
 	public String getPrenom() {
@@ -157,11 +144,17 @@ public class Utilisateur {
 	}
 
 	public List<Livre> getListeLivreUtil() {
-		return listeLivreUtil;
+		return new ArrayList(listeLivreUtil);
 	}
 
-	public void setListeLivreUtil(List<Livre> listeLivreUtil) {
-		this.listeLivreUtil = listeLivreUtil;
+	public void addLivre(Livre livre) {
+		if (livre != null) {
+			listeLivreUtil.add(livre);
+		}
+	}
+	
+	public void removeLivre(Livre livre) {
+			listeLivreUtil.remove(livre);
 	}
 
 	public Utilisateur(String prenom, String nom) {
@@ -174,10 +167,8 @@ public class Utilisateur {
 		super();
 	}
 
-	public Utilisateur(long idUtilisateur, String prenom, String nom, LocalDate dateDenaissance, String email,
-			String pseudo, String mdp) {
+	public Utilisateur(String prenom, String nom, LocalDate dateDenaissance, String email, String pseudo, String mdp) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateDenaissance = dateDenaissance;
@@ -185,11 +176,10 @@ public class Utilisateur {
 		this.pseudo = pseudo;
 		this.mdp = mdp;
 	}
-	
-	public Utilisateur(long idUtilisateur, String prenom, String nom, String email, String pseudo, String mdp,
-			int nombreDePoint, RoleUtilisateur role) {
+
+	public Utilisateur(String prenom, String nom, String email, String pseudo, String mdp, int nombreDePoint,
+			RoleUtilisateur role) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.email = email;
@@ -199,11 +189,10 @@ public class Utilisateur {
 		this.role = role;
 	}
 
-	public Utilisateur(long idUtilisateur, String prenom, String nom, LocalDate dateDenaissance, String email,
-			String pseudo, String mdp, String photoProfil, int nombreDePoint, RoleUtilisateur role,
-			List<ThemeLivre> preferenceLitteraire, List<Livre> listeLivreUtil) {
+	public Utilisateur(String prenom, String nom, LocalDate dateDenaissance, String email, String pseudo, String mdp,
+			String photoProfil, int nombreDePoint, RoleUtilisateur role, List<ThemeLivre> preferenceLitteraire,
+			List<Livre> listeLivreUtil) {
 		super();
-		this.idUtilisateur = idUtilisateur;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateDenaissance = dateDenaissance;
@@ -219,11 +208,11 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", prenom=" + prenom + ", nom=" + nom
-				+ ", dateDenaissance=" + dateDenaissance + ", email=" + email + ", pseudo=" + pseudo + ", mdp=" + mdp
-				+ ", photoProfil=" + photoProfil + ", nombreDePoint=" + nombreDePoint + ", role=" + role
-				+ ", preferenceLitteraire=" + preferenceLitteraire + ", listeLivreUtil=" + listeLivreUtil
-				+ ", panierUtilisateur=" + panierUtilisateur + ", adresseLivraison=" + adresseLivraison + "]";
+		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
+				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
+				+ nombreDePoint + ", role=" + role + ", preferenceLitteraire=" + preferenceLitteraire
+				+ ", listeLivreUtil=" + listeLivreUtil + ", panierUtilisateur=" + panierUtilisateur
+				+ ", adresseLivraison=" + adresseLivraison + "]";
 	}
 
 }

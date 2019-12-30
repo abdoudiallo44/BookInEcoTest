@@ -18,18 +18,7 @@ public class UtilisateurTest {
 	@Test
 	public void insertTest() {
 		
-		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setPrenom("Abdoulaye");
-		utilisateur.setNom("DIALLO");
-		utilisateur.setEmail("a.diallo7@gmail.com");
-		utilisateur.setPseudo("abdou44340");
-utilisateur.setMdp("abdou44340");
 
-		Livre livre5 = new Livre("auteur1", "titre5", "description 5",  utilisateur);
-		new LivreService().create(livre5);
-
-
-		assertNotEquals(0, livre5.getIdLivre());
 }
 
 }

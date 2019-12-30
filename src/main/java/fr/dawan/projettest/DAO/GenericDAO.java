@@ -10,97 +10,30 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import fr.dawan.projettest.entite.DbObject;
 
-public abstract class GenericDAO {
+@Repository
+public class GenericDAO<T extends DbObject> {
 	
 	@PersistenceContext
-	private static EntityManager entityManager;
+	private EntityManager entityManager;
+	
 
-	public static <T extends DbObject> void create(T entity) {
+	public void create(T entity,boolean close) {
 		if ( entity !=null && entity.getId() == 0) {
-			EntityTransaction transaction = entityManager.getTransaction();
-
-			try {
-				// début de la transaction
-				transaction.begin();
 
 				// On insère la formation dans la BDD
 				entityManager.persist(entity);
 
-				// on commit tout ce qui s'est fait dans la transaction
-				transaction.commit();
-			} catch (Exception ex) {
-				// en cas d'erreur, on effectue un rollback
-				transaction.rollback();
-				ex.printStackTrace();
-			} finally {
-				entityManager.close();
-			}
+				if(close) entityManager.close();
 		}
 	}
+	
 
-	public static <T extends DbObject> T findById(Class<T> clazz, long id) {
-		T entity = null;
-
-		try {
-			// On charge la formation depuis la BDD, selon son ID
-			entity = entityManager.find(clazz, id);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			entityManager.close();
-		}
-
-		return entity;
-	}
-
-	public static <T extends DbObject> void update(T entity) {
-		if (entity.getId() > 0) {
-			EntityTransaction transaction = entityManager.getTransaction();
-
-			try {
-				// début de la transaction
-				transaction.begin();
-
-				// On met à jour la formation
-				entityManager.merge(entity);
-
-				// on commit tout ce qui s'est fait dans la transaction
-				transaction.commit();
-			} catch (Exception ex) {
-				// en cas d'erreur, on effectue un rollback
-				transaction.rollback();
-				ex.printStackTrace();
-			} finally {
-				entityManager.close();
-			}
-		}
-	}
-
-	public static <T extends DbObject> void delete(Class<T> clazz, long id) {
-		EntityTransaction transaction = entityManager.getTransaction();
-
-		try {
-			// début de la transaction
-			transaction.begin();
-
-			T entity = entityManager.find(clazz, id);
-			entityManager.remove(entity);
-			//entityManager.
-
-			// on commit tout ce qui s'est fait dans la transaction
-			transaction.commit();
-		} catch (Exception ex) {
-			// en cas d'erreur, on effectue un rollback
-			transaction.rollback();
-			ex.printStackTrace();
-		} finally {
-			entityManager.close();
-		}
-	}
-
-	public static <T extends DbObject> List<T> findAll(Class<T> clazz) {
+	public List<T> findAll(Class<T> clazz,boolean close) {
 		List<T> resultat = null;
 
 
@@ -110,53 +43,76 @@ public abstract class GenericDAO {
 		// on exécute la requête et on récupère le résultat
 		resultat = query.getResultList();
 
-		entityManager.close();
+		if(close) entityManager.close();
 
 		return resultat;
 	}
+
+	public T findById(Class<T> clazz, long id,boolean close) {
+		T entity = null;
+
+
+			// On charge la formation depuis la BDD, selon son ID
+			entity = entityManager.find(clazz, id);
+			if(close) entityManager.close();
+
+		return entity;
+	}
+
+	public void update(T entity,boolean close) {
+		if (entity.getId() > 0) {
+
+				// On met à jour la formation
+				entityManager.merge(entity);
+
+				if(close) entityManager.close();
+		}
+	}
+
+	public void delete(Class<T> clazz, long id,boolean close) {
+
+
+			T entity = entityManager.find(clazz, id);
+			entityManager.remove(entity);
+			//entityManager.
+
+			if(close) entityManager.close();
+		
+	}
+
 
 	/**
 	 * Permet de récupérer toutes les entrées pour une table données à partir d'une
 	 * entrée, pour un nombre de résultat donné
 	 * 
 	 * @param clazz    : le type que l'on souhaite récupérer
-	 * @param begin    : l'index du premier résultat
+	 * @param begin    : l'index du prentityManagerier résultat
 	 * @param nbResult : le nombre de résultat que l'on souhaite récupérer
 	 * @return une liste d'entrées paginée
 	 */
-	public static <T extends DbObject> List<T> findAll(Class<T> clazz, int begin, int nbResult) {
+	public List<T> findAll(Class<T> clazz, int begin, int nbResult,boolean close) {
 		List<T> resultat = null;
 
-		EntityManager em = createEntityManager();
-
 		// on crée la requête
-		TypedQuery<T> query = em.createQuery("SELECT entity FROM " + clazz.getName() + " entity", clazz);
+		TypedQuery<T> query = entityManager.createQuery("SELECT entity FROM " + clazz.getName() + " entity", clazz);
 
 		// on paramètre et on exécute la requête, et on récupère le résultat
 		resultat = query.setFirstResult(begin) // On commence à ce numéro (begin) - au Nième résultat
 				.setMaxResults(nbResult) // on charge nbResult résultats
 				.getResultList();
 
-		em.close();
+		if(close) entityManager.close();
 
 		return resultat;
 	}
 
-	public static <T extends DbObject> void deleteAll(Class<T> clazz) {
+	public void deleteAll(Class<T> clazz,boolean close) {
 
-		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
 		
 		Query query = entityManager.createQuery("Delete FROM " + clazz.getName());
 		query.executeUpdate();
 		
-		transaction.commit();
-		entityManager.close();
+		if(close) entityManager.close();
 	}
 
-	public static EntityManager createEntityManager() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("formationjpa");
-		EntityManager entityManager = factory.createEntityManager();
-		return entityManager;
-	}
 }

@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page session="false"%>
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -26,7 +25,7 @@
 
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">BookInEco</a>
+		<a class="navbar-brand" href="/projettest/">BookInEco</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -47,23 +46,51 @@
 				</li>
 
 			</ul>
+			<c:if test="${not empty sessionScope.user}">
+			<div>
+				<a class="btn btn-outline-primary" href="/projettest/gestionLivre"
+					role="button">Mes livres</a> <a class="btn btn-outline-primary"
+					href="/projettest/panier" role="button">Mon panier</a>
+			</div>
+			<div class="float-right">
+				<a class="btn btn-primary" href="/projettest/login/deconnexion"
+					role="button">Deconnexion</a>
+					</div>
+			</c:if>
+			<c:if test="${empty sessionScope.user}">
 			<div class="float-right">
 				<a class="btn btn-primary" href="/projettest/login"
 					role="button">Connexion</a> <a class="btn btn-primary"
 					href="/projettest/inscription" role="button">Inscription</a>
 			</div>
+			</c:if>
 		</div>
 
 	</nav>
 	<br />
 
 
-	<div class="container">
+<div class="container">
+	<table class="table">
+		<tbody>
+			<c:forEach var="l" items="${listeLivre}">
+				<tr>
+				<td><img src="<c:url value="/ressources/img/${l.photoLivre}.jpg"/>"></td>
+					<td>Auteur : ${l.auteur} </br> 
+					Titre : ${l.titre} </br>
+					Format : ${l.formatLivre}</br>
+					Etat : ${l.etat} </br>
+					Propriétaire : ${l.proprietaire.nom} ${l.proprietaire.prenom}
+					<td>Description : ${l.description}</td>
+					<td><a class="btn btn-warning" <c:if test="${not empty sessionScope.user}"> href="/projettest/ajoutPanier/${l.id}"</c:if>
+					<c:if test="${empty sessionScope.user}"> href="/projettest/login"</c:if>
+					role="button">Ajouter au panier</a></td>
+				</tr>
+			</c:forEach>
 
-		<a href="/projettest/load">Charger les données de test</a> </br> <a
-			href="/projettest/livres/display"> Afficher les livres </a><br /> <br />
+		</tbody>
+	</table>
 	</div>
-
 
 
 

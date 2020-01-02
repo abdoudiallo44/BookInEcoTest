@@ -27,6 +27,10 @@ public class LivreService  extends GenericService<Livre>{
 	public List<Livre> findByKey(String key,boolean close){
 		return livreDao.findByKey(key,close);
 	}
+	
+	public List<Livre> findAllByUser(long userId,boolean close){
+		return livreDao.findAllByUser(userId,close);
+	}
 
 	
 }

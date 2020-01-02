@@ -12,7 +12,7 @@
 <body>
 	<br />
 	<div align="center" class="container" class="form-group row">
-		<form action="" method="post">
+		<form action="/projettest/inscription/validation" method="post">
 			<div>
 				<h2 class="c-text--heading c-text--left c-text">S'inscrire</h2>
 			</div>
@@ -22,24 +22,20 @@
 				<table>
 					<tr>
 						<td>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+							<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
 						</td>
 						
 					</tr>
 				
 				</table>
-			</div>
-			
-			
+			</div>			
 			<div class="form-group">
 				<table>
 					<tr>
 						<td>
-							<input type="text" class="form-control" id="exampleInputPseudo" aria-describedby="pseudolHelp" placeholder="Pseudo">
-						</td>
-						
-					</tr>
-				
+							<input type="text" class="form-control" id="pseudo" aria-describedby="pseudolHelp" placeholder="Pseudo">
+						</td>						
+					</tr>	
 				</table>
 			</div>
 			
@@ -47,37 +43,19 @@
 				<table>
 					<tr>
 						<td>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+							<input type="password" class="form-control" id="pass" placeholder="Mot de passe">
 						</td>
-						
-					</tr>
-					
-					<tr>
-						<th>  </th>
-					</tr>
-					<tr>
-						<th>  </th>
-					</tr>
-					<tr>
-						<th>  </th>
-					</tr>
-					<tr>
-						<th>  </th>
-					</tr>
-					<tr>
-						<th>  </th>
-					</tr>
 					
 					<tr align="center">
 						<td><button type="submit" value="Inscription" class="btn btn-primary">S'inscrire</button></td>
 					</tr>
-				
 				</table>
 			</div>
-
 		</form>
-
-
+		
+					<div>
+				<p style="color: red;">${msg}</p>
+			</div>
 	</div>
 </body>
 </html>

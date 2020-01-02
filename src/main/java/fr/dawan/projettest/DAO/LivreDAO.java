@@ -25,4 +25,11 @@ public class LivreDAO extends GenericDAO<Livre>{
 		return result;
 	}
 
+	public List<Livre> findAllByUser(long userId, boolean close) {
+		List<Livre> result = em.createQuery("From Livre WHERE proprietaire_id = :id").setParameter("id", userId)
+		.getResultList();
+		if (close) em.close();
+		return result;
+	}
+
 }

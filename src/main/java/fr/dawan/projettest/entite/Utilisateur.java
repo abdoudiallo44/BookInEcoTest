@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,11 +42,18 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "proprietaire",cascade = CascadeType.PERSIST)
 	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Panier panierUtilisateur;
 
 	@OneToMany(mappedBy = "utilisateur")
 	private List<AdresseLivraison> adresseLivraison;
+	
+	
+	public void addToCart(Livre livre) {
+		Commande commande = new Commande();
+		commande.addLivre(livre);
+		panierUtilisateur.addCommande(commande);
+	}
 
 	public Panier getPanierUtilisateur() {
 		return panierUtilisateur;
@@ -161,6 +169,7 @@ public class Utilisateur extends DbObject {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
+		panierUtilisateur = new Panier();
 	}
 
 	public Utilisateur() {
@@ -214,5 +223,7 @@ public class Utilisateur extends DbObject {
 				+ ", listeLivreUtil=" + listeLivreUtil + ", panierUtilisateur=" + panierUtilisateur
 				+ ", adresseLivraison=" + adresseLivraison + "]";
 	}
+
+
 
 }

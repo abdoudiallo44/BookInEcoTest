@@ -2,13 +2,11 @@ package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 /**
  * 
@@ -24,6 +22,7 @@ public class Livre extends DbObject{
 
 	private String titre;
 
+	@Type(type="text")
 	private String description;
 
 	private String photoLivre;
@@ -35,6 +34,8 @@ public class Livre extends DbObject{
 	private LocalDate dateAjoutLivre;
 
 	private boolean disponibilite;
+	
+	private String etat;
 
 	@ManyToOne
 	private Utilisateur proprietaire;
@@ -121,6 +122,14 @@ public class Livre extends DbObject{
 
 	public void setIdTheme(ThemeLivre idTheme) {
 		this.idTheme = idTheme;
+	}
+	
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 
 	public Livre(String auteur, String titre, String description, Utilisateur utilisateur) {

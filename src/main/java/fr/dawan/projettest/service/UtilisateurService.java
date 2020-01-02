@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fr.dawan.projettest.DAO.UtilisateurDAO;
+import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 
 /*Nouvelle couche service :
@@ -14,49 +15,25 @@ import fr.dawan.projettest.entite.Utilisateur;
 //permet de dire à spring que c'est une couche intérmediaire
 //entre le DAO et les Objets métier
 @Service
-public class UtilisateurService {
+public class UtilisateurService extends GenericService {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service
 	@Autowired
 	private UtilisateurDAO utilisateurDao;
-	
-	//Annotation très importante
-	//permet de gérer les flux de connexions (ouverture, fermeture et rollback en cas d'erreurs 
-	//sur la requête)
-	@Transactional
-	public void create(Utilisateur utilisateur) {
-		utilisateurDao.create(utilisateur);
+
+	// Annotation très importante
+	// permet de gérer les flux de connexions (ouverture, fermeture et rollback en
+	// cas d'erreurs
+	// sur la requête)
+	public void addToCart(Utilisateur user, long livreId, boolean close) {
+		utilisateurDao.addToCart(user, livreId, close);
 	}
-	
-	@Transactional
-	public List<Utilisateur> readAll(){
-		return utilisateurDao.readAll();
+
+	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
+		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
-	
-	@Transactional
-	public void delete(Utilisateur utilisateur) {
-		utilisateurDao.delete(utilisateur);
+
+	public List<Livre> getPanier(long id, boolean b) {
+		return utilisateurDao.getPanier(id, b);
 	}
-	
-	@Transactional
-	public void update(Utilisateur utilisateur) {
-		utilisateurDao.update(utilisateur);
-	}
-	
-	@Transactional
-	public List<Utilisateur> findByKey(String key){
-		return utilisateurDao.findByKey(key);
-	}
-	
-	@Transactional
-	public Utilisateur findById(long id) {
-		return utilisateurDao.findById(id);
-	}
-	
-	@Transactional
-	public void deleteById(long id) {
-		Utilisateur p = utilisateurDao.findById(id);
-		utilisateurDao.delete(p);
-	}
-	
 }

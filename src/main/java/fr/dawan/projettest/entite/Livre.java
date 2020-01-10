@@ -176,7 +176,7 @@ public class Livre extends DbObject{
 		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
 				+ ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre=" + formatLivre
 				+ ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + ", proprietaire="
-				+ proprietaire + ", idTheme=" + idTheme + "]";
+				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  + ", idTheme=" + idTheme + "]";
 	}
 
 	

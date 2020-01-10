@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +27,6 @@ public class UtilisateurDAO extends GenericDAO{
 				user.addToCart(livre);
 					// On met à jour la formation
 					em.merge(user);
-
-					if(close) em.close();
 			}
 		
 	}
@@ -48,8 +48,28 @@ public class UtilisateurDAO extends GenericDAO{
 		return null;
 	}
 
-	public List<Livre> getPanier(long id, boolean b) {
-		// TODO Auto-generated method stub
-		return null;
+	public Utilisateur getPanier(long id, boolean close) {
+		/**
+		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1
+		 select Livre from Commande inner join Commande.
+		 */
+		Utilisateur resultat = null;
+
+
+		// on crée la requête
+		resultat = (Utilisateur) findById(Utilisateur.class, 1, close);
+
+		return resultat;
 	}
+	
+	/**
+		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1
+		 select Livre from Commande inner join Commande.
+		 SELECT Livre FROM Commande join Commande.livresCommande where Commande.id = 1 
+		 */
+
+
+		// on crée la requête
+		//Query query = em.createQuery("FROM Livre join Livre.proprietaire where Livre.id = 1");
+
 }

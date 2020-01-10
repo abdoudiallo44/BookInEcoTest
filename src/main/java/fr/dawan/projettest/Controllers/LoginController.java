@@ -40,29 +40,28 @@ public class LoginController {
 			HttpSession session) {
 		
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
+	   
 	    
-	    //System.out.println(util);
-	    
-		String pseudo = util.getPseudo();
-		String email = util.getEmail();
-		String mdp = util.getMdp();
-		
-		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-			session.setAttribute("user", util);
+//		String pseudo = util.getPseudo();
+//		String email = util.getEmail();
+//		String mdp = util.getMdp();
+		session.setAttribute("user", util);
 
-			List<Livre> livres = service.findAll(Livre.class,true);
-			model.addAttribute("listeLivre", livres);
-			return "home";
-		}else
-		if (login.equals("admin") && pass.equals("admin")) {
-			session.setAttribute("login", login);
-			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-			return "welcomeAdmin";
-		}
-		else {
-			model.addAttribute("msg", "Erreur d'authentification!!!");
-			return "login";
-		}
+		List<Livre> livres = service.findAll(Livre.class,true);
+		model.addAttribute("listeLivre", livres);
+		return "home";
+		
+//		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
+//		}else
+//		if (login.equals("admin") && pass.equals("admin")) {
+//			session.setAttribute("login", login);
+//			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+//			return "welcomeAdmin";
+//		}
+//		else {
+//			model.addAttribute("msg", "Erreur d'authentification!!!");
+//			return "login";
+//		}
 
 	}
 	

@@ -1,10 +1,13 @@
 package fr.dawan.projettest.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import fr.dawan.projettest.DAO.UtilisateurDAO;
+import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 
@@ -34,6 +37,12 @@ public class UtilisateurService extends GenericService {
 	}
 
 	public List<Livre> getPanier(long id, boolean b) {
-		return utilisateurDao.getPanier(id, b);
+		Utilisateur util = utilisateurDao.getPanier(id, b);
+		List<Livre> livres = new ArrayList();
+		for(Commande commande : util.getCommandes()) {
+			System.out.println("Commande : "+util.getCommandes().size());
+			livres.addAll(commande.getlivresCommande());
+		}
+		return livres;
 	}
 }

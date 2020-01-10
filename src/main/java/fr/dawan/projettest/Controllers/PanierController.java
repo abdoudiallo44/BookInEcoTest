@@ -35,6 +35,10 @@ public class PanierController {
 
 	@GetMapping("/panier")
 	public String panier(Model model,HttpSession session) {
+		// pour probleme commande getcommande where utl-id = id devrait le faire
+		// sinon remplacer List par set
+		// sinon doit y avoir une erreur quelque part et je voit pas
+		// si le probleme se regle go remettre addall pour la liste de livre
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		List<Livre> livres = service.getPanier(user.getId(), true);
 		model.addAttribute("listeLivre", livres);

@@ -32,8 +32,7 @@ public class UtilisateurDAO extends GenericDAO{
 	}
 	
 	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
-		
-		
+			
 		try {
 			return (Utilisateur) em.createQuery(
 					"FROM Utilisateur u WHERE (u.email=:email OR u.pseudo=:pseudo) AND u.mdp=:pass")

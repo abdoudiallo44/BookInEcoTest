@@ -66,22 +66,7 @@ public class LoginController {
 
 	}
 	
-	@PostMapping("/inscription/validation")
-	public String validation(Model model, @RequestParam("email") String email, @RequestParam("pass") String pass, @RequestParam("pseudo") String pseudo,
-			HttpSession session) {
-		if (pseudo!= null && pass!= null && email!=null && !pseudo.trim().equals("") && !pass.trim().equals("") && !email.trim().equals("")) {
-			Utilisateur user = new Utilisateur();
-			user.setEmail(email);
-			user.setMdp(pass);
-			user.setPseudo(pseudo);
-			service.create(user, true);
-			session.setAttribute("user", user);
-			return "home";
-		}else {
-			model.addAttribute("msg", "Erreur d'inscription!!!");
-			return "inscription";
-		}
-	}
+	
 	
 	@GetMapping("/login/deconnexion")
 	public String logout(HttpSession session) {

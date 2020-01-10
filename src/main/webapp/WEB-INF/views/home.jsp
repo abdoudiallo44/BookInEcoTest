@@ -60,20 +60,13 @@
 				<a class="btn btn-primary" href="/projettest/login" role="button">Connexion</a>
 				<a class="btn btn-primary" href="/projettest/inscription" role="button">Inscription</a>
 			</div>
-<<<<<<< HEAD
-			
-=======
+
 			</c:if>
->>>>>>> refs/heads/yohan
 		</div>
 
 	</nav>
 	<br />
 
-
-<<<<<<< HEAD
-	
-=======
 <div class="container">
 	<table class="table">
 		<tbody>
@@ -95,13 +88,6 @@
 		</tbody>
 	</table>
 	</div>
-
-
-
-
-
->>>>>>> refs/heads/yohan
-
 
 </body>
 </html>

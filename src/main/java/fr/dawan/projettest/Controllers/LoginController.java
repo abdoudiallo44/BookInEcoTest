@@ -36,37 +36,42 @@ public class LoginController {
 			HttpSession session) {
 		
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
+	    String page = "login";
 	    
 	    //System.out.println(util);
-	    
-		String pseudo = util.getPseudo();
-		String email = util.getEmail();
-		String mdp = util.getMdp();
-		
-		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-			session.setAttribute("login", login);
-			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-			return "welcome";
-		}
-		if (login.equals("admin") && pass.equals("admin")) {
-			session.setAttribute("login", login);
-			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-			return "welcomeAdmin";
-		}
+	    if (util != null) { 
+	    	String pseudo = util.getPseudo();
+			String email = util.getEmail();
+			String mdp = util.getMdp();
+			
+//			if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
+//				session.setAttribute("login", login);
+//				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+//				page =  "welcome";
+//			}
+//			else if (login.equals("admin") && pass.equals("admin")) {
+//				session.setAttribute("login", login);
+//				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+//				page =  "welcomeAdmin";
+//			}
+			
+			if (login.equals("admin") && pass.equals("admin")) {
+				session.setAttribute("login", login);
+				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+				page =  "welcomeAdmin";
+			}
+			else {
+				session.setAttribute("util", util);
+				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+				page =  "welcome";
+			}
+		}		
 		else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");
-			return "login";
 		}
 		
-		
+		return page;
 
-//		if (login.equals("admin") && pass.equals("admin")) {
-//			session.setAttribute("login", login);
-//			return "welcome";
-//		} else {
-//			model.addAttribute("msg", "Erreur d'authentification!!!");
-//			return "login";
-//		}
 
 	}
 	

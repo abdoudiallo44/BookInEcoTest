@@ -54,7 +54,7 @@
 			<div class="float-right">
 
 				<ul class="navbar-nav mr-auto">
-					<li>${login}</li>
+					<li>${utilisateurName}</li>
 					<li class="nav-item active">
 						<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
@@ -175,7 +175,7 @@
 			<tbody>
 				<c:forEach var="p" items="${listeLivre }">
 					<tr>
-						<td>${p.idLivre}</td>
+						<td>${p.id}</td>
 						<td>${p.auteur}</td>
 						<td>${p.titre}</td>
 						<td>${p.description}</td>
@@ -184,8 +184,8 @@
 						<td>${p.formatLivre}</td>
 						<td>${p.dateAjoutLivre}</td>
 						<td>${p.disponibilite}</td>
-						<td><a href="/projettest/livres/supprimer/${p.idLivre}">Supprimer</a>
-							|<a href="/projettest/livres/modifier/${p.idLivre}"> Modifier</a></td>
+						<td><a href="/projettest/livres/supprimer/${p.id}">Supprimer</a>
+							|<a href="/projettest/livres/modifier/${p.id}"> Modifier</a></td>
 					</tr>
 				</c:forEach>
 

@@ -71,7 +71,7 @@ public class Utilisateur extends DbObject {
 		if (!verif) {
 			Commande commande = new Commande();
 			commande.addLivre(livre);
-			commande.setUtil(livre.getProprietaire());
+			commande.setUtil(this);
 			addCommande(commande);
 		}
 	}

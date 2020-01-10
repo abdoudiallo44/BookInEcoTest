@@ -36,12 +36,14 @@ public class UtilisateurService extends GenericService {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
 
-	public List<Livre> getPanier(long id, boolean b) {
-		Utilisateur util = utilisateurDao.getPanier(id, b);
+	public List<Livre> getPanier(long id, boolean close) {
+		Utilisateur util = (Utilisateur) utilisateurDao.findById(Utilisateur.class, id, close);
 		List<Livre> livres = new ArrayList();
 		for(Commande commande : util.getCommandes()) {
-			System.out.println("Commande : "+util.getCommandes().size());
-			livres.addAll(commande.getlivresCommande());
+			//livres.addAll(commande.getlivresCommande());
+			for(Livre livre : commande.getlivresCommande()) {
+				livres.add(livre);
+			}
 		}
 		return livres;
 	}

@@ -57,7 +57,7 @@ public class UtilisateurDAO extends GenericDAO{
 
 
 		// on crée la requête
-		resultat = (Utilisateur) findById(Utilisateur.class, 1, close);
+		resultat = (Utilisateur) findById(Utilisateur.class, id, close);
 
 		return resultat;
 	}

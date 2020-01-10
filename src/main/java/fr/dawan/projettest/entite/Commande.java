@@ -1,11 +1,14 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,10 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="commande")
-public class Commande {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idCommande;
+public class Commande extends DbObject{
 	
 	private LocalDate dateCommande;
 	
@@ -30,14 +30,22 @@ public class Commande {
 	
 	@OneToOne
 	private ModeLivraison modeLivraison;
-
-	public long getIdCommande() {
-		return idCommande;
+	
+	@OneToMany
+	private List<Livre> livresCommande = new ArrayList();
+	
+	public void addLivre(Livre livre) {
+		livresCommande.add(livre);
+	}
+	
+	public void removeLivre(Livre livre) {
+		livresCommande.remove(livre);
+	}
+	
+	public List<Livre> getlivresCommande(){
+		return new ArrayList(livresCommande);
 	}
 
-	public void setIdCommande(long idCommande) {
-		this.idCommande = idCommande;
-	}
 
 	public LocalDate getDateCommande() {
 		return dateCommande;
@@ -71,10 +79,9 @@ public class Commande {
 		this.modeLivraison = modeLivraison;
 	}
 
-	public Commande(long idCommande, LocalDate dateCommande, EtatCommande etat, Panier panier,
+	public Commande( LocalDate dateCommande, EtatCommande etat, Panier panier,
 			ModeLivraison modeLivraison) {
 		super();
-		this.idCommande = idCommande;
 		this.dateCommande = dateCommande;
 		this.etat = etat;
 		this.panier = panier;
@@ -87,7 +94,7 @@ public class Commande {
 
 	@Override
 	public String toString() {
-		return "Commande [idCommande=" + idCommande + ", dateCommande=" + dateCommande + ", etat=" + etat + ", panier="
+		return "Commande [ dateCommande=" + dateCommande + ", etat=" + etat + ", panier="
 				+ panier + ", modeLivraison=" + modeLivraison + "]";
 	}
 	

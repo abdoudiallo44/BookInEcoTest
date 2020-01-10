@@ -1,9 +1,12 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 /**
  * 
@@ -13,26 +16,33 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "livre")
 public class Livre extends DbObject{
+
+
 	private String auteur;
+
 	private String titre;
+
+	@Type(type="text")
 	private String description;
+
 	private String photoLivre;
+
 	private double poidsLivre;
+
 	private String formatLivre;
+
 	private LocalDate dateAjoutLivre;
+
 	private boolean disponibilite;
+	
+	private String etat;
 
 	@ManyToOne
 	private Utilisateur proprietaire;
 
 	@ManyToOne
 	private ThemeLivre idTheme;
-	
-	
-	
-	
-	
-	// Getters and Setters
+
 
 	public String getAuteur() {
 		return auteur;
@@ -113,13 +123,21 @@ public class Livre extends DbObject{
 	public void setIdTheme(ThemeLivre idTheme) {
 		this.idTheme = idTheme;
 	}
+	
+	public String getEtat() {
+		return etat;
+	}
 
-	public Livre(String auteur, String titre, String description, Utilisateur proprietaire) {
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	public Livre(String auteur, String titre, String description, Utilisateur utilisateur) {
 		super();
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.proprietaire = proprietaire;
+		this.proprietaire = utilisateur;
 	}
 
 	public Livre() {
@@ -134,21 +152,6 @@ public class Livre extends DbObject{
 		this.description = description;
 		this.poidsLivre = poidsLivre;
 		this.formatLivre = formatLivre;
-		this.disponibilite = disponibilite;
-	}
-	
-	
-
-	public Livre(long idLivre, String auteur, String titre, String description, String photoLivre, double poidsLivre,
-			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite) {
-		super();
-		this.auteur = auteur;
-		this.titre = titre;
-		this.description = description;
-		this.photoLivre = photoLivre;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
-		this.dateAjoutLivre = dateAjoutLivre;
 		this.disponibilite = disponibilite;
 	}
 

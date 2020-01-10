@@ -1,21 +1,20 @@
 package fr.dawan.projettest.entite;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "utilisateur")
-public class Utilisateur extends DbObject{
+@Table(name = "utilisateurs")
+public class Utilisateur extends DbObject {
 	// Les attributs
 
 	private String prenom;
@@ -36,19 +35,25 @@ public class Utilisateur extends DbObject{
 
 	private RoleUtilisateur role;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany
 	private List<ThemeLivre> preferenceLitteraire;
 
 	// Une personne possède plusieurs livres
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire", fetch = FetchType.LAZY)
-	private List<Livre> listeLivreUtil;
+	@OneToMany(mappedBy = "proprietaire",cascade = CascadeType.PERSIST)
+	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Panier panierUtilisateur;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "utilisateur", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "utilisateur")
 	private List<AdresseLivraison> adresseLivraison;
-
+	
+	
+	public void addToCart(Livre livre) {
+		Commande commande = new Commande();
+		commande.addLivre(livre);
+		panierUtilisateur.addCommande(commande);
+	}
 
 	public Panier getPanierUtilisateur() {
 		return panierUtilisateur;
@@ -65,7 +70,6 @@ public class Utilisateur extends DbObject{
 	public void setAdresseLivraison(List<AdresseLivraison> adresseLivraison) {
 		this.adresseLivraison = adresseLivraison;
 	}
-
 
 	public String getPrenom() {
 		return prenom;
@@ -148,25 +152,31 @@ public class Utilisateur extends DbObject{
 	}
 
 	public List<Livre> getListeLivreUtil() {
-		return listeLivreUtil;
+		return new ArrayList(listeLivreUtil);
 	}
 
-	public void setListeLivreUtil(List<Livre> listeLivreUtil) {
-		this.listeLivreUtil = listeLivreUtil;
+	public void addLivre(Livre livre) {
+		if (livre != null) {
+			listeLivreUtil.add(livre);
+		}
+	}
+	
+	public void removeLivre(Livre livre) {
+			listeLivreUtil.remove(livre);
 	}
 
 	public Utilisateur(String prenom, String nom) {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
+		panierUtilisateur = new Panier();
 	}
 
 	public Utilisateur() {
 		super();
 	}
 
-	public Utilisateur( String prenom, String nom, LocalDate dateDenaissance, String email,
-			String pseudo, String mdp) {
+	public Utilisateur(String prenom, String nom, LocalDate dateDenaissance, String email, String pseudo, String mdp) {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
@@ -175,9 +185,9 @@ public class Utilisateur extends DbObject{
 		this.pseudo = pseudo;
 		this.mdp = mdp;
 	}
-	
-	public Utilisateur( String prenom, String nom, String email, String pseudo, String mdp,
-			int nombreDePoint, RoleUtilisateur role) {
+
+	public Utilisateur(String prenom, String nom, String email, String pseudo, String mdp, int nombreDePoint,
+			RoleUtilisateur role) {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
@@ -188,9 +198,9 @@ public class Utilisateur extends DbObject{
 		this.role = role;
 	}
 
-	public Utilisateur( String prenom, String nom, LocalDate dateDenaissance, String email,
-			String pseudo, String mdp, String photoProfil, int nombreDePoint, RoleUtilisateur role,
-			List<ThemeLivre> preferenceLitteraire, List<Livre> listeLivreUtil) {
+	public Utilisateur(String prenom, String nom, LocalDate dateDenaissance, String email, String pseudo, String mdp,
+			String photoProfil, int nombreDePoint, RoleUtilisateur role, List<ThemeLivre> preferenceLitteraire,
+			List<Livre> listeLivreUtil) {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
@@ -207,11 +217,13 @@ public class Utilisateur extends DbObject{
 
 	@Override
 	public String toString() {
-		return "Utilisateur [prenom=" + prenom + ", nom=" + nom
-				+ ", dateDenaissance=" + dateDenaissance + ", email=" + email + ", pseudo=" + pseudo + ", mdp=" + mdp
-				+ ", photoProfil=" + photoProfil + ", nombreDePoint=" + nombreDePoint + ", role=" + role
-				+ ", preferenceLitteraire=" + preferenceLitteraire + ", listeLivreUtil=" + listeLivreUtil
-				+ ", panierUtilisateur=" + panierUtilisateur + ", adresseLivraison=" + adresseLivraison + "]";
+		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
+				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
+				+ nombreDePoint + ", role=" + role + ", preferenceLitteraire=" + preferenceLitteraire
+				+ ", listeLivreUtil=" + listeLivreUtil + ", panierUtilisateur=" + panierUtilisateur
+				+ ", adresseLivraison=" + adresseLivraison + "]";
 	}
+
+
 
 }

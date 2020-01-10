@@ -1,8 +1,11 @@
 package fr.dawan.projettest.entite;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,30 +15,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="panier")
-public class Panier {
-
-	// Les attributs
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idPanier;
+public class Panier extends DbObject{
 	
 	@OneToOne
 	private Utilisateur utilisateur;
 	
-	@OneToMany(mappedBy = "panier")
-	private List<Commande> commande;
-
-	public long getIdPanier() {
-		return idPanier;
+	@OneToMany(mappedBy = "panier",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<Commande> commandes = new ArrayList();
+	
+	public void addCommande(Commande commande) {
+		commandes.add(commande);
 	}
-
-	public void setIdPanier(long idPanier) {
-		this.idPanier = idPanier;
+	
+	public void removeCommande(Commande commande) {
+		commandes.remove(commande);
 	}
-
-	public Panier(long idPanier) {
-		super();
-		this.idPanier = idPanier;
+	
+	public List<Commande> getCommandes(){
+		return new ArrayList(commandes);
 	}
 
 	public Panier() {

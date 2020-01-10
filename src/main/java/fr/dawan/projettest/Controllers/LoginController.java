@@ -1,5 +1,7 @@
 package fr.dawan.projettest.Controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+
+import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.UtilisateurService;
 
@@ -36,53 +40,52 @@ public class LoginController {
 			HttpSession session) {
 		
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
-	    String page = "login";
 	    
 	    //System.out.println(util);
-	    if (util != null) { 
-	    	String pseudo = util.getPseudo();
-			String email = util.getEmail();
-			String mdp = util.getMdp();
-			
-//			if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-//				session.setAttribute("login", login);
-//				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-//				page =  "welcome";
-//			}
-//			else if (login.equals("admin") && pass.equals("admin")) {
-//				session.setAttribute("login", login);
-//				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-//				page =  "welcomeAdmin";
-//			}
-			
-			if (login.equals("admin") && pass.equals("admin")) {
-				session.setAttribute("login", login);
-				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-				page =  "welcomeAdmin";
-			}
-			else {
-				session.setAttribute("util", util);
-				session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-				page =  "welcome";
-			}
-		}		
+	    
+		String pseudo = util.getPseudo();
+		String email = util.getEmail();
+		String mdp = util.getMdp();
+		
+		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
+			session.setAttribute("user", util);
+
+			List<Livre> livres = service.findAll(Livre.class,true);
+			model.addAttribute("listeLivre", livres);
+			return "home";
+		}else
+		if (login.equals("admin") && pass.equals("admin")) {
+			session.setAttribute("login", login);
+			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+			return "welcomeAdmin";
+		}
 		else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");
+			return "login";
 		}
-		
-		return page;
-
 
 	}
 	
-	
+	@PostMapping("/inscription/validation")
+	public String validation(Model model, @RequestParam("email") String email, @RequestParam("pass") String pass, @RequestParam("pseudo") String pseudo,
+			HttpSession session) {
+		if (pseudo!= null && pass!= null && email!=null && !pseudo.trim().equals("") && !pass.trim().equals("") && !email.trim().equals("")) {
+			Utilisateur user = new Utilisateur();
+			user.setEmail(email);
+			user.setMdp(pass);
+			user.setPseudo(pseudo);
+			service.create(user, true);
+			session.setAttribute("user", user);
+			return "home";
+		}else {
+			model.addAttribute("msg", "Erreur d'inscription!!!");
+			return "inscription";
+		}
+	}
 	
 	@GetMapping("/login/deconnexion")
-	public String logout(HttpSession session, SessionStatus status) {
-
-		// status.setComplete();
+	public String logout(HttpSession session) {
 		session.invalidate();
-
 		return "home";
 	}
 	

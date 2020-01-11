@@ -45,8 +45,8 @@ public class HomeController {
 		return "home";
 	}
 
-//	@GetMapping("/load")
-//	public String chargementLivre() {
+	@GetMapping("/load")
+	public String chargementLivre() {
 //		Utilisateur utilisateur1 = new Utilisateur(0, "Abdoulaye", "DIALLO", "dobrediallo@yahoo.fr", "abdou44", "aboudiallo44");
 //		
 //		Livre livre1 = new Livre(0, "auteur1", "titre1", "description 1", "/C/", 250, "poche", null, true, utilisateur1);
@@ -59,9 +59,9 @@ public class HomeController {
 //		livreService.create(livre4);
 //		Livre livre5 = new Livre(0, "auteur1", "titre5", "description 5", "/C/", 250, "poche", null, true, utilisateur1);
 //		livreService.create(livre5);
-//		
-//		return "home";
-//	}
+		
+		return "home";
+	}
 	
 	
 }

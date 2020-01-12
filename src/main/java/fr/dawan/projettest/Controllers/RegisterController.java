@@ -35,7 +35,6 @@ public class RegisterController {
 		service.create(user, true);
 		session.setAttribute("user", user);
 		
-		
 		return "home";
 		
 		

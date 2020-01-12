@@ -22,7 +22,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+							<input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
 						</td>
 						
 					</tr>

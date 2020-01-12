@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,12 +26,12 @@ public class Commande extends DbObject{
 	private EtatCommande etat;
 	
 	@OneToOne
-	private Utilisateur util;
+	private Panier panier;
 	
 	@OneToOne
 	private ModeLivraison modeLivraison;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
 	private List<Livre> livresCommande = new ArrayList();
 	
 	public void addLivre(Livre livre) {
@@ -64,6 +63,13 @@ public class Commande extends DbObject{
 		this.etat = etat;
 	}
 
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
 
 	public ModeLivraison getModeLivraison() {
 		return modeLivraison;
@@ -73,32 +79,26 @@ public class Commande extends DbObject{
 		this.modeLivraison = modeLivraison;
 	}
 
-	public Utilisateur getUtil() {
-		return util;
-	}
-
-	public void setUtil(Utilisateur util) {
-		this.util = util;
+	public Commande( LocalDate dateCommande, EtatCommande etat, Panier panier,
+			ModeLivraison modeLivraison) {
+		super();
+		this.dateCommande = dateCommande;
+		this.etat = etat;
+		this.panier = panier;
+		this.modeLivraison = modeLivraison;
 	}
 
 	public Commande() {
 		super();
 	}
 
-	public Commande(LocalDate dateCommande, EtatCommande etat, Utilisateur util, ModeLivraison modeLivraison,
-			List<Livre> livresCommande) {
-		super();
-		this.dateCommande = dateCommande;
-		this.etat = etat;
-		this.util = util;
-		this.modeLivraison = modeLivraison;
-		this.livresCommande = livresCommande;
-	}
-
 	@Override
 	public String toString() {
-		return "Commande [dateCommande=" + dateCommande + ", etat=" + etat + ", util=" + util + ", modeLivraison="
-				+ modeLivraison + ", livresCommande=" + livresCommande + "]";
+		return "Commande [ dateCommande=" + dateCommande + ", etat=" + etat + ", panier="
+				+ panier + ", modeLivraison=" + modeLivraison + "]";
 	}
+	
+	
+	
 	
 }

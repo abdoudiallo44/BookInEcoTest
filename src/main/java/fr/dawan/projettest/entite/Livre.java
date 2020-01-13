@@ -25,13 +25,13 @@ public class Livre extends DbObject{
 	@Type(type="text")
 	private String description;
 
-	private String photoLivre;
+	private String photo;
 
-	private double poidsLivre;
+	private double poids;
 
-	private String formatLivre;
+	private String format;
 
-	private LocalDate dateAjoutLivre;
+	private LocalDate dateAjout;
 
 	private boolean disponibilite;
 	
@@ -68,36 +68,36 @@ public class Livre extends DbObject{
 		this.description = description;
 	}
 
-	public String getPhotoLivre() {
-		return photoLivre;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setPhotoLivre(String photoLivre) {
-		this.photoLivre = photoLivre;
+	public void setPhoto(String photoLivre) {
+		this.photo = photoLivre;
 	}
 
-	public double getPoidsLivre() {
-		return poidsLivre;
+	public double getPoids() {
+		return poids;
 	}
 
-	public void setPoidsLivre(double poidsLivre) {
-		this.poidsLivre = poidsLivre;
+	public void setPoids(double poidsLivre) {
+		this.poids = poidsLivre;
 	}
 
-	public String getFormatLivre() {
-		return formatLivre;
+	public String getFormat() {
+		return format;
 	}
 
-	public void setFormatLivre(String formatLivre) {
-		this.formatLivre = formatLivre;
+	public void setFormat(String formatLivre) {
+		this.format = formatLivre;
 	}
 
-	public LocalDate getDateAjoutLivre() {
-		return dateAjoutLivre;
+	public LocalDate getDateAjout() {
+		return dateAjout;
 	}
 
-	public void setDateAjoutLivre(LocalDate dateAjoutLivre) {
-		this.dateAjoutLivre = dateAjoutLivre;
+	public void setDateAjout(LocalDate dateAjoutLivre) {
+		this.dateAjout = dateAjoutLivre;
 	}
 
 	public boolean isDisponibilite() {
@@ -150,8 +150,8 @@ public class Livre extends DbObject{
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
+		this.poids = poidsLivre;
+		this.format = formatLivre;
 		this.disponibilite = disponibilite;
 	}
 
@@ -162,10 +162,10 @@ public class Livre extends DbObject{
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.photoLivre = photoLivre;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
-		this.dateAjoutLivre = dateAjoutLivre;
+		this.photo = photoLivre;
+		this.poids = poidsLivre;
+		this.format = formatLivre;
+		this.dateAjout = dateAjoutLivre;
 		this.disponibilite = disponibilite;
 		this.proprietaire = proprietaire;
 		this.idTheme = idTheme;
@@ -174,8 +174,8 @@ public class Livre extends DbObject{
 	@Override
 	public String toString() {
 		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
-				+ ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre=" + formatLivre
-				+ ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + ", proprietaire="
+				+ ", photoLivre=" + photo + ", poidsLivre=" + poids + ", formatLivre=" + format
+				+ ", dateAjoutLivre=" + dateAjout + ", disponibilite=" + disponibilite + ", proprietaire="
 				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  + ", idTheme=" + idTheme + "]";
 	}
 

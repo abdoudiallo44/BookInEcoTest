@@ -7,43 +7,38 @@ import javax.validation.constraints.NotEmpty;
 
 public class LivreForm {
 	
-	private long idLivre;
+	private long id;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
 	private String auteur;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
 	private String titre;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
 	private String description;
 	
-	private String photoLivre;
+	private String photo;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
-	private double poidsLivre;
+	private double poids;
 	
-	@NotEmpty(message="ce champs ne doit pas être vide")
-	private String formatLivre;
+	private String format;
 	
 	
-	private LocalDateTime dateAjoutLivre;
+	private LocalDateTime dateAjout;
 	
 	
 	private boolean disponibilite;
 
 
-	public LivreForm(long idLivre, String auteur, String titre, String description, String photoLivre,
-			double poidsLivre, String formatLivre, LocalDateTime dateAjoutLivre, boolean disponibilite) {
+	public LivreForm(long id, String auteur, String titre, String description, String photo,
+			double poids, String format, LocalDateTime dateAjout, boolean disponibilite) {
 		super();
-		this.idLivre = idLivre;
+		this.id = id;
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.photoLivre = photoLivre;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
-		this.dateAjoutLivre = dateAjoutLivre;
+		this.photo = photo;
+		this.poids = poids;
+		this.format = format;
+		this.dateAjout = dateAjout;
 		this.disponibilite = disponibilite;
 	}
 
@@ -53,13 +48,13 @@ public class LivreForm {
 	}
 
 
-	public long getIdLivre() {
-		return idLivre;
+	public long getId() {
+		return id;
 	}
 
 
-	public void setIdLivre(long idLivre) {
-		this.idLivre = idLivre;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
@@ -93,43 +88,43 @@ public class LivreForm {
 	}
 
 
-	public String getPhotoLivre() {
-		return photoLivre;
+	public String getPhoto() {
+		return photo;
 	}
 
 
-	public void setPhotoLivre(String photoLivre) {
-		this.photoLivre = photoLivre;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 
-	public double getPoidsLivre() {
-		return poidsLivre;
+	public double getPoids() {
+		return poids;
 	}
 
 
-	public void setPoidsLivre(double poidsLivre) {
-		this.poidsLivre = poidsLivre;
+	public void setPoids(double poids) {
+		this.poids = poids;
 	}
 
 
-	public String getFormatLivre() {
-		return formatLivre;
+	public String getFormat() {
+		return format;
 	}
 
 
-	public void setFormatLivre(String formatLivre) {
-		this.formatLivre = formatLivre;
+	public void setFormat(String format) {
+		this.format = format;
 	}
 
 
-	public LocalDateTime getDateAjoutLivre() {
-		return dateAjoutLivre;
+	public LocalDateTime getDateAjout() {
+		return dateAjout;
 	}
 
 
-	public void setDateAjoutLivre(LocalDateTime dateAjoutLivre) {
-		this.dateAjoutLivre = dateAjoutLivre;
+	public void setDateAjout(LocalDateTime dateAjout) {
+		this.dateAjout = dateAjout;
 	}
 
 
@@ -145,9 +140,9 @@ public class LivreForm {
 
 	@Override
 	public String toString() {
-		return "LivreForm [idLivre=" + idLivre + ", auteur=" + auteur + ", titre=" + titre + ", description="
-				+ description + ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre="
-				+ formatLivre + ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + "]";
+		return "LivreForm [id=" + id + ", auteur=" + auteur + ", titre=" + titre + ", description="
+				+ description + ", photo=" + photo + ", poids=" + poids + ", format="
+				+ format + ", dateAjout=" + dateAjout + ", disponibilite=" + disponibilite + "]";
 	}
 	
 }

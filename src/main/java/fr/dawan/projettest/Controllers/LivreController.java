@@ -2,6 +2,7 @@ package fr.dawan.projettest.Controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.dawan.projettest.Beans.LivreForm;
 import fr.dawan.projettest.entite.Livre;
+import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.LivreService;
 
 @Controller
@@ -27,18 +29,24 @@ public class LivreController {
 	LivreService livreService;
 	
 	@GetMapping("/gestionLivre")
-	public String gestionLivre() {
+	public String gestionLivre(Model model,HttpSession session) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
+		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
 		return "livres";
 	}
 	
-	@PostMapping("/ajouterLivre")
-	public String ajouter(Model model, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
+	@PostMapping("/livres/ajouterLivre")
+	public String ajouter(Model model,HttpSession session, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
 			BindingResult bindingResult) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
 
-		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoidsLivre(), livreForm.getFormatLivre(), true);
+		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoids(), livreForm.getFormat(), true);
+		l.setProprietaire(user);
+		l.setPhoto(livreForm.getPhoto());
 		if (bindingResult.hasErrors()) {
 			//model.addAttribute("livreForm", livreService.findById(livreForm.getId()));
 			//model.addAttribute("listeLivre", livreService.readAll());
+			System.out.println("oups");
 			return "livres";
 		}
 //		if (l.getId() != 0) {
@@ -46,7 +54,7 @@ public class LivreController {
 //		} else {
 			livreService.create(l,false);
 		//}
-		model.addAttribute("listeLivre", livreService.findAll(Livre.class, true));
+		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
 		return "livres";
 	}
 	

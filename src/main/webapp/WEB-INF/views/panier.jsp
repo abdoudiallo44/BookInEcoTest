@@ -37,7 +37,7 @@
 		<tbody>
 			<c:forEach var="l" items="${listeLivre}">
 				<tr>
-					<td><img src="<c:url value="/resources/img/${l.photoLivre}.jpg"/>"></td>
+					<td><img src="<c:url value="/resources/img/${l.photo}.jpg"/>"></td>
 					<td>${l.auteur}</td>
 					<td>${l.titre}</td>
 					<td>${l.description}</td>

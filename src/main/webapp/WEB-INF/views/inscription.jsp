@@ -12,7 +12,38 @@
 <body>
 	<br />
 	<div align="center" class="container" class="form-group row">
-		<form action="/projettest/inscription/validation" method="post">
+	
+		<form:form action="/projettest/inscription/validation" method="post" modelAttribute="registerForm">
+			<div>
+				<h2 class="c-text--heading c-text--left c-text">S'inscrire</h2>
+			</div>
+			</br>
+			<div class="form-group">
+				<table>
+					<tr>
+						<td>
+							<form:input type="text" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form:input type="text" path="pseudo" aria-describedby="pseudoHelp" placeholder="Pseudo" value="${RegisterForm.pseudo}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form:input type="password" path="mdp" aria-describedby="passHelp" placeholder="Password" value="${RegisterForm.mdp}"/>
+						</td>
+					</tr>
+					<tr align="center">
+						<td><form:button type="submit" value="Inscription" class="btn btn-primary">S'inscrire</form:button></td>
+					</tr>			
+				</table>
+			</div>		
+		</form:form>
+		
+	
+		<!-- <form action="/projettest/inscription/validation" method="post">
 			<div>
 				<h2 class="c-text--heading c-text--left c-text">S'inscrire</h2>
 			</div>
@@ -22,7 +53,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+							<input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
 						</td>
 						
 					</tr>
@@ -33,7 +64,7 @@
 				<table>
 					<tr>
 						<td>
-							<input type="text" class="form-control" id="pseudo" aria-describedby="pseudolHelp" placeholder="Pseudo">
+							<input type="text" class="form-control" id="pseudo" aria-describedby="pseudolHelp" placeholder="Pseudo" required>
 						</td>						
 					</tr>	
 				</table>
@@ -51,7 +82,7 @@
 					</tr>
 				</table>
 			</div>
-		</form>
+		</form> -->
 		
 					<div>
 				<p style="color: red;">${msg}</p>

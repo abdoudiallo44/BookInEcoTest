@@ -26,7 +26,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">BookInEco</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -37,7 +36,6 @@
 		</button>
 		<hr />
 		<br /> <br />
-=======
 <h2>Gestion des Livres </h2>
 	<hr />
 	<br />
@@ -146,7 +144,7 @@
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">ID</span></td>
 					<td><form:input class="form-control" type="text"
-							path="idLivre" value="${livreForm.idLivre}" /></td>
+							path="idLivre" value="${LivreForm.idLivre}" /></td>
 				</tr>
 				<tr>
 					<td><span class="input-group-text" id="addon-wrapping">Auteur</span></td>

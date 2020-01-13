@@ -15,6 +15,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 //permet de dire à spring que c'est une couche intérmediaire
 //entre le DAO et les Objets métier
 @Service
+@Transactional
 public class UtilisateurService extends GenericService {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service

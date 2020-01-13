@@ -28,11 +28,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping("/inscription")
-	public String inscription() {
-		
-		return "inscription";
-	}
+	
 
 	
 	@PostMapping("/login/authentification")

@@ -15,12 +15,8 @@
 	<br />
 	<br />
 	<div class="container">
-		<form action="/projettest/livres/ajouterLivre" method="post">
+		<form action="/projettest/livres/ajouterLivre" method="post" modelAttribute="LivreForm">
 		<table>
-			<tr>
-				<td>ID:</td>
-				<td><input type="text" name="id" readOnly="true" value="${livreForm.id}"/></td>
-			</tr>
 			<tr>
 				<td>Auteur:</td>
 				<td><input type="text" name="auteur" value="${livreForm.auteur}"/></td>
@@ -33,14 +29,26 @@
 				<td>Description:</td>
 				<td><input type="text" name="description" value="${livreForm.description}"/></td>
 			</tr>
+						<tr>
+				<td>Poids:</td>
+				<td><input type="number" name="description" value="${livreForm.poids}"/></td>
+			</tr>
+						<tr>
+				<td>Format:</td>
+				<td><input type="text" name="description" value="${livreForm.format}"/></td>
+			</tr>
+						<!-- <tr>
+				<td>Photo:</td>
+				<td><input type="text" name="description" value="${livreForm.description}"/></td>
+			</tr>-->
 			<tr>
-				<td><input type="submit" value="Valider" /></td>
+				<td><input type="submit" value="Ajouter" /></td>
 				<td></td>
 			</tr>
 		</table>
 		
 		</form>
-	</div>
+	</div><!-- 
 	<div class="container">
 	<form action="/projettest/livres/findByKey" method="post">
 		<table>
@@ -52,7 +60,7 @@
 		<input type="submit" value="Recherche" />
 	
 	</form>
-	</div><br /><br />
+	</div><br /><br />-->
 	<div class="container">
 	<table class="table">
 		<thead class="thead-dark">

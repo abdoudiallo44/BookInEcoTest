@@ -37,14 +37,18 @@ public class UtilisateurService extends GenericService {
 	}
 
 	public List<Livre> getPanier(long id, boolean close) {
-		Utilisateur util = (Utilisateur) utilisateurDao.findById(Utilisateur.class, id, close);
+		List<Commande> commandes = utilisateurDao.findCommandes(id, close);
 		List<Livre> livres = new ArrayList();
-		for(Commande commande : util.getCommandes()) {
+		for(Commande commande : commandes) {
 			//livres.addAll(commande.getlivresCommande());
 			for(Livre livre : commande.getlivresCommande()) {
 				livres.add(livre);
 			}
 		}
 		return livres;
+	}
+	
+	public void addLivre(Utilisateur util,Livre livre) {
+		
 	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 
@@ -60,6 +61,14 @@ public class UtilisateurDAO extends GenericDAO{
 		resultat = (Utilisateur) findById(Utilisateur.class, id, close);
 
 		return resultat;
+	}
+	
+	public List<Commande> findCommandes(long id,boolean close){
+		 return em.createQuery("FROM Commande WHERE util_id = :id").setParameter("id", id).getResultList();
+	}
+	
+	public void addLivre(Utilisateur util) {
+		em.merge(util);
 	}
 	
 	/**

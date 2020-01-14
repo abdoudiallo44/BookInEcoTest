@@ -76,6 +76,8 @@ public class RegisterController {
 		user.setEmail(registerForm.getEmail());
 		user.setPseudo(registerForm.getPseudo());
 		user.setMdp(registerForm.getMdp());
+		user.setNom(registerForm.getNom());
+		user.setPrenom(registerForm.getPrenom());
 		
 		if (bindingResult.hasErrors()) {
 			return "inscription";

@@ -22,7 +22,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:fixed; top:0; width:100%;">
 		<a class="navbar-brand" href="/projettest/">BookInEco</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -65,6 +65,10 @@
 		</div>
 
 	</nav>
+	<!-- <div class="jumbotron" style=" margin:0%, padding: 0%"> -->
+	<div class="container-fluid">
+		<img src="<c:url value="/resources/img/banniere.gif"/>" width=100% style=" margin:0%; padding-top: 5vh">
+	</div><!-- </div> -->
 	<br />
 
 <div class="container">

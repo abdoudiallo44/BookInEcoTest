@@ -22,6 +22,16 @@
 				<table>
 					<tr>
 						<td>
+							<form:input type="text" path="nom" aria-describedby="nomHelp" placeholder="Nom" value="${RegisterForm.nom}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form:input type="text" path="prenom" aria-describedby="prenomHelp" placeholder="Prenom" value="${RegisterForm.prenom}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<form:input type="text" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
 						</td>
 					</tr>

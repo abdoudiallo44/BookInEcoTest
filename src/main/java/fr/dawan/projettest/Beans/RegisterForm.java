@@ -14,7 +14,12 @@ public class RegisterForm extends DbObject{
 	private String pseudo;
 	
 	@NotEmpty(message = "Ce champs ne doit pas être vide")
-	@Min(8)
+	private String nom;
+	
+	@NotEmpty(message = "Ce champs ne doit pas être vide")
+	private String prenom;
+	
+	@NotEmpty(message = "Ce champs ne doit pas être vide")
 	private String mdp;
 	
 	public String getEmail() {
@@ -35,14 +40,31 @@ public class RegisterForm extends DbObject{
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	
 	
 	public RegisterForm(@NotEmpty(message = "Ce champs ne doit pas être vide") String email,
 						@NotEmpty(message = "Ce champs ne doit pas être vide") String pseudo,
-						@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp) {
+						@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp,
+						@NotEmpty(message = "Ce champs ne doit pas être vide") String nom,
+						@NotEmpty(message = "Ce champs ne doit pas être vide") String prenom) {
 		super();
 		this.email = email;
 		this.pseudo = pseudo;
 		this.mdp = mdp;
+		this.nom = nom;
+		this.prenom = prenom;
 	}
 	
 	public RegisterForm() {
@@ -51,8 +73,11 @@ public class RegisterForm extends DbObject{
 	
 	@Override
 	public String toString() {
-		return "RegisterForm [email=" + email + ", pseudo=" + pseudo + ", mdp=" + mdp + "]";
+		return "RegisterForm [email=" + email + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", mdp="
+				+ mdp + "]";
 	}
+	
+	
 	
 	
 	

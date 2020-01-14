@@ -24,6 +24,9 @@
 						<td>
 							<form:input type="text" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
 						</td>
+						<td>
+							<p><form:errors path="email" /></p>
+						</td>
 					</tr>
 					<tr>
 						<td>

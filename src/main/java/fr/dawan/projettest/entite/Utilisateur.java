@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,28 +38,42 @@ public class Utilisateur extends DbObject {
 	private List<ThemeLivre> preferenceLitteraire;
 
 	// Une personne possède plusieurs livres
-	@OneToMany(mappedBy = "proprietaire",cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "proprietaire", cascade = CascadeType.PERSIST)
 	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private Panier panierUtilisateur;
+	@OneToMany(mappedBy = "util", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Commande> commandes = new ArrayList();
+
+	public void addCommande(Commande commande) {
+		commandes.add(commande);
+	}
+
+	public void removeCommande(Commande commande) {
+		commandes.remove(commande);
+	}
+
+	public List<Commande> getCommandes() {
+		return new ArrayList(commandes);
+	}
 
 	@OneToMany(mappedBy = "utilisateur")
 	private List<AdresseLivraison> adresseLivraison;
-	
-	
+
 	public void addToCart(Livre livre) {
-		Commande commande = new Commande();
-		commande.addLivre(livre);
-		panierUtilisateur.addCommande(commande);
-	}
-
-	public Panier getPanierUtilisateur() {
-		return panierUtilisateur;
-	}
-
-	public void setPanierUtilisateur(Panier panierUtilisateur) {
-		this.panierUtilisateur = panierUtilisateur;
+		boolean verif = false;
+		for (Commande commande : commandes) {
+			Livre livreCommande = commande.getlivresCommande().get(0);
+			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
+				commande.addLivre(livre);
+				verif = true;
+			}
+		}
+		if (!verif) {
+			Commande commande = new Commande();
+			commande.addLivre(livre);
+			commande.setUtil(this);
+			addCommande(commande);
+		}
 	}
 
 	public List<AdresseLivraison> getAdresseLivraison() {
@@ -160,16 +173,15 @@ public class Utilisateur extends DbObject {
 			listeLivreUtil.add(livre);
 		}
 	}
-	
+
 	public void removeLivre(Livre livre) {
-			listeLivreUtil.remove(livre);
+		listeLivreUtil.remove(livre);
 	}
 
 	public Utilisateur(String prenom, String nom) {
 		super();
 		this.prenom = prenom;
 		this.nom = nom;
-		panierUtilisateur = new Panier();
 	}
 
 	public Utilisateur() {
@@ -219,11 +231,8 @@ public class Utilisateur extends DbObject {
 	public String toString() {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
-				+ nombreDePoint + ", role=" + role + ", preferenceLitteraire=" + preferenceLitteraire
-				+ ", listeLivreUtil=" + listeLivreUtil + ", panierUtilisateur=" + panierUtilisateur
-				+ ", adresseLivraison=" + adresseLivraison + "]";
+				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes ;
 	}
-
 
 
 }

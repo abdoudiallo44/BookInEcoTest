@@ -173,11 +173,14 @@ public class Livre extends DbObject{
 
 	@Override
 	public String toString() {
-		return "Livre [auteur=" + auteur + ", titre=" + titre + ", description=" + description + ", photo=" + photo
-				+ ", poids=" + poids + ", format=" + format + ", dateAjout=" + dateAjout + ", disponibilite="
-				+ disponibilite + ", etat=" + etat + ", idTheme=" + idTheme + ", getId()=" + getId() + "]";
+		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
+				+ ", photoLivre=" + photo + ", poidsLivre=" + poids + ", formatLivre=" + format
+				+ ", dateAjoutLivre=" + dateAjout + ", disponibilite=" + disponibilite + ", proprietaire="
+				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  + ", idTheme=" + idTheme + "]";
 	}
 
+	
+	
 	
 
 }

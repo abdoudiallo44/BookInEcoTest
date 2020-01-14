@@ -45,16 +45,21 @@
 
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
-			<div>
-				<a class="btn btn-outline-primary" href="/projettest/gestionLivre"
-					role="button">Mes livres</a> <a class="btn btn-outline-primary"
-					href="/projettest/panier" role="button">Mon panier</a>
-			</div>
-			<div class="float-right">
-				<a class="btn btn-primary" href="/projettest/login/deconnexion"
-					role="button">Deconnexion</a>
-					</div>
+				<div>
+					<a class="btn btn-outline-primary" href="/projettest/gestionLivre" role="button">Mes livres</a> 
+					<a class="btn btn-outline-primary" href="/projettest/panier" role="button">Mon panier</a>
+					<a class="btn btn-outline-primary" href="/projettest/modifierProfil" role="button">Profil</a>
+				</div>
+				<div class="float-right">
+					<a class="btn btn-primary" href="/projettest/login/deconnexion"
+						role="button">Deconnexion</a>
+						</div>
 			</c:if>
+			
+			
+			
+			
+			
 			<c:if test="${empty sessionScope.user}">
 			<div class="float-right">
 				<a class="btn btn-primary" href="/projettest/login" role="button">Connexion</a>

@@ -14,7 +14,6 @@ public class RegisterForm extends DbObject{
 	private String pseudo;
 	
 	@NotEmpty(message = "Ce champs ne doit pas être vide")
-	@Min(8)
 	private String mdp;
 	
 	public String getEmail() {

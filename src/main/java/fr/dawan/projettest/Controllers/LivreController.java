@@ -1,15 +1,23 @@
 package fr.dawan.projettest.Controllers;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import fr.dawan.projettest.Beans.LivreForm;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.LivreService;
@@ -22,14 +30,33 @@ public class LivreController {
 	
 	@GetMapping("/gestionLivre")
 	public String gestionLivre(Model model,HttpSession session) {
-
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
-		List<Livre> livres = livreService.findAllByUser(user.getId(),true);
-		model.addAttribute("listeLivre", livres);
-
+		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
 		return "livres";
 	}
+	
+	@PostMapping("/livres/ajouterLivre")
+	public String ajouter(Model model,HttpSession session, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
+			BindingResult bindingResult) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
 
+		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoids(), livreForm.getFormat(), true);
+		l.setProprietaire(user);
+		l.setPhoto(livreForm.getPhoto());
+		if (bindingResult.hasErrors()) {
+			//model.addAttribute("livreForm", livreService.findById(livreForm.getId()));
+			//model.addAttribute("listeLivre", livreService.readAll());
+			System.out.println("oups");
+			return "livres";
+		}
+//		if (l.getId() != 0) {
+//			livreService.update(l,false);
+//		} else {
+			livreService.create(l,false);
+		//}
+		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
+		return "livres";
+	}
 	
 	@RequestMapping(value="livres/findByKey",method=RequestMethod.POST)
 	public String findByKey(Model model,@RequestParam("motCle") String recherche) {

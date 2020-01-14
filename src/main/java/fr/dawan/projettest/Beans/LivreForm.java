@@ -1,44 +1,60 @@
 package fr.dawan.projettest.Beans;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
 
-public class LivreForm  {
+public class LivreForm {
 	
-	private long idLivre;
+	private long id;
 	
-	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String auteur;
 	
-	@NotEmpty(message="Ce champs ne doit pas être vide")
 	private String titre;
 	
 	private String description;
 	
-	private String photoLivre;
+	private String photo;
 	
-	private double poidsLivre;
+	private double poids;
 	
-	@NotEmpty(message="Ce champs ne doit pas être vide")
-	private String formatLivre;
+	private String format;
 	
-	private LocalDate dateAjoutLivre;
+	
+	private LocalDateTime dateAjout;
+	
 	
 	private boolean disponibilite;
 
 
-	
-	
-	public long getIdLivre() {
-		return idLivre;
+	public LivreForm(long id, String auteur, String titre, String description, String photo,
+			double poids, String format, LocalDateTime dateAjout, boolean disponibilite) {
+		super();
+		this.id = id;
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photo = photo;
+		this.poids = poids;
+		this.format = format;
+		this.dateAjout = dateAjout;
+		this.disponibilite = disponibilite;
 	}
 
 
-	public void setIdLivre(long idLivre) {
-		this.idLivre = idLivre;
+	public LivreForm() {
+		super();
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
@@ -72,84 +88,61 @@ public class LivreForm  {
 	}
 
 
-	public String getPhotoLivre() {
-		return photoLivre;
+	public String getPhoto() {
+		return photo;
 	}
 
 
-	public void setPhotoLivre(String photoLivre) {
-		this.photoLivre = photoLivre;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 
-	public double getPoidsLivre() {
-		return poidsLivre;
+	public double getPoids() {
+		return poids;
 	}
 
 
-	public void setPoidsLivre(double poidsLivre) {
-		this.poidsLivre = poidsLivre;
+	public void setPoids(double poids) {
+		this.poids = poids;
 	}
 
 
-	public String getFormatLivre() {
-		return formatLivre;
+	public String getFormat() {
+		return format;
 	}
 
 
-	public void setFormatLivre(String formatLivre) {
-		this.formatLivre = formatLivre;
+	public void setFormat(String format) {
+		this.format = format;
 	}
 
-	public LocalDate getDateAjoutLivre() {
-		return dateAjoutLivre;
+
+	public LocalDateTime getDateAjout() {
+		return dateAjout;
 	}
 
-	public void setDateAjoutLivre(LocalDate dateAjoutLivre) {
-		this.dateAjoutLivre = dateAjoutLivre;
+
+	public void setDateAjout(LocalDateTime dateAjout) {
+		this.dateAjout = dateAjout;
 	}
 
-	public boolean getDisponibilite() {
+
+	public boolean isDisponibilite() {
 		return disponibilite;
 	}
+
 
 	public void setDisponibilite(boolean disponibilite) {
 		this.disponibilite = disponibilite;
 	}
 
 
-	
-	
-	
-	public LivreForm(long idLivre, @NotEmpty(message = "Ce champs ne doit pas être vide") String auteur,
-			@NotEmpty(message = "Ce champs ne doit pas être vide") String titre, String description, String photoLivre,
-			@NotEmpty(message = "Ce champs ne doit pas être vide") double poidsLivre,
-			@NotEmpty(message = "Ce champs ne doit pas être vide") String formatLivre, LocalDate dateAjoutLivre,
-			boolean disponibilite) {
-		super();
-		this.idLivre = idLivre;
-		this.auteur = auteur;
-		this.titre = titre;
-		this.description = description;
-		this.photoLivre = photoLivre;
-		this.poidsLivre = poidsLivre;
-		this.formatLivre = formatLivre;
-		this.dateAjoutLivre = dateAjoutLivre;
-		this.disponibilite = disponibilite;
-	}
-
-	public LivreForm() {
-		super();
-	}
-
-	
-
 	@Override
 	public String toString() {
-		return "LivreForm [idLivre=" + idLivre + ", auteur=" + auteur + ", titre=" + titre + ", description="
-				+ description + ", photoLivre=" + photoLivre + ", poidsLivre=" + poidsLivre + ", formatLivre="
-				+ formatLivre + ", dateAjoutLivre=" + dateAjoutLivre + ", disponibilite=" + disponibilite + "]";
+		return "LivreForm [id=" + id + ", auteur=" + auteur + ", titre=" + titre + ", description="
+				+ description + ", photo=" + photo + ", poids=" + poids + ", format="
+				+ format + ", dateAjout=" + dateAjout + ", disponibilite=" + disponibilite + "]";
 	}
-
-		
+	
 }

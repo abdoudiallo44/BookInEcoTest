@@ -24,18 +24,25 @@
 						<td>
 							<form:input type="text" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
 						</td>
+						
 						<td>
-							<p><form:errors path="email" /></p>
+							<p style="color: red"><form:errors path="email" /></p>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<form:input type="text" path="pseudo" aria-describedby="pseudoHelp" placeholder="Pseudo" value="${RegisterForm.pseudo}"/>
 						</td>
+						<td>
+							<p style="color: red"><form:errors path="pseudo" /></p>
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<form:input type="password" path="mdp" aria-describedby="passHelp" placeholder="Password" value="${RegisterForm.mdp}"/>
+						</td>
+						<td>
+							<p style="color: red"><form:errors path="mdp" /></p>
 						</td>
 					</tr>
 					<tr align="center">
@@ -87,9 +94,9 @@
 			</div>
 		</form> -->
 		
-					<div>
-				<p style="color: red;">${msg}</p>
-			</div>
+		<div>
+			<p style="color: red;">${msg}</p>
+		</div>
 	</div>
 </body>
 </html>

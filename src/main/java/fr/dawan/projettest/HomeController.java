@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
-import fr.dawan.projettest.service.GenericService;
+import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.RegisterService;
 import fr.dawan.projettest.service.UtilisateurService;
 
@@ -31,16 +29,22 @@ public class HomeController {
 	
 	@Autowired
 	private RegisterService service;
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private LivreService livreService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-
-		List<Livre> livres = utilService.findAll(Livre.class,true);
+	public String home(Model model,HttpSession session) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
+		if(user != null) {
+			List<Livre> livres = livreService.findAllExceptUser(user.getId(), true);
+			model.addAttribute("listeLivre", livres);
+			return "home";
+		}
+		List<Livre> livres = livreService.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 		return "home";
 	}
@@ -61,15 +65,15 @@ public class HomeController {
 		utilisateur1.setMdp("abdou");
 
 		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
-		livre1.setPhotoLivre("Caraval");
+		livre1.setPhoto("Caraval");
 		Livre livre2 = new Livre("auteur2", "titre2", "description 2",utilisateur1);
-		livre2.setPhotoLivre("Loperateur");
+		livre2.setPhoto("Loperateur");
 		Livre livre3 = new Livre("auteur3", "titre3", "description 3",utilisateur1);
-		livre3.setPhotoLivre("Nightfall");
+		livre3.setPhoto("Nightfall");
 		Livre livre4 = new Livre("auteur4", "titre4", "description 4",utilisateur1);
-		livre4.setPhotoLivre("Traqueurs");
+		livre4.setPhoto("Traqueurs");
 		Livre livre5 = new Livre("auteur5", "titre5", "description 5",utilisateur1);
-		livre5.setPhotoLivre("Warren");
+		livre5.setPhoto("Warren");
 		utilisateur1.addLivre(livre1);
 		utilisateur1.addLivre(livre2);
 		utilisateur1.addLivre(livre3);

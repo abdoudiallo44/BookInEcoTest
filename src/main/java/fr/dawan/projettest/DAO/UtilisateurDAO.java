@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 
@@ -51,4 +52,22 @@ public class UtilisateurDAO extends GenericDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<Commande> findCommandes(long id,boolean close){
+		 return em.createQuery("FROM Commande WHERE util_id = :id").setParameter("id", id).getResultList();
+	}
+	
+	public void addLivre(Utilisateur util) {
+		em.merge(util);
+	}
+	
+	/**
+		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1
+		 select Livre from Commande inner join Commande.
+		 SELECT Livre FROM Commande join Commande.livresCommande where Commande.id = 1 
+		 */
+
+
+		// on crée la requête
+		//Query query = em.createQuery("FROM Livre join Livre.proprietaire where Livre.id = 1");
 }

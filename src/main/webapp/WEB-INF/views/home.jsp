@@ -46,6 +46,8 @@
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
 			<div>
+				<a class="btn btn-outline-primary" href="/projettest/gestion-profil"
+					role="button">Mon Profil</a>
 				<a class="btn btn-outline-primary" href="/projettest/gestionLivre"
 					role="button">Mes livres</a> <a class="btn btn-outline-primary"
 					href="/projettest/panier" role="button">Mon panier</a>

@@ -51,9 +51,8 @@
 					<a class="btn btn-outline-primary" href="/projettest/modifierProfil" role="button">Profil</a>
 				</div>
 				<div class="float-right">
-					<a class="btn btn-primary" href="/projettest/login/deconnexion"
-						role="button">Deconnexion</a>
-						</div>
+					<a class="btn btn-primary" href="/projettest/login/deconnexion" role="button">Deconnexion</a>
+				</div>
 			</c:if>
 			
 			

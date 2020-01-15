@@ -124,6 +124,11 @@
 		<beans:property name="defaultLocale" value="fr" />
 	</beans:bean>
 
-
+<!-- Upload -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="20971520"></beans:property> <!-- 20Mo pour le fichier -->
+		<beans:property name="maxInMemorySize" value="1048576"></beans:property>  <!-- 1Mo pour chaque partie -->
+	</beans:bean>
 
 </beans:beans>

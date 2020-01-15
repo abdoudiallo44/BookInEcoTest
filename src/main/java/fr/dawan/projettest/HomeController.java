@@ -50,15 +50,15 @@ public class HomeController {
 		utilisateur1.setMdp("abdou");
 
 		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
-		livre1.setPhoto("Caraval");
+		livre1.setPhoto("Caraval.jpg");
 		Livre livre2 = new Livre("auteur2", "titre2", "description 2",utilisateur1);
-		livre2.setPhoto("Loperateur");
+		livre2.setPhoto("Loperateur.jpg");
 		Livre livre3 = new Livre("auteur3", "titre3", "description 3",utilisateur1);
-		livre3.setPhoto("Nightfall");
+		livre3.setPhoto("Nightfall.jpg");
 		Livre livre4 = new Livre("auteur4", "titre4", "description 4",utilisateur1);
-		livre4.setPhoto("Traqueurs");
+		livre4.setPhoto("Traqueurs.jpg");
 		Livre livre5 = new Livre("auteur5", "titre5", "description 5",utilisateur1);
-		livre5.setPhoto("Warren");
+		livre5.setPhoto("Warren.jpg");
 		utilisateur1.addLivre(livre1);
 		utilisateur1.addLivre(livre2);
 		utilisateur1.addLivre(livre3);

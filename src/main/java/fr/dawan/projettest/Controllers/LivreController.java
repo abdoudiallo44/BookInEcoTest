@@ -1,7 +1,11 @@
 package fr.dawan.projettest.Controllers;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.dawan.projettest.Beans.LivreForm;
 import fr.dawan.projettest.entite.Livre;
@@ -28,6 +33,9 @@ public class LivreController {
 	@Autowired
 	LivreService livreService;
 	
+	@Autowired
+	ServletContext servletContext;
+	
 	@GetMapping("/gestionLivre")
 	public String gestionLivre(Model model,HttpSession session) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
@@ -37,7 +45,8 @@ public class LivreController {
 	
 	@PostMapping("/livres/ajouterLivre")
 	public String ajouter(Model model,HttpSession session, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,@RequestParam("photo2") MultipartFile file) {
+		model.addAttribute("file", file);
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 
 		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoids(), livreForm.getFormat(), true);
@@ -55,7 +64,30 @@ public class LivreController {
 			livreService.create(l,false);
 		//}
 		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
+		
+		try {
+			String fileName = file.getOriginalFilename();
+			uploadFile(file, fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+			model.addAttribute("erreur", "Erreur lors de l'upload");
+		}
+		
 		return "livres";
+	}
+	public void uploadFile(MultipartFile mpFile, String fileName) throws IOException {
+
+		String path = servletContext.getRealPath("/resources/img/");
+		File uploadDir = new File(path);
+		if (!uploadDir.exists()) {
+			uploadDir.mkdirs();
+		}
+		
+		File uploadFile = new File(uploadDir, fileName);
+		byte[] bytes = mpFile.getBytes();
+		FileOutputStream stream = new FileOutputStream(uploadFile);
+		stream.write(bytes);
+		stream.close();
 	}
 	
 	@RequestMapping(value="livres/findByKey",method=RequestMethod.POST)

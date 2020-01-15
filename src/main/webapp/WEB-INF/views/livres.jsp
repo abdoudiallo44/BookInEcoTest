@@ -16,8 +16,8 @@
 	<br />
 	<br />
 	<div class="container">
-		<form action="/projettest/livres/ajouterLivre" method="post"
-			modelAttribute="LivreForm">
+		<form action="/projettest/livres/ajouterLivre" method="post" enctype="multipart/form-data"
+			modelAttribute="LivreForm" >
 			<table>
 				<tr>
 					<td>Auteur:</td>
@@ -44,17 +44,24 @@
 						value="${livreForm.format}" /></td>
 				</tr>
 				<tr>
-					<td>Photo:</td>
-					<td><input type="text" name="photo"
-						value="${livreForm.photo}" /></td>
-				</tr>
-				<tr>
 					<td><input type="submit" value="Ajouter" /></td>
 					<td></td>
 				</tr>
 			</table>
 
 		</form>
+		<form action="/projettest/livres/ajouterLivre" method="post" enctype="multipart/form-data">
+			<table>
+			<tr>
+					<td>Photo:</td>
+					<td><input type="file" name="photo" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Ajouter" /></td>
+					<td></td>
+				</tr>
+				</table>
+			</form>
 	</div>
 	<!-- 
 	<div class="container">
@@ -84,18 +91,17 @@
 			<tbody>
 			<c:forEach var="l" items="${listeLivre}">
 				<tr>
-					<td><img src="<c:url value="/resources/img/${l.photo}.jpg"/>"></td>
+					<td><img style="max-width: 350px; max-height: 200px" src="<c:url value="/resources/img/${l.photo}"/>"></td>
 					<td>${l.auteur}</td>
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projettest/panier/supprimer/${l.id}">Supprimer</a></td>
+					<td><a href="/projettest/livres/supprimer/${l.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
 
 			</tbody>
 		</table>
 	</div>
-
 </body>
 </html>

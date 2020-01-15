@@ -20,7 +20,7 @@ public class ModifProfilController {
 	@GetMapping("/modifierProfil")
 	public String modifierProfil(Model model, HttpSession session) {
 		
-//		session.getS
+		//session.get
 		
 		return "profil";
 	}

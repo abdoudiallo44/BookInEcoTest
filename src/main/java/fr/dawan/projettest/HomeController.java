@@ -84,16 +84,16 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("/insertUser")
-	public String insertUserTest() {
-		Utilisateur user = new Utilisateur();
-		user.setEmail("samson@yahoo.fr");
-		user.setMdp("samson");
-		user.setPseudo("samson");
-		
-		service.create(user, true);
-		
-		return "home";
-	}
+//	@GetMapping("/insertUser")
+//	public String insertUserTest() {
+//		Utilisateur user = new Utilisateur();
+//		user.setEmail("samson@yahoo.fr");
+//		user.setMdp("samson");
+//		user.setPseudo("samson");
+//		
+//		service.create(user, true);
+//		
+//		return "home";
+//	}
 
 }

@@ -19,11 +19,16 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
 <title>Home</title>
+	<!-- balise permettant de préfixer les liens -->
+		<base href="<%=request.getScheme()+"://"
+					+ request.getServerName() + ":"
+					+ request.getServerPort()
+					+ request.getContextPath() + "/" %> " />
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a style="width: 15%" class="navbar-brand" href="/projettest/"><img width="100%"  alt="logo" src="resources/img/bookin-titre.gif"/></a>
+		<a style="width: 15%" class="navbar-brand" href=""><img width="100%"  alt="logo" src="resources/img/bookin-titre.gif"/></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"

@@ -13,7 +13,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		if(request.getRequestURI().contains("/livres")) {
-			if(request.getSession().getAttribute("login") == null) {
+			if(request.getSession().getAttribute("user") == null) {
 				response.sendRedirect(request.getContextPath()+"/login");
 			}
 		}

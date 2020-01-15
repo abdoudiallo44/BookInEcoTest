@@ -48,12 +48,12 @@ public class LoginController {
 
 			List<Livre> livres = service.findAll(Livre.class,true);
 			model.addAttribute("listeLivre", livres);
-			return "home";
+			return "redirect:/";
 		}else
 		if (login.equals("admin") && pass.equals("admin")) {
 			session.setAttribute("login", login);
 			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-			return "welcomeAdmin";
+			return "redirect:/welcomeAdmin";
 		}
 		else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");

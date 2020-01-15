@@ -28,11 +28,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping("/inscription")
-	public String inscription() {
-		
-		return "inscription";
-	}
+	
 
 	
 	@PostMapping("/login/authentification")
@@ -40,47 +36,33 @@ public class LoginController {
 			HttpSession session) {
 		
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
-	   
 	    
-//		String pseudo = util.getPseudo();
-//		String email = util.getEmail();
-//		String mdp = util.getMdp();
-		session.setAttribute("user", util);
-
-		List<Livre> livres = service.findAll(Livre.class,true);
-		model.addAttribute("listeLivre", livres);
-		return "home";
+	    //System.out.println(util);
+	    
+		String pseudo = util.getPseudo();
+		String email = util.getEmail();
+		String mdp = util.getMdp();
 		
-//		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-//		}else
-//		if (login.equals("admin") && pass.equals("admin")) {
-//			session.setAttribute("login", login);
-//			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-//			return "welcomeAdmin";
-//		}
-//		else {
-//			model.addAttribute("msg", "Erreur d'authentification!!!");
-//			return "login";
-//		}
+		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
+			session.setAttribute("user", util);
+
+			List<Livre> livres = service.findAll(Livre.class,true);
+			model.addAttribute("listeLivre", livres);
+			return "home";
+		}else
+		if (login.equals("admin") && pass.equals("admin")) {
+			session.setAttribute("login", login);
+			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
+			return "welcomeAdmin";
+		}
+		else {
+			model.addAttribute("msg", "Erreur d'authentification!!!");
+			return "login";
+		}
 
 	}
 	
-	@PostMapping("/inscription/validation")
-	public String validation(Model model, @RequestParam("email") String email, @RequestParam("pass") String pass, @RequestParam("pseudo") String pseudo,
-			HttpSession session) {
-		if (pseudo!= null && pass!= null && email!=null && !pseudo.trim().equals("") && !pass.trim().equals("") && !email.trim().equals("")) {
-			Utilisateur user = new Utilisateur();
-			user.setEmail(email);
-			user.setMdp(pass);
-			user.setPseudo(pseudo);
-			service.create(user, true);
-			session.setAttribute("user", user);
-			return "home";
-		}else {
-			model.addAttribute("msg", "Erreur d'inscription!!!");
-			return "inscription";
-		}
-	}
+	
 	
 	@GetMapping("/login/deconnexion")
 	public String logout(HttpSession session) {

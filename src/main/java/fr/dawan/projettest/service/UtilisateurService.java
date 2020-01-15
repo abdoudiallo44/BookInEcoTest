@@ -3,6 +3,8 @@ package fr.dawan.projettest.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 //permet de dire à spring que c'est une couche intérmediaire
 //entre le DAO et les Objets métier
 @Service
+@Transactional
 public class UtilisateurService extends GenericService {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service
@@ -36,6 +39,7 @@ public class UtilisateurService extends GenericService {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
 
+	
 	public List<Livre> getPanier(long id, boolean close) {
 		List<Commande> commandes = utilisateurDao.findCommandes(id, close);
 		List<Livre> livres = new ArrayList();

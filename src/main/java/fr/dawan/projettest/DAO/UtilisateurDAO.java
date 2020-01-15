@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,13 +26,14 @@ public class UtilisateurDAO extends GenericDAO{
 				user.addToCart(livre);
 					// On met à jour la formation
 					em.merge(user);
+
+					if(close) em.close();
 			}
 		
 	}
 	
 	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
-		
-		
+			
 		try {
 			return (Utilisateur) em.createQuery(
 					"FROM Utilisateur u WHERE (u.email=:email OR u.pseudo=:pseudo) AND u.mdp=:pass")
@@ -49,18 +48,9 @@ public class UtilisateurDAO extends GenericDAO{
 		return null;
 	}
 
-	public Utilisateur getPanier(long id, boolean close) {
-		/**
-		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1
-		 select Livre from Commande inner join Commande.
-		 */
-		Utilisateur resultat = null;
-
-
-		// on crée la requête
-		resultat = (Utilisateur) findById(Utilisateur.class, id, close);
-
-		return resultat;
+	public List<Livre> getPanier(long id, boolean b) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public List<Commande> findCommandes(long id,boolean close){
@@ -80,5 +70,4 @@ public class UtilisateurDAO extends GenericDAO{
 
 		// on crée la requête
 		//Query query = em.createQuery("FROM Livre join Livre.proprietaire where Livre.id = 1");
-
 }

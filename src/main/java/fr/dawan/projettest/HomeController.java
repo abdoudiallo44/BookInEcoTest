@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.LivreService;
+import fr.dawan.projettest.service.RegisterService;
 import fr.dawan.projettest.service.UtilisateurService;
 
 /**
@@ -24,9 +26,12 @@ public class HomeController {
 	
 	@Autowired
 	UtilisateurService utilService;
-
+	
 	@Autowired
-	LivreService livreService;
+	private RegisterService service;
+	
+	@Autowired
+	private LivreService livreService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -43,6 +48,16 @@ public class HomeController {
 		model.addAttribute("listeLivre", livres);
 		return "home";
 	}
+	
+	@RequestMapping(value = "/ajoutPanier/{idLivre}", method = RequestMethod.GET)
+	public String ajoutPanier(Model model,HttpSession session,@PathVariable("idLivre") long idLivre) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
+		utilService.addToCart(user, idLivre, false);
+		List<Livre> livres = utilService.findAll(Livre.class,true);
+		model.addAttribute("listeLivre", livres);
+		return "home";
+	}
+
 	@GetMapping("/load")
 	public String chargementLivre() {
 		Utilisateur utilisateur1 = new Utilisateur("Abdoulaye", "DIALLO");
@@ -64,12 +79,20 @@ public class HomeController {
 		utilisateur1.addLivre(livre3);
 		utilisateur1.addLivre(livre4);
 		utilisateur1.addLivre(livre5);
-		utilService.create(utilisateur1, false);
-		Utilisateur utilisateur2 = new Utilisateur("yo", "yo");
-		utilisateur2.setPseudo("yo");
-		utilisateur2.setMdp("yo");
-		utilService.create(utilisateur2, true);
+		utilService.create(utilisateur1, true);
 
+		return "home";
+	}
+	
+	@GetMapping("/insertUser")
+	public String insertUserTest() {
+		Utilisateur user = new Utilisateur();
+		user.setEmail("samson@yahoo.fr");
+		user.setMdp("samson");
+		user.setPseudo("samson");
+		
+		service.create(user, true);
+		
 		return "home";
 	}
 

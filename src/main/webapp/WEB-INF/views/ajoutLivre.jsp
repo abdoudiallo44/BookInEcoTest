@@ -1,24 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page session="true"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.min.css"/>">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h2>Gestion des Livres</h2>
+<%@include file="header.jsp"%>
+	<h2>Ajout d'un livre</h2>
 	<hr />
 	<br />
 	<br />
 	<div class="container">
 		<div class="row">
 			<div class="col-2">
-				<form action="/projettest/livres/ajouterLivre" method="post"
+				<form action="/projettest/livres/ajouterLivrePhoto" method="post"
 					enctype="multipart/form-data">
 					<table>
 						<tr>
@@ -33,7 +21,7 @@
 				</form>
 			</div>
 			<div class="col-8">
-				<form action="/projettest/livres/ajouterLivrePhoto" method="post" modelAttribute="LivreForm">
+				<form action="/projettest/livres/ajouterLivre" method="post" modelAttribute="LivreForm">
 					<table>
 						<tr>
 							<td>Auteur:</td>
@@ -69,9 +57,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-	<a class="btn btn-primary" href="/projettest/" >Retour a l'accueil</a>
 	</div>
 </body>
 </html>

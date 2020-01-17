@@ -18,7 +18,7 @@
 	href="<c:url value="/resources/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
-<title>Home</title>
+<title>BookInEco</title>
 </head>
 <body>
 

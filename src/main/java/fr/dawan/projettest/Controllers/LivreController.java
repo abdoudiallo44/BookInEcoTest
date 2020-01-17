@@ -75,6 +75,11 @@ public class LivreController {
 		
 		return "livres";
 	}
+	
+	@GetMapping("/livres/ajouterLivre")
+	public String ajoutPage() {
+		return "ajoutLivre";
+	}
 	public void uploadFile(MultipartFile mpFile, String fileName) throws IOException {
 
 		String path = servletContext.getRealPath("/resources/img/");

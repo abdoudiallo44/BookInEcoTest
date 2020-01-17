@@ -49,10 +49,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/ajoutPanier/{idLivre}", method = RequestMethod.GET)
-	public String ajoutPanier(Model model,HttpSession session,@PathVariable("idLivre") long idLivre) {
+	@GetMapping(value = "/ajoutPanier/{id}")
+	public String ajoutPanier(Model model,HttpSession session,@PathVariable("id") long id) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
-		utilService.addToCart(user, idLivre, false);
+		utilService.addToCart(user, id, false);
 		List<Livre> livres = utilService.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 		return "home";
@@ -79,10 +79,20 @@ public class HomeController {
 		utilisateur1.addLivre(livre3);
 		utilisateur1.addLivre(livre4);
 		utilisateur1.addLivre(livre5);
-		utilService.create(utilisateur1, true);
+		utilService.create(utilisateur1, false);
+		Utilisateur utilisateur2 = new Utilisateur("yo", "yo");
+		Livre livre6 = new Livre("auteur6", "titre6", "description 6",utilisateur2);
+		livre6.setPhoto("Traqueurs.jpg");
+		Livre livre7 = new Livre("auteur7", "titre7", "description 7",utilisateur2);
+		livre7.setPhoto("Ferrari.jpg");
+		utilisateur2.setPseudo("yo");
+		utilisateur2.setMdp("yo");
+		utilisateur2.addLivre(livre6);
+		utilisateur2.addLivre(livre7);
+		utilService.create(utilisateur2, true);
 
 		return "home";
-	}
+}
 	
 	@GetMapping("/insertUser")
 	public String insertUserTest() {

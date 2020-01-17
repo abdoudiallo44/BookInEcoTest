@@ -1,5 +1,4 @@
 <%@include file="header.jsp" %>
-<%@ page session="true"%>
 	<br />
 	<div align="center" class="container" class="form-group row">
 	

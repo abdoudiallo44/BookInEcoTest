@@ -41,5 +41,7 @@ public class LivreDAO extends GenericDAO<Livre> {
 			em.close();
 		return result;
 	}
+	
+	
 
 }

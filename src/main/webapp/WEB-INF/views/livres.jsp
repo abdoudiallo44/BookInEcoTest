@@ -1,5 +1,5 @@
 <%@include file="header.jsp" %>
-	<h2>Gestion des Livres</h2>
+	<h2>Gestion de mes livres</h2>
 	<hr />
 	<br />
 	<br />
@@ -8,26 +8,26 @@
 			modelAttribute="LivreForm" >
 			<table>
 				<tr>
-					<td>Auteur:</td>
+					<td>Auteur :</td>
 					<td><input type="text" name="auteur"
 						value="${livreForm.auteur}" /></td>
 				</tr>
 				<tr>
-					<td>Titre:</td>
+					<td>Titre :</td>
 					<td><input type="text" name="titre" value="${livreForm.titre}" /></td>
 				</tr>
 				<tr>
-					<td>Description:</td>
+					<td>Description :</td>
 					<td><input type="text" name="description"
 						value="${livreForm.description}" /></td>
 				</tr>
 				<tr>
-					<td>Poids:</td>
+					<td>Poids :</td>
 					<td><input type="number" name="poids"
 						value="${livreForm.poids}" /></td>
 				</tr>
 				<tr>
-					<td>Format:</td>
+					<td>Format :</td>
 					<td><input type="text" name="format"
 						value="${livreForm.format}" /></td>
 				</tr>

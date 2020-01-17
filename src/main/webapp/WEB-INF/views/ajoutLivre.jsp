@@ -24,27 +24,27 @@
 				<form action="/projettest/livres/ajouterLivrePhoto" method="post" modelAttribute="LivreForm">
 					<table>
 						<tr>
-							<td>Auteur:</td>
+							<td>Auteur :</td>
 							<td><input type="text" name="auteur"
 								value="${livreForm.auteur}" /></td>
 						</tr>
 						<tr>
-							<td>Titre:</td>
+							<td>Titre :</td>
 							<td><input type="text" name="titre"
 								value="${livreForm.titre}" /></td>
 						</tr>
 						<tr>
-							<td>Description:</td>
+							<td>Description :</td>
 							<td><input type="text" name="description"
 								value="${livreForm.description}" /></td>
 						</tr>
 						<tr>
-							<td>Poids:</td>
+							<td>Poids :</td>
 							<td><input type="number" name="poids"
 								value="${livreForm.poids}" /></td>
 						</tr>
 						<tr>
-							<td>Format:</td>
+							<td>Format :</td>
 							<td><input type="text" name="format"
 								value="${livreForm.format}" /></td>
 						</tr>
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="container">
-	<a class="btn btn-primary" href="/projettest/" >Retour a l'accueil</a>
+	<a class="btn btn-primary" href="/projettest/" >Retour page d'accueil</a>
 	</div>
 </body>
 </html>

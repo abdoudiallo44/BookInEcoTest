@@ -18,12 +18,15 @@
 	href="<c:url value="/resources/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bookinecoStyle.css"/>">
 <title>Home</title>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a style="width: 15%" class="navbar-brand" href="/projettest/"><img width="100%"  alt="logo" src="resources/img/bookin-titre.gif"/></a>
+		<a style="width: 15%" class="navbar-brand" href="/projettest/"><img
+			width="100%" alt="logo" src="resources/img/bookin-titre.gif" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,7 +39,8 @@
 				<li class="nav-item active">
 					<!-- <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>  -->
 
-					<form action="/projettest/livres/findByKey" method="post" class="form-inline my-2 my-lg-0" >
+					<form action="/projettest/livres/findByKey" method="post"
+						class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" name="motCle"
 							placeholder="Rechercher un livre" aria-label="Rechercher">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
@@ -46,20 +50,24 @@
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
 				<div>
-					<a class="btn btn-outline-primary" href="/projettest/gestionLivre" role="button">Mes livres</a> 
-					<a class="btn btn-outline-primary" href="/projettest/panier" role="button">Mon panier</a>
-					<a class="btn btn-outline-primary" href="/projettest/modifierProfil" role="button">Profil</a>
+					<a class="btn btn-outline-primary" href="/projettest/gestionLivre"
+						role="button">Mes livres</a> <a class="btn btn-outline-primary"
+						href="/projettest/panier" role="button">Mon panier</a> <a
+						class="btn btn-outline-primary" href="/projettest/modifierProfil"
+						role="button">Profil</a>
 				</div>
 				<div class="float-right">
-					<a class="btn btn-primary" href="/projettest/login/deconnexion" role="button">Deconnexion</a>
+					<a class="btn btn-primary" href="/projettest/login/deconnexion"
+						role="button">Deconnexion</a>
 				</div>
 			</c:if>
-			
+
 			<c:if test="${empty sessionScope.user}">
-			<div class="float-right">
-				<a class="btn btn-primary" href="/projettest/login" role="button">Connexion</a>
-				<a class="btn btn-primary" href="/projettest/inscription" role="button">Inscription</a>
-			</div>
+				<div class="float-right">
+					<a class="btn btn-primary" href="/projettest/login" role="button">Connexion</a>
+					<a class="btn btn-primary" href="/projettest/inscription"
+						role="button">Inscription</a>
+				</div>
 
 			</c:if>
 		</div>

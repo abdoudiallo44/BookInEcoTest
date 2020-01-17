@@ -1,20 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page session="true"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap.min.css"/>">
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@include file="header.jsp" %>
 	<h2>Gestion des Livres</h2>
 	<hr />
 	<br />
-	<br />
+	<br /> 
 	<div class="container">
 		<div class="row">
 			<div class="col-2">
@@ -29,7 +17,7 @@
 							<td><input type="submit" value="Ajouter" /></td>
 							<td></td>
 						</tr>
-					</table>
+					</table> 
 				</form>
 			</div>
 			<div class="col-8">

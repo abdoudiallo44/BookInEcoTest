@@ -28,8 +28,21 @@
 				</tr>
 				<tr>
 					<td>Format :</td>
-					<td><input type="text" name="format"
-						value="${livreForm.format}" /></td>
+					<td><select name="etat" >
+					<option value="">Choisir un format</option>
+					<option value="poche">Format de poche</option>
+					<option value="grand format">Grand format</option>
+					
+					</select></td>
+				</tr>
+				<tr>
+					<td>Etat :</td>
+					<td><select name="etat" >
+					<option value="">Choisir un état</option>
+					<option value="neuf">Neuf ou très bon état</option>
+					<option value="bon etat">Bon état</option>
+					<option value="moyen">Etat moyen</option>
+					</select></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Ajouter" /></td>

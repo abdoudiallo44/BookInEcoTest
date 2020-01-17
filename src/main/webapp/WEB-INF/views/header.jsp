@@ -47,7 +47,7 @@
 					<form action="livres/findByKey" method="post"
 						class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" name="motCle"
-							placeholder="Rechercher un livre" aria-label="Rechercher">
+							placeholder="Rechercher un livre ou un auteur" aria-label="Rechercher">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
 					</form>
 				</li>
@@ -55,13 +55,26 @@
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
 				<div>
+<<<<<<< HEAD
 					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
 					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
 					<a class="btn btn-outline-primary" href="modifierProfil" role="button">Profil</a>
+=======
+					<a class="btn btn-outline-primary" href="/projettest/gestionLivre"
+						role="button">Mes livres</a> <a class="btn btn-outline-primary"
+						href="/projettest/panier" role="button">Mon panier</a> <a
+						class="btn btn-outline-primary" href="/projettest/modifierProfil"
+						role="button">Mon profil</a>
+>>>>>>> branch 'sarahbis' of https://github.com/abdoudiallo44/BookInEcoTest.git
 				</div>
 				<div class="float-right">
+<<<<<<< HEAD
 					<a class="btn btn-primary" href="login/deconnexion"
 						role="button">Deconnexion</a>
+=======
+					<a class="btn btn-primary" href="/projettest/login/deconnexion"
+						role="button">Déconnexion</a>
+>>>>>>> branch 'sarahbis' of https://github.com/abdoudiallo44/BookInEcoTest.git
 				</div>
 			</c:if>
 

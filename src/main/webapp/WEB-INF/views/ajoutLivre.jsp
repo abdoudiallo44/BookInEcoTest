@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="container">
-	<a class="btn btn-primary" href="" >Retour a l'accueil</a>
+	<a class="btn btn-primary" href="" >Retour page d'accueil</a>
 	</div>
 </body>
 </html>

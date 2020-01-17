@@ -73,3 +73,9 @@ a:hover {
     color: #1e612d;
     text-decoration: underline;
 }
+
+.form-control {
+    display: inline-block;
+    width: 300px!important;
+    vertical-align: middle;
+}

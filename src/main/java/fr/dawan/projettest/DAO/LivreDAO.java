@@ -19,7 +19,7 @@ public class LivreDAO extends GenericDAO<Livre> {
 	private EntityManager em;
 
 	public List<Livre> findByKey(String key, boolean close) {
-		List<Livre> result = em.createQuery("From Livre l WHERE l.titre=:titre")
+		List<Livre> result = em.createQuery("From Livre l WHERE l.titre LIKE :titre")
 				.setParameter("key", "%" + key + "%").getResultList();
 		if (close)
 			em.close();

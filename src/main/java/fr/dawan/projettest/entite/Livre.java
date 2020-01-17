@@ -17,7 +17,6 @@ import org.hibernate.annotations.Type;
 @Table(name = "livre")
 public class Livre extends DbObject{
 
-
 	private String auteur;
 
 	private String titre;

@@ -43,7 +43,7 @@
 					<option value="bon etat">Bon état</option>
 					<option value="moyen">Etat moyen</option>
 					</select></td>
-				</tr>
+				</tr> 
 				<tr>
 					<td><input type="submit" value="Ajouter" /></td>
 					<td></td>

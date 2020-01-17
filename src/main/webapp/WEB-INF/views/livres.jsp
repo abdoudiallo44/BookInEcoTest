@@ -4,7 +4,7 @@
 	<br />
 	<br />
 	<div class="container">
-		<form action="/projettest/livres/ajouterLivre" method="post" enctype="multipart/form-data"
+		<form action="livres/ajouterLivre" method="post" enctype="multipart/form-data"
 			modelAttribute="LivreForm" >
 			<table>
 				<tr>
@@ -51,7 +51,7 @@
 			</table>
 
 		</form>
-		<form action="/projettest/livres/ajouterLivre" method="post" enctype="multipart/form-data">
+		<form action="livres/ajouterLivre" method="post" enctype="multipart/form-data">
 			<table>
 			<tr>
 					<td>Photo:</td>
@@ -97,7 +97,7 @@
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projettest/livres/supprimer/${l.id}">Supprimer</a></td>
+					<td><a href="livres/supprimer/${l.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
 

@@ -23,7 +23,7 @@
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projettest/panier/supprimer/${l.id}">Supprimer</a></td>
+					<td><a href="panier/supprimer/${l.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
 

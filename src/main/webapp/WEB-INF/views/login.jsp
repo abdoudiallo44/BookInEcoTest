@@ -1,7 +1,7 @@
 <%@include file="header.jsp" %>
 	</br>
 	<div align="center" class="container" class="form-group row">
-		<form action="/projettest/login/authentification" method="post">
+		<form action="login/authentification" method="post">
 			<div>
 				<h2 class="c-text--heading c-text--left c-text">Se connecter</h2>
 			</div>

@@ -1,9 +1,9 @@
 <%@include file="header.jsp" %>
-<%@ page session="true"%>
+
 	<br />
 	<div align="center" class="container" class="form-group row">
 	
-		<form:form action="/projettest/inscription/validation" method="post" modelAttribute="registerForm">
+		<form:form action="inscription/validation" method="post" modelAttribute="registerForm">
 			<div>
 				<h2 class="c-text--heading c-text--left c-text">S'inscrire</h2>
 			</div>

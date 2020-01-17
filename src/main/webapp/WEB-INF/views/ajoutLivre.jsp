@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-2">
-				<form action="/projettest/livres/ajouterLivre" method="post"
+				<form action="livres/ajouterLivre" method="post"
 					enctype="multipart/form-data">
 					<table>
 						<tr>
@@ -21,7 +21,7 @@
 				</form>
 			</div>
 			<div class="col-8">
-				<form action="/projettest/livres/ajouterLivrePhoto" method="post" modelAttribute="LivreForm">
+				<form action="livres/ajouterLivrePhoto" method="post" modelAttribute="LivreForm">
 					<table>
 						<tr>
 							<td>Auteur:</td>
@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<div class="container">
-	<a class="btn btn-primary" href="/projettest/" >Retour a l'accueil</a>
+	<a class="btn btn-primary" href="" >Retour a l'accueil</a>
 	</div>
 </body>
 </html>

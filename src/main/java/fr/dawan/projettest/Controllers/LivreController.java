@@ -45,8 +45,7 @@ public class LivreController {
 	
 	@PostMapping("/livres/ajouterLivre")
 	public String ajouter(Model model,HttpSession session, @Valid @ModelAttribute("livreForm") LivreForm livreForm,
-			BindingResult bindingResult,@RequestParam("photo2") MultipartFile file) {
-		model.addAttribute("file", file);
+			BindingResult bindingResult) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 
 		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoids(), livreForm.getFormat(), true);
@@ -65,21 +64,46 @@ public class LivreController {
 		//}
 		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
 		
-		try {
-			String fileName = file.getOriginalFilename();
-			uploadFile(file, fileName);
-		} catch (IOException e) {
-			e.printStackTrace();
-			model.addAttribute("erreur", "Erreur lors de l'upload");
-		}
-		
 		return "livres";
 	}
+//	@PostMapping("/livres/ajouterLivre")
+//	public String ajouter(Model model,HttpSession session,@RequestParam("photo2") MultipartFile file) {
+//		model.addAttribute("file", file);
+//		Utilisateur user = (Utilisateur) session.getAttribute("user");
+//
+//		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(), livreForm.getPoids(), livreForm.getFormat(), true);
+//		l.setProprietaire(user);
+//		l.setPhoto(livreForm.getPhoto());
+//		if (bindingResult.hasErrors()) {
+//			//model.addAttribute("livreForm", livreService.findById(livreForm.getId()));
+//			//model.addAttribute("listeLivre", livreService.readAll());
+//			System.out.println("oups");
+//			return "livres";
+//		}
+////		if (l.getId() != 0) {
+////			livreService.update(l,false);
+////		} else {
+//			livreService.create(l,false);
+//		//}
+//		model.addAttribute("listeLivre", livreService.findAllByUser(user.getId(), true));
+//		
+//		try {
+//			String fileName = file.getOriginalFilename();
+//			uploadFile(file, fileName);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			model.addAttribute("erreur", "Erreur lors de l'upload");
+//		}
+//		
+//		return "livres";
+//	}
 	
 	@GetMapping("/livres/ajouterLivre")
 	public String ajoutPage() {
 		return "ajoutLivre";
 	}
+	
+	
 	public void uploadFile(MultipartFile mpFile, String fileName) throws IOException {
 
 		String path = servletContext.getRealPath("/resources/img/");

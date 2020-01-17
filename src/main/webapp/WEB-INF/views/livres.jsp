@@ -22,7 +22,7 @@
 						value="${livreForm.description}" /></td>
 				</tr>
 				<tr>
-					<td>Poids :</td>
+					<td>Poids (grammes) :</td>
 					<td><input type="number" name="poids"
 						value="${livreForm.poids}" /></td>
 				</tr>
@@ -85,7 +85,7 @@
 					<th scope="col">Auteur</th>
 					<th scope="col">Titre</th>
 					<th scope="col">Description</th>
-					<th scope="col">Proprietaire</th>
+					<th scope="col">Propriétaire</th>
 					<th scope="col">Option</th>
 				</tr>
 			</thead>

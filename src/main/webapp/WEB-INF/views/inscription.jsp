@@ -12,7 +12,7 @@
 				<table>
 					<tr>
 						<td>
-							<form:input type="text" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
+							<form:input type="email" path="email" aria-describedby="emailHelp" placeholder="Email" value="${RegisterForm.email}"/>
 						</td>
 						
 						<td>
@@ -33,6 +33,14 @@
 						</td>
 						<td>
 							<p style="color: red"><form:errors path="mdp" /></p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form:input type="password" path="mdp2" aria-describedby="passHelp2" placeholder="Confirm Password" value="${RegisterForm.mdp2}"/>
+						</td>
+						<td>
+							<p style="color: red"><form:errors path="mdp2" /></p>
 						</td>
 					</tr>
 					<tr align="center">

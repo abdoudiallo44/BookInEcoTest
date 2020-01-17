@@ -1,5 +1,5 @@
 <%@include file="header.jsp" %>
-	<h2>Gestion de mes livres</h2>
+	<h2>Mes livres</h2>
 	<hr />
 	<br />
 	<br />

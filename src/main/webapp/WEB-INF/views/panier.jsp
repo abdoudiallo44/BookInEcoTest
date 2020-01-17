@@ -1,4 +1,6 @@
 <%@include file="header.jsp" %>
+	<h2>Mon Panier</h2>
+	</br>
 	<div class="container">
 	</div><br /><br />
 	<div class="container">

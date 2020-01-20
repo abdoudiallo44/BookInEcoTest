@@ -19,7 +19,7 @@
 		<p> Nom : ${user.nom}</p>
 		<p> Prénom : ${user.prenom}</p>
 		<p> Date de naissance : ${user.dateDenaissance}</p>
-		<p>
+		<%-- <p>
 			Adresse
 			<c:forEach var="adr" items="${listeAdresse}">
 				<p>${adr.numEtRueAdresse}</p> 
@@ -27,8 +27,37 @@
 				</br>
 			</c:forEach>
 		
-		</p>
+		</p> --%>
 		<p> Nombre de points : ${user.nombreDePoint}</p>
+	</div>
+	
+	<div class="container">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Numéro et nom de la rue</th>
+					<th scope="col">Code postal</th>
+					<th scope="col">Ville</th>
+					<th scope="col">Pays</th>
+					<th scope="col">Option</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="adresse" items="${listeAdresse}">
+				<tr>
+					<td>${adresse.numEtRueAdresse}</td>
+					<td>${adresse.codePostal}</td>
+					<td>${adresse.ville}</td>
+					<td>${adresse.pays}</td>
+					<td>${adresse.id}</td>
+					<td><a href="profil/modifierAdresse/${adresse.id}"><i class="fa fa-edit fa-2x text-success" ></i></a>
+					|<a href="profil/supprimerAdresse/${adresse.id}"> <i class="fa fa-trash-o fa-2x text-danger"></i></a></td>
+					
+				</tr>
+			</c:forEach>
+
+			</tbody>
+		</table>
 	</div>
 	
 	</body>

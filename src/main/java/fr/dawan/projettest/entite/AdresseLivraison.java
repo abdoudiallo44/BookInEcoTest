@@ -14,11 +14,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="adresseLivraison")
-public class AdresseLivraison {
+public class AdresseLivraison extends DbObject {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idAdresseLivraison;
 	
 	private String numEtRueAdresse;
 	
@@ -30,14 +27,6 @@ public class AdresseLivraison {
 	
 	@OneToOne
 	private Utilisateur utilisateur;
-
-	public long getIdAdresseLivraison() {
-		return idAdresseLivraison;
-	}
-
-	public void setIdAdresseLivraison(long idAdresseLivraison) {
-		this.idAdresseLivraison = idAdresseLivraison;
-	}
 
 	public String getNumEtRueAdresse() {
 		return numEtRueAdresse;
@@ -78,21 +67,10 @@ public class AdresseLivraison {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-
-	public AdresseLivraison(long idAdresseLivraison, String numEtRueAdresse, int codePostal, String ville,
-			String pays) {
-		super();
-		this.idAdresseLivraison = idAdresseLivraison;
-		this.numEtRueAdresse = numEtRueAdresse;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.pays = pays;
-	}
-
-	public AdresseLivraison(long idAdresseLivraison, String numEtRueAdresse, int codePostal, String ville, String pays,
+	
+	public AdresseLivraison(String numEtRueAdresse, int codePostal, String ville, String pays,
 			Utilisateur utilisateur) {
 		super();
-		this.idAdresseLivraison = idAdresseLivraison;
 		this.numEtRueAdresse = numEtRueAdresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
@@ -106,10 +84,8 @@ public class AdresseLivraison {
 
 	@Override
 	public String toString() {
-		return "AdresseLivraison [idAdresseLivraison=" + idAdresseLivraison + ", numEtRueAdresse=" + numEtRueAdresse
-				+ ", codePostal=" + codePostal + ", ville=" + ville + ", pays=" + pays + "]";
+		return "AdresseLivraison [numEtRueAdresse=" + numEtRueAdresse + ", codePostal=" + codePostal + ", ville="
+				+ ville + ", pays=" + pays + ", utilisateur=" + utilisateur + "]";
 	}
-	
-	
 	
 }

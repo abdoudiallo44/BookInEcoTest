@@ -24,12 +24,12 @@
 					<tr>
 						<!-- <th><label for="exampleInputPassword1">Mot de passe</label></th> -->
 						<td>
-							<input type="password" class="form-control" name="pass" id="exampleInputPassword1" placeholder="Mot de passe" required>
+							<input type="password" class="form-control" name="pass" id="mdp" placeholder="Mot de passe" required>
 
 
 					<tr align="center">
 						<!-- <th>  </th> -->
-						<td><button type="submit" value="Connexion" class="btn btn-primary">Se connecter</button></td>
+						<td><button onclick="validatePassword()" type="submit" value="Connexion" class="btn btn-primary">Se connecter</button></td>
 
 					</tr>
 

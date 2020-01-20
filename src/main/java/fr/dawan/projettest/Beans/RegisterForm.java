@@ -1,12 +1,27 @@
 package fr.dawan.projettest.Beans;
 
-import javax.validation.constraints.Min;
+import java.time.LocalDate;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import fr.dawan.projettest.entite.DbObject;
 
 public class RegisterForm extends DbObject{
 	
+	@NotEmpty(message = "Ce champs ne doit pas être vide")
+	private String prenom;
+	@NotEmpty(message = "Ce champs ne doit pas être vide")
+	private String nom;
+	
+	@Temporal(TemporalType.DATE)
+	private LocalDate dateDenaissance;
+	
+	@Email
 	@NotEmpty(message = "Ce champs ne doit pas être vide")
 	private String email;
 	
@@ -16,6 +31,30 @@ public class RegisterForm extends DbObject{
 	@NotEmpty(message = "Ce champs ne doit pas être vide")
 	private String mdp;
 	
+	@NotEmpty(message = "Ce champs ne doit pas être vide")
+	private String mdp2;
+	
+	
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	
+	public LocalDate getDateDenaissance() {
+		return dateDenaissance;
+	}
+	public void setDateDenaissance(LocalDate dateDenaissance) {
+		this.dateDenaissance = dateDenaissance;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -35,10 +74,39 @@ public class RegisterForm extends DbObject{
 		this.mdp = mdp;
 	}
 	
-	public RegisterForm(@NotEmpty(message = "Ce champs ne doit pas être vide") String email,
-						@NotEmpty(message = "Ce champs ne doit pas être vide") String pseudo,
-						@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp) {
+	
+	
+	public String getMdp2() {
+		return mdp2;
+	}
+	public void setMdp2(String mdp2) {
+		this.mdp2 = mdp2;
+	}
+	
+	
+	public RegisterForm(@NotEmpty(message = "Ce champs ne doit pas être vide") String prenom,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String nom,
+			@Email @NotEmpty(message = "Ce champs ne doit pas être vide") String email,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String pseudo,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp2) {
 		super();
+		this.prenom = prenom;
+		this.nom = nom;
+		this.email = email;
+		this.pseudo = pseudo;
+		this.mdp = mdp;
+		this.mdp2 = mdp2;
+	}
+	
+	public RegisterForm(@NotEmpty(message = "Ce champs ne doit pas être vide") String prenom,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String nom,
+			@Email @NotEmpty(message = "Ce champs ne doit pas être vide") String email,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String pseudo,
+			@NotEmpty(message = "Ce champs ne doit pas être vide") String mdp) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
 		this.email = email;
 		this.pseudo = pseudo;
 		this.mdp = mdp;

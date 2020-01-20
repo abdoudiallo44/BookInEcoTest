@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -21,11 +22,17 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bookinecoStyle.css"/>">
 	
+
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	
 	<!-- balise permettant de préfixer les liens -->
 		<base href="<%=request.getScheme()+"://"
 					+ request.getServerName() + ":"
 					+ request.getServerPort()
 					+ request.getContextPath() + "/"%>" />
+					
+	<script type="text/javascript" src="/BookInEcoTest/src/main/webapp/resources/css/validatePassword.jsp"></script>
 <title>Home</title>
 </head>
 <body>

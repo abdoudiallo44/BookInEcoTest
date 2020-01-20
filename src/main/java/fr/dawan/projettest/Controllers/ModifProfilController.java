@@ -60,11 +60,30 @@ public class ModifProfilController {
 		List<AdresseLivraison> listeAdresse = util.getAdresseLivraison();
 		
 		
-		
+		model.addAttribute("profilForm", service.findById(Utilisateur.class, id, true));
 		model.addAttribute("listeAdresse", listeAdresse);
 		model.addAttribute("user", util);
 		
 		return "modifierProfil";
+	}
+	
+	@GetMapping("profil/modifierAdresse/{id}")
+	public String modifierAdresse(Model model) {
+
+		
+		return "modifierProfil";
+	}
+	
+	@GetMapping("profil/supprimerAdresse/{id}")
+	public String SupprimerAdresse(Model model, @PathVariable("id") long id) {
+		
+//		service.deleteById(AdresseLivraison.class, id, false);
+//		
+//		List<AdresseLivraison> lst = service.findAll(AdresseLivraison.class, true);
+//		
+//		model.addAttribute("listeAdresse", lst);
+		
+		return "profil";
 	}
 
 }

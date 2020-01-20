@@ -93,7 +93,7 @@ public class HomeController {
 		
 		service.create(user, true);
 		
-		return "home";
+		return "redirect:/home";
 	}
 
 }

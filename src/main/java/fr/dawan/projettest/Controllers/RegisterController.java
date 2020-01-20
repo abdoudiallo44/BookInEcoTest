@@ -1,8 +1,8 @@
 package fr.dawan.projettest.Controllers;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +12,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.dawan.projettest.Beans.RegisterForm;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.RegisterService;
-import fr.dawan.projettest.service.UtilisateurService;
 
 @Controller
 public class RegisterController {
 
 	@Autowired
 	private RegisterService service;
+	
+	private static final int NOMBRE_DE_POINT = 10;
 	
 	@GetMapping("/inscription")
 	public String inscription() {
@@ -66,21 +66,32 @@ public class RegisterController {
 //	}
 	
 	
-	
-	
 	@PostMapping("/inscription/validation")
 	public String validation(Model model, @Valid @ModelAttribute("registerForm") RegisterForm registerForm, BindingResult bindingResult) {
 		
-		// userRegister = new RegisterForm(registerForm.getEmail(), registerForm.getPseudo(), registerForm.getMdp());
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+		
 		Utilisateur user = new Utilisateur();
+		
+		user.setPrenom(registerForm.getPrenom());
+		user.setNom(registerForm.getNom());
+		
+		//LocalDate dateDenaissance = LocalDate.parse(registerForm.getDateDenaissance(), formatter);
+		
+		
+		user.setDateDenaissance(registerForm.getDateDenaissance());
+		
 		user.setEmail(registerForm.getEmail());
 		user.setPseudo(registerForm.getPseudo());
 		user.setMdp(registerForm.getMdp());
+		user.setNombreDePoint(NOMBRE_DE_POINT);
+		
 		
 		if (bindingResult.hasErrors()) {
 			return "inscription";
 		}else {
-			if (user.getId() == 0 && service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()) == null) {
+			if (user.getId() == 0 
+					&& service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()) == null ) {
 				service.create(user, true);
 				model.addAttribute("user", user);
 			}

@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
@@ -30,6 +29,10 @@ public class UtilisateurDAO extends GenericDAO{
 					if(close) em.close();
 			}
 		
+	}
+	
+	public List<Utilisateur> readAll() {
+		return em.createQuery("From Utilisateur").getResultList();
 	}
 	
 	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {

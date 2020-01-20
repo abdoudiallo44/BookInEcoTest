@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import fr.dawan.projettest.DAO.UtilisateurDAO;
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
@@ -52,7 +51,7 @@ public class UtilisateurService extends GenericService {
 		return livres;
 	}
 	
-	public void addLivre(Utilisateur util,Livre livre) {
-		
+	public List<Utilisateur> readAll(){
+		return utilisateurDao.readAll();
 	}
 }

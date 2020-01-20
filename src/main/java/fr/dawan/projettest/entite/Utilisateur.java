@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -32,6 +34,7 @@ public class Utilisateur extends DbObject {
 
 	private int nombreDePoint;
 
+	@Enumerated(EnumType.STRING)
 	private RoleUtilisateur role;
 
 	@ManyToMany
@@ -41,7 +44,7 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "proprietaire", cascade = CascadeType.PERSIST)
 	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToMany(mappedBy = "util", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "util", cascade = CascadeType.ALL)
 	private List<Commande> commandes = new ArrayList();
 
 	public void addCommande(Commande commande) {
@@ -56,7 +59,7 @@ public class Utilisateur extends DbObject {
 		return new ArrayList(commandes);
 	}
 
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private List<AdresseLivraison> adresseLivraison;
 
 	public void addToCart(Livre livre) {

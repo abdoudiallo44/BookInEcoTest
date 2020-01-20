@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Commande extends DbObject{
 	
 	private LocalDate dateCommande;
 	
+	@Enumerated(EnumType.STRING)
 	private EtatCommande etat;
 	
 	@OneToOne
@@ -32,7 +35,7 @@ public class Commande extends DbObject{
 	@OneToOne
 	private ModeLivraison modeLivraison;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany()
 	private List<Livre> livresCommande = new ArrayList();
 	
 	public void addLivre(Livre livre) {

@@ -3,8 +3,6 @@
 	<hr />
 	</br>
 	<div class="container">
-	</div><br /><br />
-	<div class="container">
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>

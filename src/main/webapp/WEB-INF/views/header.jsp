@@ -56,9 +56,10 @@
 			<c:if test="${not empty sessionScope.user}">
 					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
 					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
-					<a class="btn btn-outline-primary" href="modifierProfil" role="button">Profil</a>
+					<a class="btn btn-outline-primary" href="displayProfil" role="button">Profil</a>
 				</div>
 				<div class="float-right">
+					Bonjour ${sessionScope.prenom}
 					<a class="btn btn-primary" href="login/deconnexion"
 						role="button">Deconnexion</a>
 				</div>

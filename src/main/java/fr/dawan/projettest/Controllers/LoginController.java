@@ -42,9 +42,11 @@ public class LoginController {
 		String pseudo = util.getPseudo();
 		String email = util.getEmail();
 		String mdp = util.getMdp();
+		String prenom = util.getPrenom();
 		
 		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
 			session.setAttribute("user", util);
+			session.setAttribute("prenom", prenom);
 
 			List<Livre> livres = service.findAll(Livre.class,true);
 			model.addAttribute("listeLivre", livres);

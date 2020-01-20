@@ -107,8 +107,8 @@
 		<beans:property name="validationMessageSource"
 			ref="messageSource" />
 	</beans:bean>
-
-
+	
+	
 
 	<!-- Définition des packages qui contiennent les intercepteurs -->
 	<interceptors>

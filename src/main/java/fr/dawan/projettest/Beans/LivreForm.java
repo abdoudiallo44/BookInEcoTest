@@ -2,34 +2,64 @@ package fr.dawan.projettest.Beans;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+
+import fr.dawan.projettest.entite.Livre;
 
 
 public class LivreForm {
 	
 	private long id;
 	
+	@NotEmpty
 	private String auteur;
-	
+	@NotEmpty
 	private String titre;
-	
+	@NotEmpty
 	private String description;
 	
 	private String photo;
-	
+	@Min(value=0)
 	private double poids;
-	
+	@NotEmpty
 	private String format;
+	@NotEmpty
+	private String etat;
 	
 	
+	public String getEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+
 	private LocalDateTime dateAjout;
 	
 	
 	private boolean disponibilite;
+	
+	public static LivreForm toForm(Livre livre) {
+		LivreForm form = new LivreForm();
+		form.setAuteur(livre.getAuteur());
+		form.setDescription(livre.getDescription());
+		form.setTitre(livre.getTitre());
+		form.setPoids(livre.getPoids());
+		form.setFormat(livre.getFormat());
+		form.setEtat(livre.getEtat());
+		form.setPhoto(livre.getPhoto());
+		return form;
+	}
+	
 
 
-	public LivreForm(long id, String auteur, String titre, String description, String photo,
-			double poids, String format, LocalDateTime dateAjout, boolean disponibilite) {
+
+	public LivreForm(long id, String auteur, String titre, String description, String photo, double poids,
+			String format, String etat, LocalDateTime dateAjout, boolean disponibilite) {
 		super();
 		this.id = id;
 		this.auteur = auteur;
@@ -38,6 +68,7 @@ public class LivreForm {
 		this.photo = photo;
 		this.poids = poids;
 		this.format = format;
+		this.etat = etat;
 		this.dateAjout = dateAjout;
 		this.disponibilite = disponibilite;
 	}

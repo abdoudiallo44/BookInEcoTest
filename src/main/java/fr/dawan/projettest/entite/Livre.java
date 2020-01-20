@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+import fr.dawan.projettest.Beans.LivreForm;
+
 /**
  * 
  * @author adial
@@ -155,20 +157,19 @@ public class Livre extends DbObject{
 		this.disponibilite = disponibilite;
 	}
 
-	public Livre(String auteur, String titre, String description, String photoLivre, double poidsLivre,
-			String formatLivre, LocalDate dateAjoutLivre, boolean disponibilite, Utilisateur proprietaire,
-			ThemeLivre idTheme) {
+
+	public Livre(String auteur, String titre, String description, double poids, String format, LocalDate dateAjout,
+			boolean disponibilite, String etat, Utilisateur proprietaire) {
 		super();
 		this.auteur = auteur;
 		this.titre = titre;
 		this.description = description;
-		this.photo = photoLivre;
-		this.poids = poidsLivre;
-		this.format = formatLivre;
-		this.dateAjout = dateAjoutLivre;
+		this.poids = poids;
+		this.format = format;
+		this.dateAjout = dateAjout;
 		this.disponibilite = disponibilite;
+		this.etat = etat;
 		this.proprietaire = proprietaire;
-		this.idTheme = idTheme;
 	}
 
 	@Override
@@ -179,8 +180,24 @@ public class Livre extends DbObject{
 				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  + ", idTheme=" + idTheme + "]";
 	}
 
+	public boolean isValid() {
+		if(auteur != null && titre != null && description != null && photo != null
+				&& poids != 0 && format != null && etat != null) {
+			return true;
+		}
+		return false;
+	}
+
 	
-	
+	public void updateToLivre(LivreForm form) {
+		this.setAuteur(form.getAuteur());
+		this.setDescription(form.getDescription());
+		this.setTitre(form.getTitre());
+		this.setPoids(form.getPoids());
+		this.setFormat(form.getFormat());
+		this.setEtat(form.getEtat());
+		this.setPhoto(form.getPhoto());
+	}
 	
 
 }

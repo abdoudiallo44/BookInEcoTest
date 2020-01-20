@@ -63,9 +63,9 @@
 						<td></td>
 					</tr>
 				</table>
-				<c:if test="${ajoutLivre}">
-					<div class="container col-6">Les informations ont été
-						enregistrer, veuillez maintenant ajouter une photo</div>
+				<c:if test="${modifLivre}">
+					<div class="container col-6">Les informations ont été mises à
+						jour</div>
 				</c:if>
 
 			</form>
@@ -73,43 +73,29 @@
 
 	</div>
 	<div class="container col-12 border border-success" style="margin: 5px">
-		<c:if test="${not empty livreAjout.photo}">
-			<div class="container">
-				<p>Photo actuelle :</p>
-				<img style="max-width: 350px; max-height: 200px"
-					src="<c:url value="/resources/img/${livreAjout.photo}"/>">
-			</div>
-		</c:if>
+		<div class="container">
+			<p>Photo actuelle :</p>
+			<img style="max-width: 350px; max-height: 200px"
+				src="<c:url value="/resources/img/${liveForm.photo}"/>">
+		</div>
 		<form action="/projettest/livres/ajouterLivrePhoto" method="post"
 			enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Photo:</td>
-					<td><input type="file" name="photo" /></td>
+					<td><input type="file" name="photo" required /></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="Enregistrer"
-						<c:if test="${empty livreAjout}">disabled</c:if> /></td>
+					<td><input type="submit" value="Enregistrer" /></td>
 				</tr>
-				<c:if test="${not empty livreAjout.photo}">
+				<c:if test="${not empty photoAjoutee}">
 					<tr>
-						<td>Photo ajoutée : ${photoAjoutee}</td>
+						<td>Photo modifiée : ${photoAjoutee}</td>
 					</tr>
 				</c:if>
 			</table>
 		</form>
 	</div>
-	<div class="container col-12 border border-success" style="margin: 5px">
-		<form action="/projettest/livres/ajouterLivre" method="get">
-			<button type="submit" class="btn btn-success"
-				<c:if test="${empty livreAjout.photo}">disabled</c:if>>Ajouter
-				le livre</button>
-		</form>
-	</div>
-	<c:if test="${ajoutFinal}">
-		<div class="container col-1 border border-success">Livre ajouté
-			avec succès</div>
-	</c:if>
 </div>
 </body>
 </html>

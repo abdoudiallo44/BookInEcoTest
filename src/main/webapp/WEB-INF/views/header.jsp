@@ -18,6 +18,7 @@
 	href="<c:url value="/resources/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Home</title>
 <!-- balise permettant de préfixer les liens -->
 		<base href="<%=request.getScheme()+"://"
@@ -69,3 +70,5 @@
 			</c:if>
 		</div>
 	</nav>
+	
+	<br>

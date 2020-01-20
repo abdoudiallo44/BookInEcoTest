@@ -16,11 +16,12 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.constraints.NotEmpty;
 
-//@Documented
+@Documented
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = { ConfirmPasswordsValidator.class })
+@Constraint(validatedBy = { ConfirmPasswordValidator.class })
 public @interface ConfirmPassword {
 
 	String message() default "{com.dolszewski.blog.ConfirmPassword.message}";
@@ -28,5 +29,12 @@ public @interface ConfirmPassword {
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
+	
+	@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+	@Retention(RUNTIME)
+	@Documented
+	public @interface List {
+		NotEmpty[] value();
+	}
 
 }

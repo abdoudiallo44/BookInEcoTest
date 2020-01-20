@@ -17,6 +17,8 @@
 						
 						<td>
 							<p style="color: red"><form:errors path="email" /></p>
+							<c:if test="${ userAlreadyExists }"><p style="color: red">Cette adresse est déjà utilisée !</p>
+							 </c:if>
 						</td>
 					</tr>
 					<tr>
@@ -40,7 +42,10 @@
 							<form:input type="password" path="mdp2" aria-describedby="passHelp2" placeholder="Confirm Password" value="${RegisterForm.mdp2}"/>
 						</td>
 						<td>
-							<p style="color: red"><form:errors path="mdp2" /></p>
+							<c:if test="${ password2Empty}"><p style="color: red"><form:errors path="mdp2" /></p> </c:if>
+							
+							<c:if test="${ passwordsNotEquals }"><p style="color: red">Veuillez renseigner des mots de passe identiques !</p>
+							 </c:if>
 						</td>
 					</tr>
 					<tr align="center">

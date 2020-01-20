@@ -57,7 +57,9 @@
 					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
 					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
 					<a class="btn btn-outline-primary" href="modifierProfil" role="button">Profil</a>
+					<a class="btn btn-outline-primary" href="achatPoints" role="button">Acheter des points</a>
 				</div>
+				
 				<div class="float-right">
 					<a class="btn btn-primary" href="login/deconnexion"
 						role="button">Déconnexion</a>

@@ -79,3 +79,8 @@ a:hover {
     width: 300px!important;
     vertical-align: middle;
 }
+
+p {
+	text-align : center!important;
+	margin-left : 20px;
+}

@@ -16,7 +16,7 @@
 		<tbody>
 			<c:forEach var="l" items="${listeLivre}">
 				<tr>
-					<td><img src="<c:url value="/resources/img/${l.photo}.jpg"/>"></td>
+					<td><img src="<c:url value="/resources/img/${l.photo}"/>"></td>
 					<td>${l.auteur}</td>
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
@@ -24,7 +24,6 @@
 					<td><a href="/projettest/panier/supprimer/${l.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
-
 		</tbody>
 	</table>
 	</div>

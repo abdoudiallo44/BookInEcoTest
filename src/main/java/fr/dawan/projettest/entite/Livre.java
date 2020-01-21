@@ -177,7 +177,7 @@ public class Livre extends DbObject{
 		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
 				+ ", photoLivre=" + photo + ", poidsLivre=" + poids + ", formatLivre=" + format
 				+ ", dateAjoutLivre=" + dateAjout + ", disponibilite=" + disponibilite + ", proprietaire="
-				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  + ", idTheme=" + idTheme + "]";
+				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  +"]";
 	}
 
 	public boolean isValid() {

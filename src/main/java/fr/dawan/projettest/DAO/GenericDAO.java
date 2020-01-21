@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.DbObject;
 
 @Repository
@@ -73,8 +74,16 @@ public class GenericDAO<T extends DbObject> {
 
 
 			T entity = entityManager.find(clazz, id);
+//			System.out.println("Entity found : "+entity.toString());
+//			if(entity.getClass() == Commande.class) {
+//				Commande commande = (Commande) entity;
+//				commande.removeAllLivres();
+//				entityManager.remove(commande);
+//			}else {
+//				entityManager.remove(entity);
+//			}
 			entityManager.remove(entity);
-			//entityManager.
+			entityManager.flush();
 
 			if(close) entityManager.close();
 		

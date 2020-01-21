@@ -11,7 +11,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 
 @Service
 @Transactional
-public class RegisterService extends GenericService {
+public class RegisterService extends GenericService<Utilisateur> {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service
 	@Autowired

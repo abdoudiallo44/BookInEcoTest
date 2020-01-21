@@ -46,10 +46,12 @@ public class Utilisateur extends DbObject {
 
 	public void addCommande(Commande commande) {
 		commandes.add(commande);
+		commande.setUtil(this);
 	}
 
 	public void removeCommande(Commande commande) {
 		commandes.remove(commande);
+		commande.setUtil(null);
 	}
 
 	public List<Commande> getCommandes() {
@@ -71,10 +73,24 @@ public class Utilisateur extends DbObject {
 		if (!verif) {
 			Commande commande = new Commande();
 			commande.addLivre(livre);
-			commande.setUtil(this);
 			addCommande(commande);
 		}
 	}
+
+//	public Commande addToCart(Livre livre) {
+//		for (Commande commande : commandes) {
+//			Livre livreCommande = commande.getlivresCommande().get(0);
+//			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
+//				commande.addLivre(livre);
+//				return commande;
+//			}
+//		}
+//		Commande commande = new Commande();
+//		commande.addLivre(livre);
+//		commande.setUtil(this);
+//		addCommande(commande);
+//		return commande;
+//	}
 
 	public List<AdresseLivraison> getAdresseLivraison() {
 		return adresseLivraison;
@@ -231,8 +247,7 @@ public class Utilisateur extends DbObject {
 	public String toString() {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
-				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes ;
+				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes;
 	}
-
 
 }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -30,7 +31,7 @@ public class Commande extends DbObject{
 	@OneToOne
 	private ModeLivraison modeLivraison;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
 	private List<Livre> livresCommande = new ArrayList();
 	
 	public void addLivre(Livre livre) {
@@ -95,8 +96,12 @@ public class Commande extends DbObject{
 
 	@Override
 	public String toString() {
-		return "Commande [dateCommande=" + dateCommande + ", etat=" + etat + ", util=" + util + ", modeLivraison="
-				+ modeLivraison + ", livresCommande=" + livresCommande + "]";
+		return "Commande [dateCommande=" + dateCommande + ", etat=" + etat + ", util=" + util.getNom() + ", modeLivraison="
+				+ modeLivraison +"]";
+	}
+	
+	public void removeAllLivres() {
+		livresCommande = new ArrayList();
 	}
 	
 }

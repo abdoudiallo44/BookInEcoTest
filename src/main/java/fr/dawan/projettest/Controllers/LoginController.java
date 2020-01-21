@@ -10,17 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private UtilisateurService service;
+	private UtilisateurService utilService;
+	
+	@Autowired
+	private LivreService livreService;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -28,14 +31,11 @@ public class LoginController {
 		return "login";
 	}
 	
-	
-
-	
 	@PostMapping("/login/authentification")
 	public String authentification(Model model, @RequestParam("login") String login, @RequestParam("pass") String pass,
 			HttpSession session) {
 		
-	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
+	    Utilisateur util = utilService.findUserByEmailAndPwd(login, pass); 
 	    
 	    //System.out.println(util);
 	    
@@ -46,7 +46,7 @@ public class LoginController {
 		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
 			session.setAttribute("user", util);
 
-			List<Livre> livres = service.findAll(Livre.class,true);
+			List<Livre> livres = livreService.findAll(Livre.class,true);
 			model.addAttribute("listeLivre", livres);
 			return "home";
 		}else

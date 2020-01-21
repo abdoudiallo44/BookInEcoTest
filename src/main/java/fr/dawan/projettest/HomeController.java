@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.LivreService;
-import fr.dawan.projettest.service.RegisterService;
 import fr.dawan.projettest.service.UtilisateurService;
 
 /**
@@ -25,10 +26,10 @@ import fr.dawan.projettest.service.UtilisateurService;
 public class HomeController {
 	
 	@Autowired
-	UtilisateurService utilService;
+	private UtilisateurService utilService;
 	
 	@Autowired
-	private RegisterService service;
+	private GenericService<Commande> service;
 	
 	@Autowired
 	private LivreService livreService;
@@ -53,7 +54,7 @@ public class HomeController {
 	public String ajoutPanier(Model model,HttpSession session,@PathVariable("id") long id) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		utilService.addToCart(user, id, false);
-		List<Livre> livres = utilService.findAll(Livre.class,true);
+		List<Livre> livres = livreService.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 		return "home";
 	}
@@ -80,6 +81,10 @@ public class HomeController {
 		utilisateur1.addLivre(livre4);
 		utilisateur1.addLivre(livre5);
 		utilService.create(utilisateur1, false);
+		Utilisateur utilisateur3 = new Utilisateur("oui", "oui");
+		utilisateur3.setPseudo("oui");
+		utilisateur3.setMdp("oui");
+		utilService.create(utilisateur3, false);
 		Utilisateur utilisateur2 = new Utilisateur("yo", "yo");
 		Livre livre6 = new Livre("auteur6", "titre6", "description 6",utilisateur2);
 		livre6.setPhoto("Traqueurs.jpg");
@@ -94,15 +99,37 @@ public class HomeController {
 		return "home";
 }
 	
-	@GetMapping("/insertUser")
-	public String insertUserTest() {
-		Utilisateur user = new Utilisateur();
-		user.setEmail("samson@yahoo.fr");
-		user.setMdp("samson");
-		user.setPseudo("samson");
-		
-		service.create(user, true);
-		
+//	@GetMapping("/insertUser")
+//	public String insertUserTest() {
+//		Utilisateur user = new Utilisateur();
+//		user.setEmail("samson@yahoo.fr");
+//		user.setMdp("samson");
+//		user.setPseudo("samson");
+//		
+//		service.create(user, true);
+//		
+//		return "home";
+//	}
+	
+	@GetMapping("/test")
+	public String test() {
+		service.deleteById(Commande.class, 1, true);
+		System.out.println("delete done");
+//		Utilisateur user = utilService.findById(Utilisateur.class, 3, false);
+//		Commande c = new Commande();
+//		Livre l = livreService.findById(Livre.class, 2, false);
+//		c.addLivre(l);
+//		user.addCommande(c);
+//		System.out.println(user);
+//		utilService.update(user, false);
+//		l = livreService.findById(Livre.class, 3, false);
+//		service.deleteById(Commande.class, 1, false);
+//		System.out.println(service.findById(Commande.class, 1, false));
+//		user.removeCommande(c);
+//		c.addLivre(l);
+//		user.addCommande(c);
+//		System.out.println(user);
+//		utilService.update(user, true);
 		return "home";
 	}
 

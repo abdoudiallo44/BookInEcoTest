@@ -32,6 +32,23 @@ public class UtilisateurDAO extends GenericDAO {
 		}
 
 	}
+//	public void addToCart(Utilisateur user, long livreId, boolean close) {
+//	if (user.getId() > 0) {
+//		Livre livre = (Livre) findById(Livre.class, livreId, false);
+//		Commande commande = user.addToCart(livre);
+//		// On met à jour la formation
+//		if (commande.getId() > 0) {
+//			Commande commandeDel = (Commande) findById(Commande.class, commande.getId(),false);
+//			em.remove(commandeDel);
+//			em.persist(user);
+//		}else {
+//			em.persist(commande);
+//		}
+//		if (close)
+//			em.close();
+//	}
+//
+//}
 
 	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
 

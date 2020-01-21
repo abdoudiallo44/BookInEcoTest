@@ -21,7 +21,7 @@ import fr.dawan.projettest.entite.Utilisateur;
 //entre le DAO et les Objets métier
 @Service
 @Transactional
-public class UtilisateurService extends GenericService {
+public class UtilisateurService extends GenericService<Utilisateur> {
 
 	// Spring crée l'objet DAO et l'injecte dans la classe service
 	@Autowired

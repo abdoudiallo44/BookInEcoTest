@@ -54,6 +54,7 @@
 
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
+					<a class="btn btn-outline-primary" href="messagerie" role="button">Messagerie</a>
 					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
 					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
 					<a class="btn btn-outline-primary" href="modifierProfil" role="button">Profil</a>

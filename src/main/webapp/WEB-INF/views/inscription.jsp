@@ -17,8 +17,8 @@
 						
 						<td>
 							<p style="color: red"><form:errors path="email" /></p>
-							<c:if test="${ userAlreadyExists }"><p style="color: red">Cette adresse est déjà utilisée !</p>
-							 </c:if>
+							<%-- <c:if test="${ UserAlreadyExists }"><p style="color: red">Cette adresse est déjà utilisée !</p>
+							 </c:if> --%>
 						</td>
 					</tr>
 					<tr>

@@ -39,9 +39,9 @@ public class RegisterController {
 		
 		// Si erreurs et mdp2 vide OU mdp null OU mdp vide OU mdp2 null OU mp2 vide
 //		if ((bindingResult.hasErrors() && "".equals(password2)) || password == null ||  "".equals(password) || password2 == null ||  "".equals(password2)) {
-		if (bindingResult.hasErrors()) {	
+		if (bindingResult.hasErrors() && "".equals(password2)) {	
 			// Si mdp et mdp2 sont différents passwordsNotEquals
-			if (!password.equals(password2) || !password2.isEmpty()) {
+			if (!password.equals(password2)) {
 				model.addAttribute("passwordsNotEquals", true);
 			}
 			if ("".equals(password2) && password.isEmpty()) {
@@ -57,9 +57,11 @@ public class RegisterController {
 		
 		
 		if (user.getId() == 0 && service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()) == null ) {
+			System.out.println( service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
 			service.create(user, true);
 			model.addAttribute("user", user);
 		} else {
+			model.addAttribute("UserAlreadyExists", true);
 			return "inscription";
 		}
 		

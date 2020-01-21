@@ -16,7 +16,7 @@ public class RegisterForm extends DbObject{
 	@NotEmpty(message = "Ce champ ne doit pas être vide")
 	private String mdp;
 	
-	//@NotEmpty(message = "Ce champ ne doit pas être vide")
+	@NotEmpty(message = "Ce champ ne doit pas être vide")
 	private String mdp2;
 	
 	public String getEmail() {
@@ -46,7 +46,7 @@ public class RegisterForm extends DbObject{
 	public RegisterForm(@NotEmpty(message = "Ce champ ne doit pas être vide") String email,
 						@NotEmpty(message = "Ce champ ne doit pas être vide") String pseudo,
 						@NotEmpty(message = "Ce champ ne doit pas être vide") String mdp,
-						String mdp2) {
+						@NotEmpty(message = "Ce champ ne doit pas être vide") String mdp2) {
 		super();
 		this.email = email;
 		this.pseudo = pseudo;

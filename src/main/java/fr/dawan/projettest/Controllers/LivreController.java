@@ -60,7 +60,7 @@ public class LivreController {
 			return "livres";
 		}
 		session.setAttribute("livreAjout", l);
-		model.addAttribute("ajoutLivre",true);
+		model.addAttribute("ajoutLivre", true);
 
 		return "ajoutLivre";
 	}
@@ -69,14 +69,14 @@ public class LivreController {
 	public String ajouter(Model model, HttpSession session, @RequestParam("photo") MultipartFile file) {
 		Livre l = (Livre) session.getAttribute("livreAjout");
 		LivreForm livreForm = LivreForm.toForm(l);
-		model.addAttribute("livreForm",livreForm);
+		model.addAttribute("livreForm", livreForm);
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		if (file != null) {
 			model.addAttribute("file", file);
 			try {
 				String fileName = timestamp.getTime() + "_" + file.getOriginalFilename();
 				uploadFile(file, fileName);
-				session.setAttribute("photo",fileName);
+				session.setAttribute("photo", fileName);
 				l.setPhoto(fileName);
 				session.setAttribute("livreAjout", l);
 			} catch (IOException e) {
@@ -84,20 +84,95 @@ public class LivreController {
 				model.addAttribute("erreur", "Erreur lors de l'upload");
 			}
 		}
-		model.addAttribute("photoAjoutee",file.getOriginalFilename());
+		model.addAttribute("photoAjoutee", file.getOriginalFilename());
 		return "ajoutLivre";
 	}
 
 	@GetMapping("/livres/ajouterLivre")
-	public String ajoutPage(HttpSession session,Model model) {
+	public String ajoutPage(HttpSession session, Model model) {
 		Livre l = (Livre) session.getAttribute("livreAjout");
-		if(l != null && l.isValid()) {
+		if (l != null && l.isValid()) {
 			livreService.create(l, true);
 			session.removeAttribute("livreAjout");
 			session.removeAttribute("photo");
-			model.addAttribute("ajoutFinal",true);
+			model.addAttribute("ajoutFinal", true);
 		}
 		return "ajoutLivre";
+	}
+
+	@RequestMapping(value = "livres/findByKey", method = RequestMethod.POST)
+	public String findByKey(Model model, @RequestParam("motCle") String recherche) {
+
+		List<Livre> livres = livreService.findByKey(recherche, true);
+		model.addAttribute("listeLivre", livres);
+
+		return "livres";
+	}
+
+	@RequestMapping(value = "livres/supprimer/{id}", method = RequestMethod.GET)
+	public String deleteById(Model model, HttpSession session, @PathVariable("id") long id) {
+		Utilisateur user = (Utilisateur) session.getAttribute("user");
+		livreService.deleteById(Livre.class, id, false);
+		List<Livre> livres = livreService.findAllByUser(user.getId(), true);
+		model.addAttribute("listeLivre", livres);
+
+		return "livres";
+	}
+
+	@GetMapping(value = "livres/modifier/{id}")
+	public String updateGet(Model model, @PathVariable("id") long id) {
+		Livre livre = livreService.findById(Livre.class, id, true);
+		System.out.println(livre.getPhoto());
+		LivreForm form = LivreForm.toForm(livre);
+		model.addAttribute("livreForm", form);
+		return "modifLivre";
+	}
+
+	@PostMapping(value = "livres/modifier/{id}")
+	public String updatePost(Model model, @PathVariable("id") long id,
+			@Valid @ModelAttribute("livreForm") LivreForm livreForm) {
+		Livre livre = livreService.findById(Livre.class, id, false);
+		livre.updateToLivre(livreForm);
+		livreService.update(livre, true);
+		livreForm = LivreForm.toForm(livre);
+		model.addAttribute("modifLivre", true);
+		return "modifLivre";
+	}
+
+	@PostMapping(value = "livres/modifierPhoto/{id}")
+	public String updatePost(Model model, @PathVariable("id") long id, @RequestParam("photo") MultipartFile file) {
+		Livre l = livreService.findById(Livre.class, id, false);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		if (file != null) {
+			try {
+				String fileName = timestamp.getTime() + "_" + file.getOriginalFilename();
+				uploadFile(file, fileName);
+				deleteFile(l.getPhoto());
+				l.setPhoto(fileName);
+				livreService.update(l, true);
+			} catch (IOException e) {
+				e.printStackTrace();
+				model.addAttribute("erreur", "Erreur lors de l'upload");
+			}
+		}
+		LivreForm livreForm = LivreForm.toForm(l);
+		model.addAttribute("livreForm", livreForm);
+		model.addAttribute("photoAjoutee", file.getOriginalFilename());
+		return "modifLivre";
+	}
+
+	private void deleteFile(String photo) {
+		String path = servletContext.getRealPath("/resources/img/");
+		File deleteFile = new File(path + photo);
+		System.out.println(path + photo);
+		if (deleteFile.exists()) {
+			if (deleteFile.delete()) {
+				System.out.println("Fichier supprimé");
+			} else {
+				System.out.println("le fichier n'a pas pus etre supprimé");
+			}
+			System.out.println("le fichier n'existe pas");
+		}
 	}
 
 	public void uploadFile(MultipartFile mpFile, String fileName) throws IOException {
@@ -115,48 +190,5 @@ public class LivreController {
 		FileOutputStream stream = new FileOutputStream(uploadFile);
 		stream.write(mpFile.getBytes());
 		stream.close();
-	}
-
-	@RequestMapping(value = "livres/findByKey", method = RequestMethod.POST)
-	public String findByKey(Model model, @RequestParam("motCle") String recherche) {
-
-		List<Livre> livres = livreService.findByKey(recherche, true);
-		model.addAttribute("listeLivre", livres);
-
-		return "livres";
-	}
-
-	@RequestMapping(value = "livres/supprimer/{id}", method = RequestMethod.GET)
-	public String deleteById(Model model,HttpSession session, @PathVariable("id") long id) {
-		Utilisateur user = (Utilisateur) session.getAttribute("user");
-		livreService.deleteById(Livre.class, id, false);
-		List<Livre> livres = livreService.findAllByUser(user.getId(), true);
-		model.addAttribute("listeLivre", livres);
-
-		return "livres";
-	}
-
-	@GetMapping(value = "livres/modifier/{id}")
-	public String updateGet(Model model, @PathVariable("id") long id) {
-		Livre livre = livreService.findById(Livre.class,id, true);
-		LivreForm form = LivreForm.toForm(livre);
-		model.addAttribute("livreForm", form);
-		return "modifLivre";
-	}
-	
-	@PostMapping(value = "livres/modifier/{id}")
-	public String updatePost(Model model, @PathVariable("id") long id,@Valid @ModelAttribute("livreForm") LivreForm livreForm) {
-		Livre livre = livreService.findById(Livre.class, id, false);
-		livre.updateToLivre(livreForm);
-		livreService.update(livre, true);
-		model.addAttribute("modifLivre", true);
-		return "modifLivre";
-	}
-	@PostMapping(value = "livres/modifierPhoto/{id}")
-	public String updatePost(Model model, @PathVariable("id") long id,@RequestParam("photo") MultipartFile file) {
-		Livre livre = livreService.findById(Livre.class, id, false);
-		livreService.update(livre, true);
-		model.addAttribute("modifLivre", true);
-		return "modifLivre";
 	}
 }

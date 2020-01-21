@@ -110,6 +110,10 @@
 		<div class="container col-1 border border-success">Livre ajouté
 			avec succès</div>
 	</c:if>
+	<div class="container col-12" style="margin: 5px">
+		<a class="btn btn-primary" href="/projettest/gestionLivre/">Retour à la liste
+			des livres</a>
+	</div>
 </div>
 </body>
 </html>

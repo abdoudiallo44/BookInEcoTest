@@ -45,6 +45,7 @@ public class LivreForm {
 	
 	public static LivreForm toForm(Livre livre) {
 		LivreForm form = new LivreForm();
+		form.setId(livre.getId());
 		form.setAuteur(livre.getAuteur());
 		form.setDescription(livre.getDescription());
 		form.setTitre(livre.getTitre());

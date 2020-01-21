@@ -27,7 +27,7 @@
 					<td>${l.titre}</td>
 					<td>${l.description}</td>
 					<td>${l.proprietaire.nom}${l.proprietaire.prenom}</td>
-					<td><a href="/projettest/livres/supprimer/${l.id}">Supprimer</a></td>
+					<td><a href="/projettest/livres/modifier/${l.id}">Modifier</a> | <a href="/projettest/livres/supprimer/${l.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
 

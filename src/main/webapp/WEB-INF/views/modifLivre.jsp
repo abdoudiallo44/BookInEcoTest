@@ -7,8 +7,8 @@
 	<div class="container col-12 border border-success"
 		style="margin: 5px; border-radius: 20px">
 		<div class="row">
-			<form action="/projettest/livres/ajouterLivre" method="post"
-				modelAttribute="LivreForm">
+			<form action="/projettest/livres/modifier/${livreForm.id}"
+				method="post" modelAttribute="LivreForm">
 				<table>
 					<tr>
 						<td>Auteur:</td>
@@ -76,10 +76,10 @@
 		<div class="container">
 			<p>Photo actuelle :</p>
 			<img style="max-width: 350px; max-height: 200px"
-				src="<c:url value="/resources/img/${liveForm.photo}"/>">
+				src="<c:url value="/resources/img/${livreForm.photo}"/>">
 		</div>
-		<form action="/projettest/livres/ajouterLivrePhoto" method="post"
-			enctype="multipart/form-data">
+		<form action="/projettest/livres/modifierPhoto/${livreForm.id}"
+			method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Photo:</td>
@@ -95,6 +95,10 @@
 				</c:if>
 			</table>
 		</form>
+	</div>
+	<div class="container col-12" style="margin: 5px">
+		<a class="btn btn-primary" href="/projettest/gestionLivre/">Retour à la liste
+			des livres</a>
 	</div>
 </div>
 </body>

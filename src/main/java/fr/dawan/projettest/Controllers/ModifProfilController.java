@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.dawan.projettest.Beans.AdresseForm;
@@ -168,11 +169,17 @@ public class ModifProfilController {
 		return "profil";
 	}
 	
-	@GetMapping("profil/supprimerAdresse/")
-	public String supprimerAdresse(Model model, HttpSession session) {
+	@GetMapping("profil/supprimerAdresse/{id}")
+	public String supprimerAdresse(Model model, HttpSession session, @PathVariable("id") long id) {
 		
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		
+		
+		genericService.deleteById(AdresseLivraison.class, id, true);
+		List<AdresseLivraison> listeAdresse = service.findAllByUser(user.getId(), true);
+		
+		model.addAttribute("listeAdresse", listeAdresse);
+		model.addAttribute("user", user);
 		
 		return "profil";
 	}

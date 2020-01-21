@@ -59,7 +59,7 @@ public class Utilisateur extends DbObject {
 		return new ArrayList(commandes);
 	}
 
-	@OneToMany(mappedBy = "utilisateur", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AdresseLivraison> adresseLivraison;
 
 	public void addToCart(Livre livre) {

@@ -76,6 +76,14 @@ public class UtilisateurDAO extends GenericDAO{
 
 	}
 	
+	public List<AdresseLivraison> findAllByUser(long userId, boolean close) {
+		List<AdresseLivraison> result = em.createQuery("From AdresseLivraison WHERE utilisateur_id = :id").setParameter("id", userId)
+				.getResultList();
+		if (close)
+			em.close();
+		return result;
+	}
+	
 	
 	/**
 		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1

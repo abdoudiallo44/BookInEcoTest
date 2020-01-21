@@ -21,5 +21,13 @@ public class RegisterService extends GenericService<Utilisateur> {
 		return registerDao.findUserByEmailAndPseudo(email, pseudo);
 	}
 	
+	public Utilisateur findUserByEmail(String email) {
+		return registerDao.findUserByEmail(email);
+	}
+	
+	public Utilisateur findUserByPseudo(String pseudo) {
+		return registerDao.findUserByPseudo(pseudo);
+	}
+	
 	
 }

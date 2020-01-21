@@ -57,12 +57,28 @@ public class RegisterController {
 		} else {
 
 			if (user.getId() == 0 && service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()) == null) {
-				System.out.println("kdsfkjs " + service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
-				service.create(user, true);
-				model.addAttribute("user", user);
+
+				if (password.equals(password2)) {
+					service.create(user, true);
+					model.addAttribute("user", user);
+				}
+				if (!password.equals(password2)) {
+					model.addAttribute("passwordsNotEquals", true);
+					return "inscription";
+				}
+				// System.out.println("kdsfkjs " +
+				// service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
+
 			} else {
-				// model.addAttribute("UserAlreadyExists", true);
-				return "inscription";
+
+				if (user.getId() == 0 && service.findUserByEmail(user.getEmail()) != null) {
+					model.addAttribute("EmailAlreadyExists", true);
+					return "inscription";
+				}
+				if (user.getId() == 0 && service.findUserByPseudo(user.getPseudo()) != null) {
+					model.addAttribute("PseudoAlreadyExists", true);
+					return "inscription";
+				}
 			}
 		}
 

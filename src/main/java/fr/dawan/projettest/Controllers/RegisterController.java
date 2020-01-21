@@ -57,11 +57,11 @@ public class RegisterController {
 		
 		
 		if (user.getId() == 0 && service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()) == null ) {
-			System.out.println( service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
+			System.out.println("kdsfkjs " + service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
 			service.create(user, true);
 			model.addAttribute("user", user);
 		} else {
-			model.addAttribute("UserAlreadyExists", true);
+			//model.addAttribute("UserAlreadyExists", true);
 			return "inscription";
 		}
 		

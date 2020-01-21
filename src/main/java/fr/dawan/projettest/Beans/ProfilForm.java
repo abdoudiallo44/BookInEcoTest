@@ -11,6 +11,26 @@ public class ProfilForm extends DbObject {
 	
 	private String prenom;
 	
+	private String pseudo;
+	
+	private String mdp;
+	
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
 	private LocalDate dateDenaissance;
 	
 	private int nombreDePoint;
@@ -47,12 +67,13 @@ public class ProfilForm extends DbObject {
 		this.dateDenaissance = dateDenaissance;
 	}
 
-	
-
-	public ProfilForm(String nom, String prenom, LocalDate dateDenaissance, int nombreDePoint) {
+	public ProfilForm(String nom, String prenom, String pseudo, String mdp, LocalDate dateDenaissance,
+			int nombreDePoint) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+		this.pseudo = pseudo;
+		this.mdp = mdp;
 		this.dateDenaissance = dateDenaissance;
 		this.nombreDePoint = nombreDePoint;
 	}

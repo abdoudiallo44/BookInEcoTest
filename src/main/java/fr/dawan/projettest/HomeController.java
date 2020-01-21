@@ -53,7 +53,7 @@ public class HomeController {
 	public String ajoutPanier(Model model,HttpSession session,@PathVariable("idLivre") long idLivre) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		utilService.addToCart(user, idLivre, false);
-		List<Livre> livres = utilService.findAll(Livre.class,true);
+		List<Livre> livres = livreService.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 		return "home";
 	}

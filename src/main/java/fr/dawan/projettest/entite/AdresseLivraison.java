@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="adresseLivraison")
 public class AdresseLivraison extends DbObject {
-
 	
 	private String numEtRueAdresse;
 	

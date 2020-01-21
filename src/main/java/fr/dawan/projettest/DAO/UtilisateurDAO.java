@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+
+import fr.dawan.projettest.entite.AdresseLivraison;
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
@@ -63,6 +65,17 @@ public class UtilisateurDAO extends GenericDAO{
 	public void addLivre(Utilisateur util) {
 		em.merge(util);
 	}
+	
+	public void deleteUserAdresse(long idUtilisateur, long idAdresse) {
+		
+//		em.createQuery(
+//				"DELETE FROM AdresseLivraison adr WHERE adr.utilisateur_id=:idUtilisateur AND adr.id=:id"
+//				.setParameter("", )
+//				.setParameter("", )
+//				.getSingleResult();
+
+	}
+	
 	
 	/**
 		 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM commande c inner join commande_livre cl on c.id = cl.Commande_id inner join livre l on l.id = cl.livresCommande_id where c.panier_id = 1

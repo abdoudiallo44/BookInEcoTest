@@ -78,14 +78,21 @@ public class Utilisateur extends DbObject {
 			addCommande(commande);
 		}
 	}
+	
+	public void addAdresse(AdresseLivraison adresse) {
+		adresseLivraison.add(adresse);
+		adresse.setUtilisateur(this);
+	}
+	
+	public void removeAdresse(AdresseLivraison adresse) {
+		adresseLivraison.remove(adresse);
+		adresse.setUtilisateur(null);
+	}
 
 	public List<AdresseLivraison> getAdresseLivraison() {
-		return adresseLivraison;
+		return new ArrayList<AdresseLivraison>(adresseLivraison);
 	}
 
-	public void setAdresseLivraison(List<AdresseLivraison> adresseLivraison) {
-		this.adresseLivraison = adresseLivraison;
-	}
 
 	public String getPrenom() {
 		return prenom;
@@ -236,6 +243,7 @@ public class Utilisateur extends DbObject {
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
 				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes ;
 	}
+	
 
 
 }

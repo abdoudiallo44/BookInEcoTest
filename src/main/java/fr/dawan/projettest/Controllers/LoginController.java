@@ -14,6 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;
 
 @Controller
@@ -21,6 +22,8 @@ public class LoginController {
 	
 	@Autowired
 	private UtilisateurService service;
+	@Autowired
+	private LivreService livreService;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -38,6 +41,10 @@ public class LoginController {
 	    Utilisateur util = service.findUserByEmailAndPwd(login, pass); 
 	    
 	    //System.out.println(util);
+	    if (util == null) {
+	    	model.addAttribute("msg", "Erreur d'authentification!!!");
+	    	return "redirect:/login";
+		}
 	    
 		String pseudo = util.getPseudo();
 		String email = util.getEmail();
@@ -48,18 +55,19 @@ public class LoginController {
 			session.setAttribute("user", util);
 			session.setAttribute("prenom", prenom);
 
-			List<Livre> livres = service.findAll(Livre.class,true);
+			List<Livre> livres = livreService.findAll(Livre.class,true);
 			model.addAttribute("listeLivre", livres);
 			return "home";
 		}else
 		if (login.equals("admin") && pass.equals("admin")) {
+			session.setAttribute("user", util);
 			session.setAttribute("login", login);
 			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
 			return "welcomeAdmin";
 		}
 		else {
 			model.addAttribute("msg", "Erreur d'authentification!!!");
-			return "login";
+			return "redirect:/";
 		}
 
 	}

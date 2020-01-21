@@ -61,9 +61,10 @@
 
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
-					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
-					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
-					<a class="btn btn-outline-primary" href="displayProfil" role="button">Profil</a>
+					<a style="margin: 2px" class="btn btn-outline-primary" href="messagerie" role="button"><i class="fa fa-envelope fa-2x"></i></a>
+					<a style="margin: 2px" class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
+					<a style="margin: 2px" class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
+					<a style="margin: 2px" class="btn btn-outline-primary" href="displayProfil" role="button">Profil</a>
 				</div>
 				<div class="float-right">
 					Bonjour ${sessionScope.prenom}

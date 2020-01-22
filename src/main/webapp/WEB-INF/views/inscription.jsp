@@ -32,18 +32,18 @@
 					</td>
 				</tr>
 				<tr>
-					<td><form:input type="date" path="dateDenaissance" class="form-control"
-							value="${RegisterForm.dateDenaissance}" /></td>
+					<td><form:input type="date" path="dateDenaissance"
+							class="form-control" value="${RegisterForm.dateDenaissance}" /></td>
 					<td>
 						<p style="color: red">
 							<form:errors path="dateDenaissance" />
 						</p>
 					</td>
 				</tr>
-				
-				
-				
-				
+
+
+
+
 				<tr>
 					<td><form:input type="email" path="email" class="form-control"
 							placeholder="exemple@domaine.fr" value="${RegisterForm.email}" /></td>
@@ -51,6 +51,9 @@
 					<td>
 						<p style="color: red">
 							<form:errors path="email" />
+							<c:if test="${ EmailAlreadyExists }">
+								<p style="color: red">Cette adresse est déjà utilisée !</p>
+							</c:if>
 						</p>
 					</td>
 				</tr>
@@ -61,6 +64,9 @@
 					<td>
 						<p style="color: red">
 							<form:errors path="pseudo" />
+							<c:if test="${ PseudoAlreadyExists }">
+								<p style="color: red">Ce pseudo est déjà utilisé !</p>
+							</c:if>
 						</p>
 					</td>
 				</tr>
@@ -80,9 +86,10 @@
 							placeholder="Confirmer le Mot de passe"
 							value="${RegisterForm.mdp2}" /></td>
 					<td>
-						<p style="color: red">
-							<form:errors path="mdp2" />
-						</p>
+						<c:if test="${ password2Empty}"><p style="color: red"><form:errors path="mdp2" /></p> </c:if>
+							
+							<c:if test="${ passwordsNotEquals }"><p style="color: red">Veuillez renseigner des mots de passe identiques !</p>
+							 </c:if>
 					</td>
 				</tr>
 				<tr align="center">

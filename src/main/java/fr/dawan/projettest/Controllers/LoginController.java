@@ -40,7 +40,7 @@ public class LoginController {
 
 		// L'utilisateur n'existe pas, ou il n'a pas le bon mdp
 		if (util == null) {
-			model.addAttribute("msg", "Erreur d'authentification!!!");
+			model.addAttribute("UnknownUser", true);
 			return "redirect:/login";
 		}
 

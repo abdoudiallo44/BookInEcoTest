@@ -67,7 +67,7 @@
 					<a style="margin: 2px" class="btn btn-outline-primary" href="displayProfil" role="button">Profil</a>
 				</div>
 				<div class="float-right">
-					Bonjour ${sessionScope.prenom}
+					Bonjour ${sessionScope.user.prenom}
 					<a class="btn btn-primary" href="login/deconnexion"
 						role="button">Deconnexion</a>
 				</div>

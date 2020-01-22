@@ -1,5 +1,8 @@
 package fr.dawan.projettest.entite;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,9 +141,47 @@ public class Utilisateur extends DbObject {
 		return mdp;
 	}
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+//	public void setMdp(String mdp) {
+//		this.mdp = mdp;
+//	}
+	
+	
+	
+	
+	
+	public String checkPassword(String motDepasse) {
+		if (motDepasse == null) {
+			return "Erreur Mot de passe";
+		}
+		
+		return getEncrytedPassword(motDepasse);
 	}
+
+	public void setMdp(String pass) {
+		this.mdp = getEncrytedPassword(pass);
+	}
+
+	public static String getEncrytedPassword(String pass) {
+		byte[] hash = null;
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			hash = digest.digest(pass.getBytes(StandardCharsets.UTF_8));
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return new String(hash);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public String getPhotoProfil() {
 		return photoProfil;

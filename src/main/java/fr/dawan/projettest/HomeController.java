@@ -49,6 +49,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/admin")
+	public String homeAdmin() {
+		return "welcomeAdmin";
+	}
+	
 	@RequestMapping(value = "/ajoutPanier/{idLivre}", method = RequestMethod.GET)
 	public String ajoutPanier(Model model,HttpSession session,@PathVariable("idLivre") long idLivre) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");

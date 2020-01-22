@@ -9,11 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import fr.dawan.projettest.entite.DbObject;
 import fr.dawan.projettest.entite.Message;
 import fr.dawan.projettest.entite.Utilisateur;
-import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.MessageService;
 
 @Controller
@@ -40,7 +39,24 @@ public class MessagerieController {
 	@GetMapping("/supprimerMessage/{id}")
 	public String supprimerMessage(Model model, HttpSession session, @PathVariable("id")long id) {
 		service.deleteById(Message.class, id, true);
+		String suppression = "Votre message a bien été supprimé";
+		model.addAttribute("suppression", suppression);
 		return "redirect:/messagerie";
+	}
+	
+	@GetMapping("/reponseMessage") 
+		public String allerSurReponseMessage() {
+		return "reponseMessage";
+	}
+	
+	@PostMapping("/reponseMessage")
+	public String repondreMessage(Model model, HttpSession session) {
+		Message m =  new Message();
+		service.create(m, true);
+		String confirmation = "Votre message a bien été envoyé";
+		model.addAttribute("confirmation", confirmation);
+		return "reponseMessage";
+		
 	}
 	
 }

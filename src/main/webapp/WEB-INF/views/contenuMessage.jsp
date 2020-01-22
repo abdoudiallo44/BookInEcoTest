@@ -13,7 +13,7 @@
 				<td>
 						<a class="btn btn-warning" 
 							<c:if 
-								test="${not empty sessionScope.user}"> href="contenuMessage/${m.id}"
+								test="${not empty sessionScope.user}"> href="reponseMessage"
 							</c:if> role="button">Répondre</a>
 					</td></br>
 					<td>

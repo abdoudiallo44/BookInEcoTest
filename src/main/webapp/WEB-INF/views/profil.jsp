@@ -3,7 +3,7 @@
 	<h2>Gestion de mon profil</h2>
 	<hr />
 	
-	<div class="container">
+	<div class="container" align="center">
 		<a class="btn btn-primary" 
 			<c:if 
 				test="${not empty sessionScope.user}"> href="profil/modifierProfil"

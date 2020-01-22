@@ -81,7 +81,7 @@ public class RegisterController {
 			}
 		}
 
-		return "home";
+		return "redirect:/";
 
 	}
 

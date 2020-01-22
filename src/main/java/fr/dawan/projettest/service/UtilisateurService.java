@@ -38,6 +38,10 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
+	
+	public Utilisateur findUserByPseudo(String pseudo) {
+		return utilisateurDao.findUserByPseudo(pseudo);
+	}
 
 	
 	public List<Commande> getPanier(long id, boolean close) {

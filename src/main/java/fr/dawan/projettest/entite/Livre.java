@@ -37,8 +37,9 @@ public class Livre extends DbObject {
 	private boolean disponibilite;
 
 	private String etat;
-
+	
 	private int valeurPoints;
+
 
 	@ManyToOne
 	private Utilisateur proprietaire;

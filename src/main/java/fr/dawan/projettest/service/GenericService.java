@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.dawan.projettest.DAO.GenericDAO;
 import fr.dawan.projettest.entite.DbObject;
+import fr.dawan.projettest.entite.Message;
 
 
 @Service
@@ -28,6 +29,7 @@ public class GenericService<T extends DbObject> {
 
 	public void deleteById(Class<T> clazz,long id,boolean close) {
 		genericDAO.delete(clazz, id, close);
+		
 	}
 	
 	public void update(T entity,boolean close) {

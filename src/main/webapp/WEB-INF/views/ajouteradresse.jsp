@@ -14,7 +14,7 @@
 </div>
 
 <div class="container">
-	<form action="profil" method="post" modelAttribute="adresseForm">
+	<form action="profil/ajouteradresse" method="post" modelAttribute="adresseForm">
 		<table>
 			<tr>
 				<td>Adresse :</td>

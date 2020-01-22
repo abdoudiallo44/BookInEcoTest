@@ -61,8 +61,8 @@
 					<td>${adresse.codePostal}</td>
 					<td>${adresse.ville}</td>
 					<td>${adresse.pays}</td>
-					<td><a href="profil/modifierAdresse/${adresse.id}"><i class="fa fa-edit fa-2x text-success" ></i></a>
-					|<a href="profil/supprimerAdresse/${adresse.id}"> <i class="fa fa-trash-o fa-2x text-danger"></i></a></td>
+					<td><%-- <a href="profil/modifierAdresse/${adresse.id}"><i class="fa fa-edit fa-2x text-success" ></i></a> --%>
+					<a href="profil/supprimerAdresse/${adresse.id}"> <i class="fa fa-trash-o fa-2x text-danger"></i></a></td>
 					
 				</tr>
 			</c:forEach>

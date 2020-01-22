@@ -50,6 +50,8 @@ public class ModifProfilController {
 	public String displayProfil(Model model, HttpSession session) {
 
 		Utilisateur util = (Utilisateur) session.getAttribute("user");
+		util = service.findById(Utilisateur.class, util.getId(), true);
+		session.setAttribute("user", util);
 
 		List<AdresseLivraison> listeAdresse = util.getAdresseLivraison();
 
@@ -148,7 +150,7 @@ public class ModifProfilController {
 	}
 
 	
-	@PostMapping("profil")
+	@PostMapping("profil/ajouteradresse")
 	public String ajouterAdresse(Model model, HttpSession session,
 			@Valid @ModelAttribute("adresseForm") AdresseForm adresseForm) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
@@ -169,7 +171,7 @@ public class ModifProfilController {
 
 		model.addAttribute("listeAdresse", listeAdresse);
 		model.addAttribute("user", user);
-		return "profil";
+		return "redirect:/displayProfil";
 	}
 	
 	@GetMapping("profil/supprimerAdresse/{id}")
@@ -180,11 +182,18 @@ public class ModifProfilController {
 		
 		adresseService.deleteAdresseById(id);
 		//adresseService.deleteById(id);
-		List<AdresseLivraison> listeAdresse = service.findAllByUser(user.getId(), true);
+//		List<AdresseLivraison> listeAdresse = service.findAllByUser(user.getId(), true);
+//		
+//		model.addAttribute("listeAdresse", listeAdresse);
+//		model.addAttribute("user", user);
 		
-		model.addAttribute("listeAdresse", listeAdresse);
-		model.addAttribute("user", user);
+		return "redirect:/displayProfil";
+	}
+	
+	@GetMapping("profil/modifierAdresse/${id}")
+	public String modifierAdresse(Model model, HttpSession session, @PathVariable("id") long id) {
 		
-		return "profil";
+		
+		return "";
 	}
 }

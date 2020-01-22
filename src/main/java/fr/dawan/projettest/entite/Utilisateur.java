@@ -282,7 +282,7 @@ public class Utilisateur extends DbObject {
 	public String toString() {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
-				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes ;
+				+ nombreDePoint + ", role=" + role;
 	}
 	
 

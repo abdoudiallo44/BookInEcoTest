@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import fr.dawan.projettest.entite.DbObject;
 import fr.dawan.projettest.entite.Message;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.MessageService;
 
 @Controller
@@ -35,4 +36,11 @@ public class MessagerieController {
 		model.addAttribute("message", m2);
 		return "contenuMessage";
 	}
+	
+	@GetMapping("/supprimerMessage/{id}")
+	public String supprimerMessage(Model model, HttpSession session, @PathVariable("id")long id) {
+		service.deleteById(Message.class, id, true);
+		return "redirect:/messagerie";
+	}
+	
 }

@@ -14,7 +14,13 @@
 						<a class="btn btn-warning" 
 							<c:if 
 								test="${not empty sessionScope.user}"> href="contenuMessage/${m.id}"
-							</c:if> role="button">Consulter message</a>
+							</c:if> role="button">Répondre</a>
+					</td></br>
+					<td>
+						<a class="btn btn-warning" 
+							<c:if 
+								test="${not empty sessionScope.user}"> href="supprimerMessage/${m.id}"
+							</c:if> role="button">Supprimer</a>
 					</td></br>
 				</br>
 			</tr>

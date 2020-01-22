@@ -4,21 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- * 
- * @author adial
- *
- */
 @Entity
-@Table(name="commande")
 public class Commande extends DbObject{
 	
 	private LocalDate dateCommande;
@@ -26,26 +18,24 @@ public class Commande extends DbObject{
 	private EtatCommande etat;
 	
 	@ManyToOne
-	private Utilisateur util;
+	private Utilisateur acheteur;
+	
+	@ManyToOne
+	private Utilisateur vendeur;
 	
 	@OneToOne
 	private ModeLivraison modeLivraison;
 	
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
-	private List<Livre> livresCommande = new ArrayList();
+	@ManyToOne
+	private Livre livre;
 	
-	public void addLivre(Livre livre) {
-		livresCommande.add(livre);
-	}
-	
-	public void removeLivre(Livre livre) {
-		livresCommande.remove(livre);
-	}
-	
-	public List<Livre> getlivresCommande(){
-		return new ArrayList(livresCommande);
+	public Livre getLivre() {
+		return livre;
 	}
 
+	public void setLivre(Livre livre) {
+		this.livre = livre;
+	}
 
 	public LocalDate getDateCommande() {
 		return dateCommande;
@@ -71,37 +61,41 @@ public class Commande extends DbObject{
 	public void setModeLivraison(ModeLivraison modeLivraison) {
 		this.modeLivraison = modeLivraison;
 	}
-
-	public Utilisateur getUtil() {
-		return util;
+	
+	@Override
+	public String toString() {
+		return "Commande [dateCommande=" + dateCommande + ", etat=" + etat + "]";
 	}
 
-	public void setUtil(Utilisateur util) {
-		this.util = util;
+	public Commande(LocalDate dateCommande, EtatCommande etat, Utilisateur acheteur, Utilisateur vendeur,
+			ModeLivraison modeLivraison) {
+		super();
+		this.dateCommande = dateCommande;
+		this.etat = etat;
+		this.acheteur = acheteur;
+		this.vendeur = vendeur;
+		this.modeLivraison = modeLivraison;
 	}
 
 	public Commande() {
 		super();
 	}
 
-	public Commande(LocalDate dateCommande, EtatCommande etat, Utilisateur util, ModeLivraison modeLivraison,
-			List<Livre> livresCommande) {
-		super();
-		this.dateCommande = dateCommande;
-		this.etat = etat;
-		this.util = util;
-		this.modeLivraison = modeLivraison;
-		this.livresCommande = livresCommande;
+	public Utilisateur getAcheteur() {
+		return acheteur;
 	}
 
-	@Override
-	public String toString() {
-		return "Commande [dateCommande=" + dateCommande + ", etat=" + etat + ", util=" + util.getNom() + ", modeLivraison="
-				+ modeLivraison +"]";
+	public void setAcheteur(Utilisateur acheteur) {
+		this.acheteur = acheteur;
 	}
-	
-	public void removeAllLivres() {
-		livresCommande = new ArrayList();
+
+	public Utilisateur getVendeur() {
+		return vendeur;
 	}
+
+	public void setVendeur(Utilisateur vendeur) {
+		this.vendeur = vendeur;
+	}
+
 	
 }

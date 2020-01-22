@@ -52,13 +52,17 @@ public class LivreController {
 		LocalDate date = LocalDate.now();
 		Livre l = new Livre(livreForm.getAuteur(), livreForm.getTitre(), livreForm.getDescription(),
 				livreForm.getPoids(), livreForm.getFormat(), date, true, livreForm.getEtat(), user);
+		
 		if (session.getAttribute("photo") != null) {
 			l.setPhoto(session.getAttribute("photo").toString());
 		}
+		
 		if (bindingResult.hasErrors()) {
 			System.out.println("oups");
 			return "livres";
 		}
+		l.setValeur();
+		System.out.println(l);
 		session.setAttribute("livreAjout", l);
 		model.addAttribute("ajoutLivre", true);
 
@@ -122,7 +126,6 @@ public class LivreController {
 	@GetMapping(value = "livres/modifier/{id}")
 	public String updateGet(Model model, @PathVariable("id") long id) {
 		Livre livre = livreService.findById(Livre.class, id, true);
-		System.out.println(livre.getPhoto());
 		LivreForm form = LivreForm.toForm(livre);
 		model.addAttribute("livreForm", form);
 		return "modifLivre";
@@ -133,6 +136,7 @@ public class LivreController {
 			@Valid @ModelAttribute("livreForm") LivreForm livreForm) {
 		Livre livre = livreService.findById(Livre.class, id, false);
 		livre.updateToLivre(livreForm);
+		livre.setValeur();
 		livreService.update(livre, true);
 		livreForm = LivreForm.toForm(livre);
 		model.addAttribute("modifLivre", true);

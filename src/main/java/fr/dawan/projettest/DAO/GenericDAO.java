@@ -71,24 +71,19 @@ public class GenericDAO<T extends DbObject> {
 	}
 
 	public void delete(Class<T> clazz, long id,boolean close) {
-
-
 			T entity = entityManager.find(clazz, id);
-//			System.out.println("Entity found : "+entity.toString());
-//			if(entity.getClass() == Commande.class) {
-//				Commande commande = (Commande) entity;
-//				commande.removeAllLivres();
-//				entityManager.remove(commande);
-//			}else {
-//				entityManager.remove(entity);
-//			}
 			entityManager.remove(entity);
-			entityManager.flush();
 
 			if(close) entityManager.close();
 		
 	}
 
+//	System.out.println("Entity found : "+entity.toString());
+//	if(entity.getClass() == Commande.class) {
+//		Commande commande = (Commande) entity;
+//		commande.removeAllLivres();
+//		entityManager.remove(commande);
+//	}
 
 	/**
 	 * Permet de récupérer toutes les entrées pour une table données à partir d'une

@@ -27,6 +27,8 @@ public class LivreForm {
 	@NotEmpty
 	private String etat;
 	
+	private int valeurPoints;
+	
 	
 	public String getEtat() {
 		return etat;
@@ -53,6 +55,7 @@ public class LivreForm {
 		form.setFormat(livre.getFormat());
 		form.setEtat(livre.getEtat());
 		form.setPhoto(livre.getPhoto());
+		form.setValeurPoints(livre.getValeurPoints());
 		return form;
 	}
 	
@@ -72,6 +75,16 @@ public class LivreForm {
 		this.etat = etat;
 		this.dateAjout = dateAjout;
 		this.disponibilite = disponibilite;
+	}
+
+
+	public int getValeurPoints() {
+		return valeurPoints;
+	}
+
+
+	public void setValeurPoints(int valeurPoints) {
+		this.valeurPoints = valeurPoints;
 	}
 
 

@@ -31,25 +31,22 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 	// permet de gérer les flux de connexions (ouverture, fermeture et rollback en
 	// cas d'erreurs
 	// sur la requête)
-	public void addToCart(Utilisateur user, long livreId, boolean close) {
-		utilisateurDao.addToCart(user, livreId, close);
-	}
+//	public void addToCart(Utilisateur user, long livreId, boolean close) {
+//		utilisateurDao.addToCart(user, livreId, close);
+//	}
 
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
 
 	
-	public List<Livre> getPanier(long id, boolean close) {
+	public List<Commande> getPanier(long id, boolean close) {
 		List<Commande> commandes = utilisateurDao.findCommandes(id, close);
 		List<Livre> livres = new ArrayList();
 		for(Commande commande : commandes) {
-			//livres.addAll(commande.getlivresCommande());
-			for(Livre livre : commande.getlivresCommande()) {
-				livres.add(livre);
-			}
+			livres.add(commande.getLivre());
 		}
-		return livres;
+		return commandes;
 	}
 	
 	public void addLivre(Utilisateur util,Livre livre) {

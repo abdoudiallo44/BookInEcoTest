@@ -41,17 +41,15 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "proprietaire", cascade = CascadeType.PERSIST)
 	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToMany(mappedBy = "util", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "acheteur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Commande> commandes = new ArrayList();
 
 	public void addCommande(Commande commande) {
 		commandes.add(commande);
-		commande.setUtil(this);
 	}
 
 	public void removeCommande(Commande commande) {
 		commandes.remove(commande);
-		commande.setUtil(null);
 	}
 
 	public List<Commande> getCommandes() {
@@ -61,21 +59,21 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "utilisateur")
 	private List<AdresseLivraison> adresseLivraison;
 
-	public void addToCart(Livre livre) {
-		boolean verif = false;
-		for (Commande commande : commandes) {
-			Livre livreCommande = commande.getlivresCommande().get(0);
-			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
-				commande.addLivre(livre);
-				verif = true;
-			}
-		}
-		if (!verif) {
-			Commande commande = new Commande();
-			commande.addLivre(livre);
-			addCommande(commande);
-		}
-	}
+//	public void addToCart(Livre livre) {
+//		boolean verif = false;
+//		for (Commande commande : commandes) {
+//			Livre livreCommande = commande.getlivresCommande().get(0);
+//			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
+//				commande.addLivre(livre);
+//				verif = true;
+//			}
+//		}
+//		if (!verif) {
+//			Commande commande = new Commande();
+//			commande.addLivre(livre);
+//			addCommande(commande);
+//		}
+//	}
 
 //	public Commande addToCart(Livre livre) {
 //		for (Commande commande : commandes) {
@@ -248,6 +246,19 @@ public class Utilisateur extends DbObject {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
 				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes;
+	}
+
+	public boolean debit(int valeurLivre) {
+		if(valeurLivre > nombreDePoint) {
+			return false;
+		}
+		nombreDePoint -= valeurLivre;
+		return true;
+	}
+
+	public void credit(int valeurLivre) {
+		nombreDePoint += valeurLivre;
+		
 	}
 
 }

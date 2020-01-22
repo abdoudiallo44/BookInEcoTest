@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.CommandeService;
 import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;
@@ -29,10 +30,11 @@ public class HomeController {
 	private UtilisateurService utilService;
 	
 	@Autowired
-	private GenericService<Commande> service;
+	private LivreService livreService;
 	
 	@Autowired
-	private LivreService livreService;
+	private CommandeService commandeService;
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -53,7 +55,8 @@ public class HomeController {
 	@GetMapping(value = "/ajoutPanier/{id}")
 	public String ajoutPanier(Model model,HttpSession session,@PathVariable("id") long id) {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
-		utilService.addToCart(user, id, false);
+		Livre l = livreService.findById(Livre.class, id, false);
+		commandeService.createCommande(user,l,false);
 		List<Livre> livres = livreService.findAll(Livre.class,true);
 		model.addAttribute("listeLivre", livres);
 		return "home";
@@ -65,35 +68,30 @@ public class HomeController {
 		utilisateur1.setPseudo("abdou");
 		utilisateur1.setMdp("abdou");
 
-		Livre livre1 = new Livre("auteur1", "titre1", "description 1",utilisateur1);
-		livre1.setPhoto("Caraval.jpg");
-		Livre livre2 = new Livre("auteur2", "titre2", "description 2",utilisateur1);
-		livre2.setPhoto("Loperateur.jpg");
-		Livre livre3 = new Livre("auteur3", "titre3", "description 3",utilisateur1);
-		livre3.setPhoto("Nightfall.jpg");
-		Livre livre4 = new Livre("auteur4", "titre4", "description 4",utilisateur1);
-		livre4.setPhoto("Traqueurs.jpg");
-		Livre livre5 = new Livre("auteur5", "titre5", "description 5",utilisateur1);
-		livre5.setPhoto("Warren.jpg");
+		Livre livre1 = new Livre("auteur1", "titre1", "description 1","Caraval.jpg",true,2,utilisateur1);
+		Livre livre2 = new Livre("auteur2", "titre2", "description 2","Loperateur.jpg",true,3,utilisateur1);
+		Livre livre3 = new Livre("auteur3", "titre3", "description 3","Nightfall.jpg",true,4,utilisateur1);
+		Livre livre4 = new Livre("auteur4", "titre4", "description 4","Traqueurs.jpg",true,5,utilisateur1);
+		Livre livre5 = new Livre("auteur5", "titre5", "description 5","Warren.jpg",true,2,utilisateur1);
 		utilisateur1.addLivre(livre1);
 		utilisateur1.addLivre(livre2);
 		utilisateur1.addLivre(livre3);
 		utilisateur1.addLivre(livre4);
 		utilisateur1.addLivre(livre5);
+		utilisateur1.setNombreDePoint(20);
 		utilService.create(utilisateur1, false);
 		Utilisateur utilisateur3 = new Utilisateur("oui", "oui");
 		utilisateur3.setPseudo("oui");
 		utilisateur3.setMdp("oui");
 		utilService.create(utilisateur3, false);
 		Utilisateur utilisateur2 = new Utilisateur("yo", "yo");
-		Livre livre6 = new Livre("auteur6", "titre6", "description 6",utilisateur2);
-		livre6.setPhoto("Traqueurs.jpg");
-		Livre livre7 = new Livre("auteur7", "titre7", "description 7",utilisateur2);
-		livre7.setPhoto("Ferrari.jpg");
+		Livre livre6 = new Livre("auteur6", "titre6", "description 6","Traqueurs.jpg",true,3,utilisateur2);
+		Livre livre7 = new Livre("auteur7", "titre7", "description 7","Ferrari.jpg",true,4,utilisateur2);
 		utilisateur2.setPseudo("yo");
 		utilisateur2.setMdp("yo");
 		utilisateur2.addLivre(livre6);
 		utilisateur2.addLivre(livre7);
+		utilisateur2.setNombreDePoint(20);
 		utilService.create(utilisateur2, true);
 
 		return "home";
@@ -113,7 +111,10 @@ public class HomeController {
 	
 	@GetMapping("/test")
 	public String test() {
-		service.deleteById(Commande.class, 1, true);
+		//Commande c = commandeService.findById( 1);
+		//commandeService.trueDelete(2);
+		//commandeService.deleteById(Commande.class, 1, false);
+		//commandeService.trueDelete();
 		System.out.println("delete done");
 //		Utilisateur user = utilService.findById(Utilisateur.class, 3, false);
 //		Commande c = new Commande();

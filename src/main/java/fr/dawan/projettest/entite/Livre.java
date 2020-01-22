@@ -17,14 +17,13 @@ import fr.dawan.projettest.Beans.LivreForm;
  */
 @Entity
 @Table(name = "livre")
-public class Livre extends DbObject{
-
+public class Livre extends DbObject {
 
 	private String auteur;
 
 	private String titre;
 
-	@Type(type="text")
+	@Type(type = "text")
 	private String description;
 
 	private String photo;
@@ -36,15 +35,16 @@ public class Livre extends DbObject{
 	private LocalDate dateAjout;
 
 	private boolean disponibilite;
-	
+
 	private String etat;
+
+	private int valeurPoints;
 
 	@ManyToOne
 	private Utilisateur proprietaire;
 
 	@ManyToOne
 	private ThemeLivre idTheme;
-
 
 	public String getAuteur() {
 		return auteur;
@@ -125,7 +125,7 @@ public class Livre extends DbObject{
 	public void setIdTheme(ThemeLivre idTheme) {
 		this.idTheme = idTheme;
 	}
-	
+
 	public String getEtat() {
 		return etat;
 	}
@@ -140,6 +140,19 @@ public class Livre extends DbObject{
 		this.titre = titre;
 		this.description = description;
 		this.proprietaire = utilisateur;
+	}
+	
+
+	public Livre(String auteur, String titre, String description, String photo, boolean disponibilite, int valeurPoints,
+			Utilisateur proprietaire) {
+		super();
+		this.auteur = auteur;
+		this.titre = titre;
+		this.description = description;
+		this.photo = photo;
+		this.disponibilite = disponibilite;
+		this.valeurPoints = valeurPoints;
+		this.proprietaire = proprietaire;
 	}
 
 	public Livre() {
@@ -157,7 +170,6 @@ public class Livre extends DbObject{
 		this.disponibilite = disponibilite;
 	}
 
-
 	public Livre(String auteur, String titre, String description, double poids, String format, LocalDate dateAjout,
 			boolean disponibilite, String etat, Utilisateur proprietaire) {
 		super();
@@ -172,23 +184,23 @@ public class Livre extends DbObject{
 		this.proprietaire = proprietaire;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Livre [Auteur=" + auteur + ", titre=" + titre + ", description=" + description
-				+ ", photoLivre=" + photo + ", poidsLivre=" + poids + ", formatLivre=" + format
-				+ ", dateAjoutLivre=" + dateAjout + ", disponibilite=" + disponibilite + ", proprietaire="
-				+ proprietaire.getNom() + " "+ proprietaire.getPrenom()  +"]";
+		return "Livre [auteur=" + auteur + ", titre=" + titre + ", description=" + description + ", photo=" + photo
+				+ ", poids=" + poids + ", format=" + format + ", dateAjout=" + dateAjout + ", disponibilite="
+				+ disponibilite + ", etat=" + etat + ", valeurPoints=" + valeurPoints + "]";
 	}
 
 	public boolean isValid() {
-		if(auteur != null && titre != null && description != null && photo != null
-				&& poids != 0 && format != null && etat != null) {
+		if (auteur != null && titre != null && description != null && photo != null && poids != 0 && format != null
+				&& etat != null) {
 			return true;
 		}
 		return false;
 	}
 
-	
 	public void updateToLivre(LivreForm form) {
 		this.setAuteur(form.getAuteur());
 		this.setDescription(form.getDescription());
@@ -197,7 +209,32 @@ public class Livre extends DbObject{
 		this.setFormat(form.getFormat());
 		this.setEtat(form.getEtat());
 		this.setPhoto(form.getPhoto());
+		this.setValeurPoints(form.getValeurPoints());
 	}
-	
+
+	public int getValeurPoints() {
+		return valeurPoints;
+	}
+
+	public void setValeurPoints(int valeurPoints) {
+		this.valeurPoints = valeurPoints;
+	}
+
+	public void setValeur() {
+		int val = 0;
+		if (this.etat.equals("commeNeuf")) {
+			val += 3;
+		} else if (this.etat.equals("bon")) {
+			val += 2;
+		} else if (this.etat.equals("correct")) {
+			val += 1;
+		}
+		if (this.format.equals("grand")) {
+			val += 2;
+		} else if (this.format.equals("poche")) {
+			val += 1;
+		}
+		this.setValeurPoints(val);
+	}
 
 }

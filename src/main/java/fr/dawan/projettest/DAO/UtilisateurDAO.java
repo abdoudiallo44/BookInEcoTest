@@ -20,18 +20,18 @@ public class UtilisateurDAO extends GenericDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-	public void addToCart(Utilisateur user, long livreId, boolean close) {
-		if (user.getId() > 0) {
-			Livre livre = (Livre) findById(Livre.class, livreId, close);
-			user.addToCart(livre);
-			// On met à jour la formation
-			em.merge(user);
-
-			if (close)
-				em.close();
-		}
-
-	}
+//	public void addToCart(Utilisateur user, long livreId, boolean close) {
+//		if (user.getId() > 0) {
+//			Livre livre = (Livre) findById(Livre.class, livreId, close);
+//			user.addToCart(livre);
+//			// On met à jour la formation
+//			em.merge(user);
+//
+//			if (close)
+//				em.close();
+//		}
+//
+//	}
 //	public void addToCart(Utilisateur user, long livreId, boolean close) {
 //	if (user.getId() > 0) {
 //		Livre livre = (Livre) findById(Livre.class, livreId, false);
@@ -65,7 +65,7 @@ public class UtilisateurDAO extends GenericDAO {
 	}
 
 	public List<Commande> findCommandes(long id, boolean close) {
-		return em.createQuery("FROM Commande WHERE util_id = :id").setParameter("id", id).getResultList();
+		return em.createQuery("FROM Commande WHERE acheteur_id = :id").setParameter("id", id).getResultList();
 	}
 
 	public void addLivre(Utilisateur util) {

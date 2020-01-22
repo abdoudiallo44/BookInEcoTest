@@ -14,14 +14,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="l" items="${listeLivre}">
+			<c:forEach var="c" items="${listeCommande}">
 				<tr>
-					<td><img src="<c:url value="/resources/img/${l.photo}"/>"></td>
-					<td>${l.auteur}</td>
-					<td>${l.titre}</td>
-					<td>${l.description}</td>
-					<td>${l.proprietaire.nom} ${l.proprietaire.prenom}</td>
-					<td><a href="/projettest/panier/supprimer/${l.id}">Supprimer</a></td>
+					<td><img style="max-width: 350px; max-height: 200px" src="<c:url value="/resources/img/${c.livre.photo}"/>"></td>
+					<td>${c.livre.auteur}</td>
+					<td>${c.livre.titre}</td>
+					<td>${c.livre.description}</td>
+					<td>${c.livre.proprietaire.nom} ${c.livre.proprietaire.prenom}</td>
+					<td><a href="/projettest/panier/acheter/${c.id}">Acheter</a></td>
+					<td><a href="/projettest/panier/supprimer/${c.id}">Supprimer</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

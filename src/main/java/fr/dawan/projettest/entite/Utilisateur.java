@@ -248,6 +248,7 @@ public class Utilisateur extends DbObject {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
 				+ nombreDePoint + ", role=" + role ;
+
 	}
 	
 

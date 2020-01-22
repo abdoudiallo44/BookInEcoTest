@@ -1,7 +1,5 @@
 package fr.dawan.projettest.Controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;

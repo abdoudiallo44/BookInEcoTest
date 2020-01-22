@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td>Mot de passe :</td>
-				<td><input type="text" class="form-control"
+				<td><input type="password" class="form-control"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm" name="mdp"
 					value="${profilForm.mdp}" /></td>

@@ -18,7 +18,7 @@ public class RegisterForm extends DbObject{
 	@NotEmpty(message = "Ce champs ne doit pas être vide")
 	private String nom;
 	
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateDenaissance;
 	
 	@Email

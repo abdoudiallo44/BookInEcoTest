@@ -38,7 +38,9 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 	public Utilisateur findUserByEmailAndPwd(String email, String pswd) {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
-	
+	public Utilisateur findUserByPseudo(String pseudo) {
+		return utilisateurDao.findUserByPseudo(pseudo);
+	}
 
 	public Utilisateur findUserByEmailOrPseudo(String identifiant) {
 		return utilisateurDao.findUserByEmailOrPseudo(identifiant);

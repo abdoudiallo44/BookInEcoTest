@@ -50,6 +50,20 @@ public class UtilisateurDAO extends GenericDAO {
 //	}
 //
 //}
+	
+public Utilisateur findUserByPseudo(String pseudo) {
+		
+		try {
+			return (Utilisateur) em.createQuery(
+					"FROM Utilisateur u WHERE u.pseudo=:pseudo ")
+					.setParameter("pseudo", pseudo)
+					.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
 
@@ -69,20 +83,6 @@ public class UtilisateurDAO extends GenericDAO {
 		return em.createQuery("From Utilisateur").getResultList();
 	}
 	
-	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
-			
-		try {
-			return (Utilisateur) em.createQuery(
-					"FROM Utilisateur u WHERE u.pseudo=:pseudo ")
-					.setParameter("pseudo", pseudo)
-					.getSingleResult();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public List<Commande> findCommandes(long id, boolean close) {
 		return em.createQuery("FROM Commande WHERE acheteur_id = :id").setParameter("id", id).getResultList();
 	}

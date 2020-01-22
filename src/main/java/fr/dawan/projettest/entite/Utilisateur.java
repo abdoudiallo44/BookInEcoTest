@@ -65,22 +65,6 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AdresseLivraison> adresseLivraison;
 
-	public void addToCart(Livre livre) {
-		boolean verif = false;
-		for (Commande commande : commandes) {
-			Livre livreCommande = commande.getlivresCommande().get(0);
-			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
-				commande.addLivre(livre);
-				verif = true;
-			}
-		}
-		if (!verif) {
-			Commande commande = new Commande();
-			commande.addLivre(livre);
-			commande.setUtil(this);
-			addCommande(commande);
-		}
-	}
 	
 	public void addAdresse(AdresseLivraison adresse) {
 		adresseLivraison.add(adresse);

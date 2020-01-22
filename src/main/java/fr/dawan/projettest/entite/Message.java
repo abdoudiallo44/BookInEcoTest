@@ -16,7 +16,9 @@ private LocalDateTime dateEnvoi;
 private boolean messageLu;
 
 @ManyToOne
-private Utilisateur destinataire,expediteur;
+private Utilisateur expediteur;
+@ManyToOne
+private Utilisateur destinataire;
 private String titreMessage;
 private String contenuMessage;
 
@@ -34,12 +36,7 @@ public boolean isMessageLu() {
 public void setMessageLu(boolean messageLu) {
 	this.messageLu = messageLu;
 }
-public Utilisateur getDestinataire() {
-	return destinataire;
-}
-public void setDestinataire(Utilisateur destinataire) {
-	this.destinataire = destinataire;
-}
+
 public Utilisateur getExpediteur() {
 	return expediteur;
 }
@@ -61,6 +58,10 @@ public void setContenuMessage(String contenuMessage) {
 public Message() {
 	super();
 }
-
-
+public Utilisateur getDestinataire() {
+	return destinataire;
+}
+public void setDestinataire(Utilisateur destinataire) {
+	this.destinataire = destinataire;
+}
 }

@@ -47,6 +47,20 @@ public class UtilisateurDAO extends GenericDAO{
 		}
 		return null;
 	}
+	
+	public Utilisateur findUserByPseudo(String pseudo) {
+		
+		try {
+			return (Utilisateur) em.createQuery(
+					"FROM Utilisateur u WHERE u.pseudo=:pseudo ")
+					.setParameter("pseudo", pseudo)
+					.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public List<Livre> getPanier(long id, boolean b) {
 		// TODO Auto-generated method stub

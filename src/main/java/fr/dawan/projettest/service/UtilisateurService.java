@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import fr.dawan.projettest.DAO.UtilisateurDAO;
+import fr.dawan.projettest.entite.AdresseLivraison;
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
@@ -39,10 +39,10 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
 	
-	public Utilisateur findUserByPseudo(String pseudo) {
-		return utilisateurDao.findUserByPseudo(pseudo);
-	}
 
+	public Utilisateur findUserByEmailOrPseudo(String identifiant) {
+		return utilisateurDao.findUserByEmailOrPseudo(identifiant);
+	}
 	
 	public List<Commande> getPanier(long id, boolean close) {
 		List<Commande> commandes = utilisateurDao.findCommandes(id, close);
@@ -53,7 +53,11 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 		return commandes;
 	}
 	
-	public void addLivre(Utilisateur util,Livre livre) {
-		
+	public List<AdresseLivraison> findAllByUser(long userId, boolean close){
+		return utilisateurDao.findAllByUser(userId, close);
+	}
+	
+	public List<Utilisateur> readAll(){
+		return utilisateurDao.readAll();
 	}
 }

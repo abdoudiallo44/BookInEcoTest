@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -15,6 +17,7 @@ public class Commande extends DbObject{
 	
 	private LocalDate dateCommande;
 	
+	@Enumerated(EnumType.STRING)
 	private EtatCommande etat;
 	
 	@ManyToOne
@@ -28,6 +31,7 @@ public class Commande extends DbObject{
 	
 	@ManyToOne
 	private Livre livre;
+
 	
 	public Livre getLivre() {
 		return livre;

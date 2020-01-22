@@ -18,25 +18,23 @@ import fr.dawan.projettest.entite.DbObject;
 
 @Repository
 public class GenericDAO<T extends DbObject> {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
 
-	public void create(T entity,boolean close) {
-		if ( entity !=null && entity.getId() == 0) {
+	public void create(T entity, boolean close) {
+		if (entity != null && entity.getId() == 0) {
 
-				// On insère la formation dans la BDD
-				entityManager.persist(entity);
+			// On insère la formation dans la BDD
+			entityManager.persist(entity);
 
-				if(close) entityManager.close();
+			if (close)
+				entityManager.close();
 		}
 	}
-	
 
-	public List<T> findAll(Class<T> clazz,boolean close) {
+	public List<T> findAll(Class<T> clazz, boolean close) {
 		List<T> resultat = null;
-
 
 		// on crée la requête
 		TypedQuery<T> query = entityManager.createQuery("SELECT entity FROM " + clazz.getName() + " entity", clazz);
@@ -44,46 +42,44 @@ public class GenericDAO<T extends DbObject> {
 		// on exécute la requête et on récupère le résultat
 		resultat = query.getResultList();
 
-		if(close) entityManager.close();
+		if (close)
+			entityManager.close();
 
 		return resultat;
 	}
 
-	public T findById(Class<T> clazz, long id,boolean close) {
+	public T findById(Class<T> clazz, long id, boolean close) {
 		T entity = null;
 
-
-			// On charge la formation depuis la BDD, selon son ID
-			entity = entityManager.find(clazz, id);
-			if(close) entityManager.close();
+		// On charge la formation depuis la BDD, selon son ID
+		entity = entityManager.find(clazz, id);
+		if (close)
+			entityManager.close();
 
 		return entity;
 	}
 
-	public void update(T entity,boolean close) {
+	public void update(T entity, boolean close) {
 		if (entity.getId() > 0) {
 
-				// On met à jour la formation
-				entityManager.merge(entity);
+			// On met à jour la formation
+			entityManager.merge(entity);
 
-				if(close) entityManager.close();
+			if (close)
+				entityManager.close();
 		}
 	}
 
-	public void delete(Class<T> clazz, long id,boolean close) {
-			T entity = entityManager.find(clazz, id);
-			entityManager.remove(entity);
+	public void delete(Class<T> clazz, long id, boolean close) {
 
-			if(close) entityManager.close();
+		T entity = entityManager.find(clazz, id);
 		
-	}
+		entityManager.remove(entity);
 
-//	System.out.println("Entity found : "+entity.toString());
-//	if(entity.getClass() == Commande.class) {
-//		Commande commande = (Commande) entity;
-//		commande.removeAllLivres();
-//		entityManager.remove(commande);
-//	}
+		if (close)
+			entityManager.close();
+
+	}
 
 	/**
 	 * Permet de récupérer toutes les entrées pour une table données à partir d'une
@@ -94,7 +90,7 @@ public class GenericDAO<T extends DbObject> {
 	 * @param nbResult : le nombre de résultat que l'on souhaite récupérer
 	 * @return une liste d'entrées paginée
 	 */
-	public List<T> findAll(Class<T> clazz, int begin, int nbResult,boolean close) {
+	public List<T> findAll(Class<T> clazz, int begin, int nbResult, boolean close) {
 		List<T> resultat = null;
 
 		// on crée la requête
@@ -105,18 +101,19 @@ public class GenericDAO<T extends DbObject> {
 				.setMaxResults(nbResult) // on charge nbResult résultats
 				.getResultList();
 
-		if(close) entityManager.close();
+		if (close)
+			entityManager.close();
 
 		return resultat;
 	}
 
-	public void deleteAll(Class<T> clazz,boolean close) {
+	public void deleteAll(Class<T> clazz, boolean close) {
 
-		
 		Query query = entityManager.createQuery("Delete FROM " + clazz.getName());
 		query.executeUpdate();
-		
-		if(close) entityManager.close();
+
+		if (close)
+			entityManager.close();
 	}
 
 }

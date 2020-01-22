@@ -29,4 +29,28 @@ public class RegisterDAO extends GenericDAO {
 		}
 		return null;
 	}
+	
+	public Utilisateur findUserByEmail(String email) {
+
+		try {
+			return (Utilisateur) em.createQuery("FROM Utilisateur u WHERE u.email=:email")
+					.setParameter("email", email).getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public Utilisateur findUserByPseudo(String pseudo) {
+
+		try {
+			return (Utilisateur) em.createQuery("FROM Utilisateur u WHERE u.pseudo=:pseudo")
+					.setParameter("pseudo", pseudo).getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}	
 }

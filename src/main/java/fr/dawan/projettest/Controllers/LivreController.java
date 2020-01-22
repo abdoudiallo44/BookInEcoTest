@@ -139,6 +139,7 @@ public class LivreController {
 		livre.setValeur();
 		livreService.update(livre, true);
 		livreForm = LivreForm.toForm(livre);
+		model.addAttribute(livreForm);
 		model.addAttribute("modifLivre", true);
 		return "modifLivre";
 	}

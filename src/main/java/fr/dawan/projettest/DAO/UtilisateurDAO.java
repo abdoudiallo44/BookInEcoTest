@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import fr.dawan.projettest.entite.AdresseLivraison;
 import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
@@ -64,8 +65,12 @@ public class UtilisateurDAO extends GenericDAO {
 		return null;
 	}
 	
-	public Utilisateur findUserByPseudo(String pseudo) {
-		
+	public List<Utilisateur> readAll() {
+		return em.createQuery("From Utilisateur").getResultList();
+	}
+	
+	public Utilisateur findUserByEmailAndPwd(String email, String mdp) {
+			
 		try {
 			return (Utilisateur) em.createQuery(
 					"FROM Utilisateur u WHERE u.pseudo=:pseudo ")
@@ -85,7 +90,38 @@ public class UtilisateurDAO extends GenericDAO {
 	public void addLivre(Utilisateur util) {
 		em.merge(util);
 	}
+	public void deleteUserAdresse(long idUtilisateur, long idAdresse) {
+		
+//		em.createQuery(
+//				"DELETE FROM AdresseLivraison adr WHERE adr.utilisateur_id=:idUtilisateur AND adr.id=:id"
+//				.setParameter("", )
+//				.setParameter("", )
+//				.getSingleResult();
 
+	}
+	
+	public List<AdresseLivraison> findAllByUser(long userId, boolean close) {
+		List<AdresseLivraison> result = em.createQuery("From AdresseLivraison WHERE utilisateur_id = :id").setParameter("id", userId)
+				.getResultList();
+		if (close)
+			em.close();
+		return result;
+	}
+
+	public Utilisateur findUserByEmailOrPseudo(String identifiant) {
+			
+		try {
+			return (Utilisateur) em.createQuery(
+					"FROM Utilisateur u WHERE (u.email=:email OR u.pseudo=:pseudo)")
+					.setParameter("email", identifiant)
+					.setParameter("pseudo", identifiant)
+					.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * SELECT l.auteur,l.description,l.titre,l.proprietaire_id,l.photoLivre FROM
 	 * commande c inner join commande_livre cl on c.id = cl.Commande_id inner join

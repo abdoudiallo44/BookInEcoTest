@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fr.dawan.projettest.entite.Commande;
 import fr.dawan.projettest.entite.Livre;
 import fr.dawan.projettest.entite.Utilisateur;
 import fr.dawan.projettest.service.CommandeService;
-import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;
 

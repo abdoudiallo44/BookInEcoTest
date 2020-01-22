@@ -1,11 +1,16 @@
 package fr.dawan.projettest.entite;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -32,6 +37,7 @@ public class Utilisateur extends DbObject {
 
 	private int nombreDePoint;
 
+	@Enumerated(EnumType.STRING)
 	private RoleUtilisateur role;
 
 	@ManyToMany
@@ -56,47 +62,40 @@ public class Utilisateur extends DbObject {
 		return new ArrayList(commandes);
 	}
 
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<AdresseLivraison> adresseLivraison;
 
-//	public void addToCart(Livre livre) {
-//		boolean verif = false;
-//		for (Commande commande : commandes) {
-//			Livre livreCommande = commande.getlivresCommande().get(0);
-//			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
-//				commande.addLivre(livre);
-//				verif = true;
-//			}
-//		}
-//		if (!verif) {
-//			Commande commande = new Commande();
-//			commande.addLivre(livre);
-//			addCommande(commande);
-//		}
-//	}
-
-//	public Commande addToCart(Livre livre) {
-//		for (Commande commande : commandes) {
-//			Livre livreCommande = commande.getlivresCommande().get(0);
-//			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
-//				commande.addLivre(livre);
-//				return commande;
-//			}
-//		}
-//		Commande commande = new Commande();
-//		commande.addLivre(livre);
-//		commande.setUtil(this);
-//		addCommande(commande);
-//		return commande;
-//	}
+	public void addToCart(Livre livre) {
+		boolean verif = false;
+		for (Commande commande : commandes) {
+			Livre livreCommande = commande.getlivresCommande().get(0);
+			if (livreCommande.getProprietaire().getId() == livre.getProprietaire().getId()) {
+				commande.addLivre(livre);
+				verif = true;
+			}
+		}
+		if (!verif) {
+			Commande commande = new Commande();
+			commande.addLivre(livre);
+			commande.setUtil(this);
+			addCommande(commande);
+		}
+	}
+	
+	public void addAdresse(AdresseLivraison adresse) {
+		adresseLivraison.add(adresse);
+		adresse.setUtilisateur(this);
+	}
+	
+	public void removeAdresse(AdresseLivraison adresse) {
+		adresseLivraison.remove(adresse);
+		adresse.setUtilisateur(null);
+	}
 
 	public List<AdresseLivraison> getAdresseLivraison() {
-		return adresseLivraison;
+		return new ArrayList<AdresseLivraison>(adresseLivraison);
 	}
 
-	public void setAdresseLivraison(List<AdresseLivraison> adresseLivraison) {
-		this.adresseLivraison = adresseLivraison;
-	}
 
 	public String getPrenom() {
 		return prenom;
@@ -141,11 +140,30 @@ public class Utilisateur extends DbObject {
 	public String getMdp() {
 		return mdp;
 	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+	public String checkPassword(String motDepasse) {
+		if (motDepasse == null) {
+			return "Erreur Mot de passe";
+		}
+		
+		return getEncrytedPassword(motDepasse);
 	}
 
+	public void setMdp(String pass) {
+		this.mdp = getEncrytedPassword(pass);
+	}
+
+	public static String getEncrytedPassword(String pass) {
+		byte[] hash = null;
+		MessageDigest digest;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+			hash = digest.digest(pass.getBytes(StandardCharsets.UTF_8));
+			
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return new String(hash);
+	}
 	public String getPhotoProfil() {
 		return photoProfil;
 	}
@@ -247,6 +265,7 @@ public class Utilisateur extends DbObject {
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
 				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes;
 	}
+	
 
 	public boolean debit(int valeurLivre) {
 		if(valeurLivre > nombreDePoint) {

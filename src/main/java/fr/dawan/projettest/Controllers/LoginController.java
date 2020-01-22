@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.dawan.projettest.entite.Livre;
@@ -17,57 +18,39 @@ import fr.dawan.projettest.service.LivreService;
 import fr.dawan.projettest.service.UtilisateurService;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
-	
+
 	@Autowired
-	private UtilisateurService utilService;
-	
+	private UtilisateurService service;
 	@Autowired
 	private LivreService livreService;
-	
-	@GetMapping("/login")
-	public String login() {
 
+	@GetMapping("")
+	public String login() {
 		return "login";
 	}
-	
-	@PostMapping("/login/authentification")
+
+	@PostMapping("/authentification")
 	public String authentification(Model model, @RequestParam("login") String login, @RequestParam("pass") String pass,
 			HttpSession session) {
-		
-	    Utilisateur util = utilService.findUserByEmailAndPwd(login, pass); 
-	    
-	    //System.out.println(util);
-	    
-		String pseudo = util.getPseudo();
-		String email = util.getEmail();
-		String mdp = util.getMdp();
-		
-		if ((pseudo.equals(login) || email.equals(login)) && mdp.equals(pass)) {
-			session.setAttribute("user", util);
 
-			List<Livre> livres = livreService.findAll(Livre.class,true);
-			model.addAttribute("listeLivre", livres);
-			return "home";
-		}else
-		if (login.equals("admin") && pass.equals("admin")) {
-			session.setAttribute("login", login);
-			session.setAttribute("utilisateurName", util.getPrenom() + " " + util.getNom());
-			return "welcomeAdmin";
-		}
-		else {
-			model.addAttribute("msg", "Erreur d'authentification!!!");
-			return "login";
+		Utilisateur util = service.findUserByEmailAndPwd(login, Utilisateur.getEncrytedPassword(pass));
+
+		session.setAttribute("user", util);
+
+		if (login.equals("admin") && pass.equals("admin")) {			
+			return "redirect:/admin";
+		} else {
+			return "redirect:/";
 		}
 
 	}
-	
-	
-	
-	@GetMapping("/login/deconnexion")
+
+	@GetMapping("/deconnexion")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "home";
 	}
-	
+
 }

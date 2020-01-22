@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -20,6 +21,10 @@
 	href="<c:url value="/resources/css/bouttonConnexionInscription.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bookinecoStyle.css"/>">
+	
+
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	
 	<!-- balise permettant de préfixer les liens -->
 		<base href="<%=request.getScheme()+"://"
@@ -54,16 +59,17 @@
 
 			</ul>
 			<c:if test="${not empty sessionScope.user}">
-					<a class="btn btn-outline-primary" href="messagerie" role="button">Messagerie</a>
+					<a class="btn btn-outline-primary" href="messagerie" role="button"><i class="fa fa-envelope fa-2x"></i></a>
 					<a class="btn btn-outline-primary" href="gestionLivre" role="button">Mes livres</a>
 					<a class="btn btn-outline-primary" href="panier" role="button">Mon panier</a>
-					<a class="btn btn-outline-primary" href="modifierProfil" role="button">Profil</a>
+					<a class="btn btn-outline-primary" href="displayProfil" role="button">Profil</a>
 					<a class="btn btn-outline-primary" href="achatPoints" role="button">Acheter des points</a>
 				</div>
-				
 				<div class="float-right">
+					Bonjour ${sessionScope.user.prenom}
 					<a class="btn btn-primary" href="login/deconnexion"
 						role="button">Déconnexion</a>
+
 				</div>
 			</c:if>
 

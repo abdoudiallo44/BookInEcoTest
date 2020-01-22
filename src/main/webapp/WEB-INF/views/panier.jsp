@@ -1,8 +1,8 @@
-<%@include file="header.jsp" %>
-	<h2>Mon Panier</h2>
-	<hr />
-	</br>
-	<div class="container">
+<%@include file="header.jsp"%>
+<h2>Mon Panier</h2>
+<hr />
+</br>
+<div class="container">
 	<table class="table">
 		<thead class="thead-dark">
 			<tr>
@@ -11,24 +11,26 @@
 				<th scope="col">Titre</th>
 				<th scope="col">Description</th>
 				<th scope="col">Propriétaire</th>
-				<th scope="col">Option</th>
+				<th scope="col">Acheter</th>
+				<th scope="col">Retirer</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="c" items="${listeCommande}">
 				<tr>
-					<td><img style="max-width: 350px; max-height: 200px" src="<c:url value="/resources/img/${c.livre.photo}"/>"></td>
+					<td><img style="max-width: 350px; max-height: 200px"
+						src="<c:url value="/resources/img/${c.livre.photo}"/>"></td>
 					<td>${c.livre.auteur}</td>
 					<td>${c.livre.titre}</td>
 					<td>${c.livre.description}</td>
-					<td>${c.livre.proprietaire.nom} ${c.livre.proprietaire.prenom}</td>
-					<td><a href="/projettest/panier/acheter/${c.id}">Acheter</a></td>
-					<td><a href="/projettest/panier/supprimer/${c.id}">Supprimer</a></td>
+					<td>${c.livre.proprietaire.nom}${c.livre.proprietaire.prenom}</td>
+					<td><a href="/projettest/panier/acheter/${c.id}"><i class="fa fa-2x fa-shopping-cart"></i></a></td>
+					<td><a href="/projettest/panier/supprimer/${c.id}"><i class="fa fa-trash-o fa-2x text-danger"></i></a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
+</div>
 
 </body>
 </html>

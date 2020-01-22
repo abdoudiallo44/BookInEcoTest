@@ -47,8 +47,11 @@ public class Utilisateur extends DbObject {
 	@OneToMany(mappedBy = "proprietaire", cascade = CascadeType.PERSIST)
 	private List<Livre> listeLivreUtil = new ArrayList();
 
-	@OneToMany(mappedBy = "acheteur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "acheteur", cascade = CascadeType.ALL)
 	private List<Commande> commandes = new ArrayList();
+
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<AdresseLivraison> adresseLivraison;
 
 	public void addCommande(Commande commande) {
 		commandes.add(commande);
@@ -61,9 +64,6 @@ public class Utilisateur extends DbObject {
 	public List<Commande> getCommandes() {
 		return new ArrayList(commandes);
 	}
-
-	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<AdresseLivraison> adresseLivraison;
 
 	
 	public void addAdresse(AdresseLivraison adresse) {
@@ -247,7 +247,7 @@ public class Utilisateur extends DbObject {
 	public String toString() {
 		return "Utilisateur [prenom=" + prenom + ", nom=" + nom + ", dateDenaissance=" + dateDenaissance + ", email="
 				+ email + ", pseudo=" + pseudo + ", mdp=" + mdp + ", photoProfil=" + photoProfil + ", nombreDePoint="
-				+ nombreDePoint + ", role=" + role + ", commandes=" + commandes;
+				+ nombreDePoint + ", role=" + role ;
 	}
 	
 

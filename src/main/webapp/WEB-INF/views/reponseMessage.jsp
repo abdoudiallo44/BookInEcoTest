@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<h2>Répondre à : ${message.expediteur.pseudo}</h2>
+<h2>Ecrire un message :</h2>
 
 <form action="reponseMessage" method="post" modelAttribute="MessageForm">
 	<table>

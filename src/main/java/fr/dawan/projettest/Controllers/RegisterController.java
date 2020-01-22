@@ -48,10 +48,7 @@ public class RegisterController {
 		user.setNom(registerForm.getNom());
 		user.setNombreDePoint(NOMBRE_DE_POINT);
 
-		// Si erreurs et mdp2 vide OU mdp null OU mdp vide OU mdp2 null OU mp2 vide
-//		if ((bindingResult.hasErrors() && "".equals(password2)) || password == null ||  "".equals(password) || password2 == null ||  "".equals(password2)) {
 		if (bindingResult.hasErrors() && "".equals(password2)) {
-			// Si mdp et mdp2 sont différents passwordsNotEquals
 			if (!password.equals(password2)) {
 				model.addAttribute("passwordsNotEquals", true);
 			}
@@ -71,9 +68,6 @@ public class RegisterController {
 					model.addAttribute("passwordsNotEquals", true);
 					return "inscription";
 				}
-				// System.out.println("kdsfkjs " +
-				// service.findUserByEmailAndPseudo(user.getEmail(), user.getPseudo()));
-
 			} else {
 
 				if (user.getId() == 0 && service.findUserByEmail(user.getEmail()) != null) {

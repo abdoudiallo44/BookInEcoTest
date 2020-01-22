@@ -38,12 +38,6 @@ public class LoginController {
 
 		Utilisateur util = service.findUserByEmailAndPwd(login, Utilisateur.getEncrytedPassword(pass));
 
-		// L'utilisateur n'existe pas, ou il n'a pas le bon mdp
-		if (util == null) {
-			model.addAttribute("UnknownUser", true);
-			return "redirect:/login";
-		}
-
 		session.setAttribute("user", util);
 
 		if (login.equals("admin") && pass.equals("admin")) {			

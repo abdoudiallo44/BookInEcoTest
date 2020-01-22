@@ -39,6 +39,9 @@ public class UtilisateurService extends GenericService<Utilisateur> {
 		return utilisateurDao.findUserByEmailAndPwd(email, pswd);
 	}
 
+	public Utilisateur findUserByEmailOrPseudo(String identifiant) {
+		return utilisateurDao.findUserByEmailOrPseudo(identifiant);
+	}
 	
 	public List<Livre> getPanier(long id, boolean close) {
 		List<Commande> commandes = utilisateurDao.findCommandes(id, close);

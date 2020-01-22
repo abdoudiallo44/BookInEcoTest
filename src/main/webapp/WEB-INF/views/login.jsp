@@ -13,6 +13,13 @@
 					<td><input type="text" class="form-control"
 						id="exampleInputEmail1" name="login" aria-describedby="emailHelp"
 						placeholder="Email ou pseudo" required></td>
+					<td>
+						<p style="color: red">
+							<c:if test="${ UnknownUser }">
+								<p style="color: red">Identifiant inconnu</p>
+							</c:if>
+						</p>
+					</td>
 
 				</tr>
 
@@ -34,13 +41,7 @@
 
 			</table>
 		</div>
-		<div>
-			<p style="color: red">
-				<c:if test="${ UnknownUser }">
-					<p style="color: red">Identifiants incorrects</p>
-				</c:if>
-			</p>
-		</div>
+		<div></div>
 
 
 	</form>

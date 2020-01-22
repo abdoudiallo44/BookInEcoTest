@@ -83,6 +83,21 @@ public class UtilisateurDAO extends GenericDAO{
 			em.close();
 		return result;
 	}
+
+	public Utilisateur findUserByEmailOrPseudo(String identifiant) {
+			
+		try {
+			return (Utilisateur) em.createQuery(
+					"FROM Utilisateur u WHERE (u.email=:email OR u.pseudo=:pseudo)")
+					.setParameter("email", identifiant)
+					.setParameter("pseudo", identifiant)
+					.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 	/**

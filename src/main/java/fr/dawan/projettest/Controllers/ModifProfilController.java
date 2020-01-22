@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import fr.dawan.projettest.Beans.AdresseForm;
 import fr.dawan.projettest.Beans.ProfilForm;
+import fr.dawan.projettest.DAO.AdresseDAO;
 import fr.dawan.projettest.entite.AdresseLivraison;
 import fr.dawan.projettest.entite.Utilisateur;
+import fr.dawan.projettest.service.AdresseService;
 import fr.dawan.projettest.service.GenericService;
 import fr.dawan.projettest.service.UtilisateurService;
 
@@ -25,7 +27,7 @@ public class ModifProfilController {
 	private UtilisateurService service;
 
 	@Autowired
-	private GenericService<AdresseLivraison> genericService;
+	private AdresseService adresseService;
 	
 //	@Autowired
 //	private AdresseService adresseService;
@@ -157,12 +159,13 @@ public class ModifProfilController {
 		adresse.setCodePostal(adresseForm.getCodePostal());
 		adresse.setVille(adresseForm.getVille());
 		adresse.setPays(adresseForm.getPays());
-		System.out.println(adresse);
 
 		user.addAdresse(adresse);
+		
+		System.out.println(adresse);
 		List<AdresseLivraison> listeAdresse = user.getAdresseLivraison();
 
-		genericService.create(adresse, true);
+		adresseService.create(adresse, true);
 
 		model.addAttribute("listeAdresse", listeAdresse);
 		model.addAttribute("user", user);
@@ -175,7 +178,7 @@ public class ModifProfilController {
 		Utilisateur user = (Utilisateur) session.getAttribute("user");
 		
 		
-		genericService.deleteById(AdresseLivraison.class, id, true);
+		adresseService.deleteAdresseById(id);
 		//adresseService.deleteById(id);
 		List<AdresseLivraison> listeAdresse = service.findAllByUser(user.getId(), true);
 		
